@@ -34,7 +34,7 @@ use PHPMailer\PHPMailer\Exception;
             
                 //Content
                 $mail->isHTML(true);                                  //Set email format to HTML
-                $mail->Subject = 'BiLAT';
+                $mail->Subject = 'Testing';
                 $mail->Body    = "TRY OTP: $otp <br> Name: $first_name";
     
                 $mail->send();

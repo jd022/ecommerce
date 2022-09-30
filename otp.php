@@ -21,7 +21,7 @@ $decryption_iv = '1234567891011121';
 $decryption_key = "TeamAgnat";
 
 // Use openssl_decrypt() function to decrypt the data
-$decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
+$decrypted_email=openssl_decrypt ($email, $ciphering,
     $decryption_key, $options, $decryption_iv);
 ?>
 <!DOCTYPE html>
@@ -52,7 +52,7 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
         }
         
 
-        $check_otp_match = "SELECT * FROM `user` WHERE otp = '$otp'";
+        $check_otp_match = "SELECT * FROM `user` WHERE otp = '$otp' WHERE email = '$decrypted_email'";
         $query_check_otp_match = mysqli_query($conn, $check_otp_match);
         if(mysqli_num_rows($query_check_otp_match) > 0){
             $verify_account = "UPDATE `user` SET validation = 1 WHERE email = '$decrypted_email'";
