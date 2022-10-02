@@ -52,7 +52,7 @@ $decrypted_email=openssl_decrypt ($email, $ciphering,
         }
         
 
-        $check_otp_match = "SELECT * FROM `user` WHERE otp = '$otp' WHERE email = '$decrypted_email'";
+        $check_otp_match = "SELECT * FROM `user` WHERE otp = '$otp' AND email = '$decrypted_email'";
         $query_check_otp_match = mysqli_query($conn, $check_otp_match);
         if(mysqli_num_rows($query_check_otp_match) > 0){
             $verify_account = "UPDATE `user` SET validation = 1 WHERE email = '$decrypted_email'";
