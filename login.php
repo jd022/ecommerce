@@ -4,6 +4,7 @@ include ("connection.php");
 	if(isset($_SESSION['email'])){
 	session_destroy();
     }
+ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,43 +20,50 @@ include ("connection.php");
         <div class="card" style="width: 55vw; height: 30rem; border-radius: 0; font-family: var(--poppins);">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-6">
-
+                    <!-- Logo div -->
+                    <div class="col-lg-6" style="position: relative;">
+                        <span style="position: absolute; left: -1.3%; top: -5.4%; padding: 0; z-index: 10000;">
+                            <img src="src/img/CoozyLogo.png" alt="" style="height: 30rem;">
+                        </span>
                     </div>
-                    <div class="col-lg-6">
-                        <form action="" method="POST">
-                            <h4 class="mb-2" style="font-weight: 700;">Sign In<br><hr class="featurette-divider my-0 mt-1" style="width:3vw; opacity: 1; background: black;
-                                border: 1px solid black;"></hr></h4>
-                            <div class="row g-2 px-4 my-5">
-                            <div class="col-lg-12 hstack">
+                    <!-- Logo End -->
+
+                    <!-- Login Form -->
+                    <div class="col-lg-6 d-flex justify-content-center flex-column">
+                        <h4 class="mb-2" style="font-weight: 700;">Sign In<br><hr class="featurette-divider my-0 mt-1" style="width:3vw; opacity: 1; background: black;border: 1px solid black;"></hr></h4>
+                        <form action="" class="row g-2 px-2 my-5" method="POST">
+                            <span class="col-lg-12 px-4 hstack">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="50" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
                                     <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
                                 </svg>
                                 <input type="text" 
-                                class="py-2 mx-2 w-100" name="email" style="font-weight: 800;" placeholder="Email">
-                            </div>
-                            <div class="col-lg-12 hstack">
+                                class="py-1 mx-2 w-100" name="email" style="font-weight: 800;" placeholder="Email">
+                            </span>
+                            <span class="col-lg-12 hstack mb-4 px-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-shield-lock-fill" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm0 5a1.5 1.5 0 0 1 .5 2.915l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99A1.5 1.5 0 0 1 8 5z"/>
                                 </svg>
-                                <input type="text"
-                                class="py-2 mx-2 w-100" name="password" style="font-weight: 800;" placeholder="Password">
-                            </div>
-                                <div class="col-lg-7 px-2 d-flex flex-column align-items-center">
-                                    <a href="retrieve.php" class="text-dark text-decoration-none text-start w-100" style="font-weight: 700;">Forgot Password?</a>
-                                    <a href="register.php" class="text-dark text-decoration-none text-start w-100" style="font-weight: 700;">Create New Account</a>
-                                </div>
-                                <div class="col-lg-5 px-2 d-flex align-items-center justify-content-end text-end">
-                                    <input type="submit" name="submit" id="" class="btn btn-dark" 
-                                    style="border-radius: 0;" value="Submit">
-                                </div>
-                            </div>
+                                <input type="password"
+                                class="py-1 mx-2 w-100" name="password" style="font-weight: 800;" placeholder="Password">
+                            </span>
+                            <span class="col-lg-8 px-5 d-flex flex-column align-items-start">
+                                <small><a href="retrieve.php" class="text-dark text-decoration-none text-start w-100" style="font-weight: 900;">Forgot Password?</a></small>
+                                <small><a href="register.php" class="text-dark text-decoration-none text-start w-100" style="font-weight: 900;">Create New Account</a></small>                                    
+                            </span>
+                            <span class="col-lg-4 px-5 d-flex align-items-center justify-content-end">
+                                <input type="submit" name="submit" id="" class="btn btn-dark" style="border-radius: 0;" value="Submit">
+                            </span>
                         </form>
                     </div>
+                    <!-- Form End -->
                 </div>
+                <!-- row end -->
             </div>
+            <!-- Card body end -->
         </div>
+        <!-- Card end -->
     </div>
+    <!-- Container  -->
 </body>
 </html>
 <?php
@@ -72,7 +80,7 @@ if(isset($_POST['submit'])){
         exit();
     }else{
     // for verified accounts
-    $check_sql = "SELECT * FROM `user` WHERE email = '$email'";
+    $check_sql = "SELECT * FROM `user` WHERE `email` = '$email'";
     $query_check = mysqli_query($conn, $check_sql);
     if(mysqli_num_rows($query_check) > 0){
         $row = mysqli_fetch_array($query_check);

@@ -94,7 +94,7 @@
 
 body {
   margin: 0;
-  font-family: var(--poppins);
+  font-family: var(--nunito);
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
@@ -10923,4 +10923,9 @@ textarea.form-control-lg {
 }
 .text-maroon{
   color: var(--maroon);
+}
+.logo{
+  background: url("../E-Coozy.png");
+  background: contain;
+  border: 2px solid green;
 }
