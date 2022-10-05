@@ -17,19 +17,19 @@ ob_start();
 </head>
 <body class="bg-maroon">
     <div class="container px-0 vh-100 d-flex flex-column align-items-end justify-content-center">
-        <div class="card" style="width: 55vw; height: 30rem; border-radius: 0; font-family: var(--poppins);">
-            <div class="card-body">
-                <div class="row">
+        <div class="card" style="width: 60vw; height: 30rem; border-radius: 0; border: none; font-family: var(--poppins); overflow:hidden;">
+            <div class="card-body py-0 px-2" style="border:none;">
+                <div class="row d-flex justify-content-end align-items-start" style="background:url(src/img/CoozyLogo.png); background-repeat: no-repeat; background-size: 50% 100%; z-index: 000; height: 100%;">
                     <!-- Logo div -->
-                    <div class="col-lg-6" style="position: relative;">
-                        <span style="position: absolute; left: -1.3%; top: -5.4%; padding: 0; z-index: 10000;">
-                            <img src="src/img/CoozyLogo.png" alt="" style="height: 30rem;">
+                    <!-- <div class="col-lg-6" style="position: relative;">
+                        <span class="container logo" style="position: absolute; left: -1.3%; top: -5.4%;border:none; padding: 0; z-index: 10000;">
+                            <img class="img-fluid" src="src/img/CoozyLogo.png" alt="" style="height: 30rem;">
                         </span>
-                    </div>
+                    </div> -->
                     <!-- Logo End -->
 
                     <!-- Login Form -->
-                    <div class="col-lg-6 d-flex justify-content-center flex-column">
+                    <div class="col-lg-6 py-5 d-flex justify-content-start align-items-start flex-column">
                         <h4 class="mb-2" style="font-weight: 700;">Sign In<br><hr class="featurette-divider my-0 mt-1" style="width:3vw; opacity: 1; background: black;border: 1px solid black;"></hr></h4>
                         <form action="" class="row g-2 px-2 my-5" method="POST">
                             <span class="col-lg-12 px-4 hstack">
