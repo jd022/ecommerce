@@ -59,57 +59,49 @@ use PHPMailer\PHPMailer\Exception;
 </head>
 <body class="bg-maroon">
     <div class="container px-0 vh-100 d-flex flex-column align-items-end justify-content-center">
-        <div class="card" style="width: 55vw; height: 30rem; border-radius: 0;">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-6">
+        <div class="card" style="width: 60vw; height: auto; border-radius: 0;">
+            <div class="card-body py-0 px-2" style="border: none; overflow: hidden;">
+                <div class="row d-flex justify-content-end align-items-end" style="background:url(src/img/CoozyLogo.png); background-repeat: no-repeat; background-size: 50% 100%; z-index: 000;">
+                     <!-- Logo div -->
+                        <!-- <span class="container logo" style="position: absolute; left: -1.3%; top: 50%; border:none; padding: 0; z-index: 10000; transform:translateY(-50.2%)">
+                            <img class="img-fluid" src="src/img/CoozyLogo.png" alt="" style="height: 30rem;">
+                        </span> -->
+                    <!-- Logo End -->
+                    <div class="col-6 d-flex justify-content-center align-items-start flex-column">
+                    <h4 class="mb-2 pt-3" style="font-weight: 700;">Sign Up<br><hr class="featurette-divider my-0 mt-1" style="width:3vw; border: 1px solid black; opacity: 1; background: black;
+                            border: 1px solid black;"></hr></h4>
+                        <form action="" class="row px-2 gy-2 my-5" method="POST">
+                            <span class="col-6 hstack">
+                                <input type="text" class="py-1 px-2 w-100" name="first_name" style="font-weight: 700;" placeholder="First Name">
+                            </span>
+                            <span class="col-6">
+                            <input type="text" class="py-1 px-2 w-100" name="last_name" style="font-weight: 700;" placeholder="Last Name">
 
-                    </div>
-                    <div class="col-lg-6">
-                        <form action="" method="POST">
-                            <div class="row g-2">
-                                <h4 class="mb-2" style="font-weight: 700;">Sign Up<br><hr class="featurette-divider my-0 mt-1" style="width:3vw; opacity: 1; background: black;
-                                border: 1px solid black;"></hr></h4>
-                                <div class="col-lg-6">
-                                    <input type="text" 
-                                    class="py-2" name="first_name" style="font-weight: 800;" placeholder="First Name">
-                                </div>
-                                <div class="col-lg-6">
-                                    <input type="text"
-                                    class="py-2" name="last_name" style="font-weight: 800;" placeholder="Last Name">
-                                </div>
-                                <div class="col-lg-12">
-                                    <input type="text" 
-                                    class="py-2 w-100" name="address" style="font-weight: 800;" placeholder="Address">
-                                </div>
-                                <div class="col-lg-6">
-                                    <input type="text"
-                                    class="py-2" name="p_code" style="font-weight: 800;" placeholder="Postal Code">
-                                </div>
-                                <div class="col-lg-6">
-                                    <input type="text" 
-                                    class="py-2" name="brgy_no" style="font-weight: 800;" placeholder="Brgy. No.">
-                                </div>
-                                <div class="col-lg-12">
-                                    <input type="text" 
-                                    class="py-2 w-100" name="email" style="font-weight: 800;" placeholder="Email">
-                                </div>
-                                <div class="col-lg-12">
-                                    <input type="text" 
-                                    class="py-2 w-100" name="password"style="font-weight: 800;"  placeholder="Password">
-                                </div>
-                                <div class="col-lg-12">
-                                    <input type="text" 
-                                    class="py-2 w-100" name="c_password" style="font-weight: 800;" placeholder="Re-enter Password">
-                                </div>
-                                <div class="col-lg-7 d-flex align-items-center">
-                                    <a href="Login.html" class="text-dark text-decoration-none" style="font-weight: 700;">Already have an account?</a>
-                                </div>
-                                <div class="col-lg-5 text-end">
-                                    <input type="submit" name="" id="" class="btn btn-dark" 
-                                    style="border-radius: 0;" name="register" value="Submit">
-                                </div>
-                            </div>
+                            </span>
+                            <span class="col-12">
+                                <input type="text" class="py-1 px-2 w-100" name="address" style="font-weight: 700;" placeholder="Address">
+                            </span>
+                            <span class="col-6">
+                                <input type="text" class="py-1 px-2 w-100" name="p_code" style="font-weight: 700;" placeholder="Postal Code">
+                            </span>
+                            <span class="col-6">
+                                <input type="text" class="py-1 px-2 w-100" name="brgy_no" style="font-weight: 700;" placeholder="Brgy. No.">
+                            </span>
+                            <span class="col-12">
+                                <input type="text" class="py-1 px-2 w-100" name="email" style="font-weight: 700;" placeholder="Email">
+                            </span>
+                            <span class="col-12">
+                                <input type="text" class="py-1 px-2 w-100" name="password"style="font-weight: 700;"  placeholder="Password">
+                            </span>
+                            <span class="col-12">
+                                <input type="text" class="py-1 px-2 w-100" name="c_password" style="font-weight: 700;" placeholder="Re-enter Password">
+                            </span>
+                            <span class="col-7 px-3 d-flex align-items-center">
+                                <small><a href="Login.html" class="text-dark text-decoration-none" style="font-weight: 600;">Already have an account?</a></small>
+                            </span>
+                            <span class="col-5 px-3 text-end">
+                                <input type="submit" name="" id="" class="btn btn-dark" style="border-radius: 0;" name="register" value="Submit">
+                            </span>
                         </form>
                     </div>
                 </div>
