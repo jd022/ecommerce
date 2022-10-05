@@ -91,10 +91,10 @@ use PHPMailer\PHPMailer\Exception;
                                 <input type="text" class="py-1 px-2 w-100" name="email" style="font-weight: 700;" placeholder="Email">
                             </span>
                             <span class="col-12">
-                                <input type="text" class="py-1 px-2 w-100" name="password"style="font-weight: 700;"  placeholder="Password">
+                                <input type="password" class="py-1 px-2 w-100" name="password"style="font-weight: 700;"  placeholder="Password">
                             </span>
                             <span class="col-12 mb-1">
-                                <input type="text" class="py-1 px-2 w-100" name="c_password" style="font-weight: 700;" placeholder="Re-enter Password">
+                                <input type="password" class="py-1 px-2 w-100" name="c_password" style="font-weight: 700;" placeholder="Re-enter Password">
                             </span>
                             <span class="col-7 px-3 d-flex align-items-center">
                                 <small><a href="login.php" class="text-dark text-decoration-none" style="font-weight: 600;">Already have an account?</a></small>
