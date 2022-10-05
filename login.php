@@ -17,7 +17,7 @@ ob_start();
 </head>
 <body class="bg-maroon">
     <div class="container px-0 vh-100 d-flex flex-column align-items-end justify-content-center">
-        <div class="card" style="width: 60vw; height: 30rem; border-radius: 0; border: none; font-family: var(--poppins); overflow:hidden;">
+        <div class="card" style="width: 50vw; height: 30rem; border-radius: 0; border: none; font-family: var(--poppins); overflow:hidden;">
             <div class="card-body py-0 px-2" style="border:none;">
                 <div class="row d-flex justify-content-end align-items-start" style="background:url(src/img/CoozyLogo.png); background-repeat: no-repeat; background-size: 50% 100%; z-index: 000; height: 100%;">
                     <!-- Logo div -->
@@ -29,9 +29,9 @@ ob_start();
                     <!-- Logo End -->
 
                     <!-- Login Form -->
-                    <div class="col-lg-6 py-5 d-flex justify-content-start align-items-start flex-column">
+                    <div class="col-7 py-5 px-5 d-flex justify-content-start align-items-start flex-column">
                         <h4 class="mb-2" style="font-weight: 700;">Sign In<br><hr class="featurette-divider my-0 mt-1" style="width:3vw; opacity: 1; background: black;border: 1px solid black;"></hr></h4>
-                        <form action="" class="row g-2 px-2 my-5" method="POST">
+                        <form action="" class="row g-2 px-lg-2 my-5" method="POST">
                             <span class="col-lg-12 px-4 hstack">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="50" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
                                     <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
@@ -46,11 +46,11 @@ ob_start();
                                 <input type="password"
                                 class="py-1 mx-2 w-100" name="password" style="font-weight: 800;" placeholder="Password">
                             </span>
-                            <span class="col-lg-8 px-5 d-flex flex-column align-items-start">
+                            <span class="col-8 px-3 d-flex flex-column align-items-start">
                                 <small><a href="retrieve.php" class="text-dark text-decoration-none text-start w-100" style="font-weight: 900;">Forgot Password?</a></small>
                                 <small><a href="register.php" class="text-dark text-decoration-none text-start w-100" style="font-weight: 900;">Create New Account</a></small>                                    
                             </span>
-                            <span class="col-lg-4 px-5 d-flex align-items-center justify-content-end">
+                            <span class="col-4 px-3 d-flex align-items-center justify-content-end">
                                 <input type="submit" name="submit" id="" class="btn btn-dark" style="border-radius: 0;" value="Submit">
                             </span>
                         </form>

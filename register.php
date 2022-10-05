@@ -1,5 +1,6 @@
 <?php
 include ("connection.php");
+ob_start();
 ?>
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
@@ -59,17 +60,16 @@ use PHPMailer\PHPMailer\Exception;
 </head>
 <body class="bg-maroon">
     <div class="container px-0 vh-100 d-flex flex-column align-items-end justify-content-center">
-        <div class="card" style="width: 60vw; height: auto; border-radius: 0; font-family: var(--poppins);">
+        <div class="card" style="width: 50vw; height: 30rem; border-radius: 0; border:none; font-family: var(--poppins);">
             <div class="card-body py-0 px-2" style="border: none; overflow: hidden;">
-                <div class="row d-flex justify-content-end align-items-end" style="background:url(src/img/CoozyLogo.png); background-repeat: no-repeat; background-size: 50% 100%; z-index: 000;">
+                <div class="row d-flex justify-content-end align-items-end" style="background:url(src/img/CoozyLogo.png); background-repeat: no-repeat; background-size: 50% 100%; height: 100%; z-index: 000;">
                      <!-- Logo div -->
                         <!-- <span class="container logo" style="position: absolute; left: -1.3%; top: 50%; border:none; padding: 0; z-index: 10000; transform:translateY(-50.2%)">
                             <img class="img-fluid" src="src/img/CoozyLogo.png" alt="" style="height: 30rem;">
                         </span> -->
                     <!-- Logo End -->
                     <div class="col-6 d-flex justify-content-center align-items-start flex-column">
-                    <h4 class="mb-1 pt-3" style="font-weight: 700;">Sign Up<br><hr class="featurette-divider my-0 mt-1" style="width:3vw; border: 1px solid black; opacity: 1; background: black;
-                            border: 1px solid black;"></hr></h4>
+                        <h4 class="mb-2" style="font-weight: 700;">Sign Up<br><hr class="featurette-divider my-0 mt-1" style="width:3vw; opacity: 1; background: black;border: 1px solid black;"></hr></h4>
                         <form action="" class="row px-2 gy-2 my-5" method="POST">
                             <span class="col-6 hstack">
                                 <input type="text" class="py-1 px-2 w-100" name="first_name" style="font-weight: 700;" placeholder="First Name">
@@ -100,14 +100,19 @@ use PHPMailer\PHPMailer\Exception;
                                 <small><a href="login.php" class="text-dark text-decoration-none" style="font-weight: 600;">Already have an account?</a></small>
                             </span>
                             <span class="col-5 px-3 text-end">
-                                <input type="submit" name="" id="" class="btn btn-dark" style="border-radius: 0;" name="register" value="Submit">
+                                <input type="submit" id="" class="btn btn-dark" style="border-radius: 0;" name="register" value="Submit">
                             </span>
                         </form>
                     </div>
+                    <!-- Form column end -->
                 </div>
+                <!-- row end -->
             </div>
+            <!-- card body end -->
         </div>
+        <!-- card end -->
     </div>
+    <!-- container end -->
 </body>
 </html>
 <?php
