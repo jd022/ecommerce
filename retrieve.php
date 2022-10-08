@@ -7,6 +7,7 @@ include ("connection.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/styles/css/style.css">
     <title>Document</title>
 </head>
 <body>
@@ -37,8 +38,27 @@ include ("connection.php");
          $encryption = openssl_encrypt($rows_email, $ciphering,
                      $encryption_key, $options, $encryption_iv);
     ?>
-    <h1>Please check if your email is here</h1>
-    <a href="auth_code.php?e=<?php echo $encryption;?>"><?php echo $rows_email;?></a>
+    <div class="nav-container">
+        <ul class="navbar">
+            <li class="navitem">
+                <a href="home.php">HOME</a>
+            </li>
+            <li class="navitem">
+                <a href="#">CONTACT</a>
+            </li>
+            <li class="navitem">
+                <a href="#">ABOUT US</a>
+            </li>
+        </ul>
+    </div>
+     <div class="container-3">
+        <div class="inner-wrapper">
+            <h1 style="margin-bottom:12px;">Please check if your email is here</h1>
+            <hr style="background: rgba(0, 0, 0, 0.8); border: 1px solid rgba(0, 0, 0, 0.8); width:70%; margin-bottom: 2em;">
+            <a class="auth" href="auth_code.php?e=<?php echo $encryption;?>"><?php echo ucfirst($rows_email);?></a>
+        </div>
+    </div>
+    
     <?php
         }else{
             ?>
@@ -48,13 +68,38 @@ include ("connection.php");
         }
     }else{
     ?>
-    <h1>Find your account</h1>
-    <p>Please enter your email to find your account.</p>
-    <form action="" method="POST">
-        <input type="email" name="email" placeholder="EMAIL">
-        <a href="login.php">Cancel</a>
-        <button type="submit" name="submit">Search</button>
-    </form>
+    <div class="nav-container">
+        <ul class="navbar">
+            <li class="navitem">
+                <a href="home.php">HOME</a>
+            </li>
+            <li class="navitem">
+                <a href="#">CONTACT</a>
+            </li>
+            <li class="navitem">
+                <a href="#">ABOUT US</a>
+            </li>
+        </ul>
+    </div>
+    <div class="container-3">
+        <div class="inner-wrapper">
+            <h1>FIND YOUR ACCOUNT</h1>
+            <h6>Please enter your email to find your account.</h6>
+            <form class="email" action="" method="POST">
+                <span class="account">
+                    <label for="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="24" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
+                    </label>
+                    <input type="text" name="email" class="email-input" placeholder="EMAIL">
+                </span>
+                <span class="button-section">
+                    <a href="login.php" class="cancel">CANCEL</a>
+                    <button type="submit" name="submit" class="Enter">ENTER</button>
+                </span>
+            </form>
+        </div>
+    </div>
     <?php
     }
     ?>

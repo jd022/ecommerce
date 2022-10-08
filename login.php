@@ -16,7 +16,30 @@ ob_start();
     <title>Document</title>
 </head>
 <body class="bg-maroon">
-    <div class="container px-0 vh-100 d-flex flex-column align-items-end justify-content-center">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="" alt="" sizes="" srcset="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container px-0 pt-5 d-flex flex-column align-items-end justify-content-center">
         <div class="card" style="width: 50vw; height: 30rem; border-radius: 0; border: none; font-family: var(--poppins); overflow:hidden;">
             <div class="card-body py-0 px-2" style="border:none;">
                 <div class="row d-flex justify-content-end align-items-start" style="background:url(src/img/CoozyLogo.png); background-repeat: no-repeat; background-size: 50% 100%; z-index: 000; height: 100%;">

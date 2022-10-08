@@ -31,17 +31,40 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/styles/css/style.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>Verification Code</h1>
-    <p>Please check your email to enter your OTP.</p>
-    <span>Email: <?php echo $decrypted_email;?></span>
-    <form action="" method="POST">
-        <input type="text" name="otp" placeholder="OTP CODE">
-        <button type="submit" name="submit">Enter</button>
-        <a href="question.php?e=<?php echo $email;?>">Choose different method</a>
-    </form>
+<div class="nav-container">
+        <ul class="navbar">
+            <li class="navitem">
+                <a href="home.php">HOME</a>
+            </li>
+            <li class="navitem">
+                <a href="#">CONTACT</a>
+            </li>
+            <li class="navitem">
+                <a href="#">ABOUT US</a>
+            </li>
+        </ul>
+    </div>
+    <div class="container-3">
+        <div class="inner-wrapper">
+            <h1 style="margin-bottom:1.7em;">Verification Code</h1>
+            <p style="margin-bottom:15px;">Please check your email to enter your OTP.</p>
+            <span>Email: <?php echo $decrypted_email;?></span>
+            <form action="" method="POST" style="display: flex; flex-direction:column; text-align: center;">
+                <span>
+                    <input type="text" name="otp" class="email-input" placeholder="OTP CODE">
+                    <button type="submit" name="submit" style="padding: 8px 12px;">Enter</button>
+                </span>
+               
+                <a href="question.php?e=<?php echo $email;?>">Choose different method</a>
+            </form>
+        </div>
+    </div>
+    
+   
 </body>
 </html>
 <?php

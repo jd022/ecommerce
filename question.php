@@ -31,16 +31,37 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/styles/css/style.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>What is your name?</h1>
-    <p>Enter the full name of your account</p>
-    <form action="" method="POST">
-        <input type="text" name="first_name" placeholder="FIRST NAME">
-        <input type="text" name="last_name" placeholder="LAST NAME">
-        <button type="submit" name="submit">Submit</button>
-    </form>
+<div class="nav-container">
+        <ul class="navbar">
+            <li class="navitem">
+                <a href="home.php">HOME</a>
+            </li>
+            <li class="navitem">
+                <a href="#">CONTACT</a>
+            </li>
+            <li class="navitem">
+                <a href="#">ABOUT US</a>
+            </li>
+        </ul>
+    </div>
+    <div class="container-3">
+        <div class="inner-wrapper">
+            <h1>What is your name?</h1>
+            <p style="margin-bottom: 10px;">Enter the full name of your account</p>
+            <form class="email" action="" method="POST">
+                <span style="display: flex; flex-direction: row; margin-bottom:12px ;">
+                    <input type="text" name="first_name" class="email-input" placeholder="FIRST NAME">
+                    <input type="text" name="last_name" class="email-input" placeholder="LAST NAME">
+                </span>
+                <button type="submit" name="submit" style="padding: 6px 12px;">Submit</button>
+            </form>
+        </div>
+    </div>
+   
 </body>
 </html>
 <?php
