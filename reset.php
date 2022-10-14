@@ -51,7 +51,7 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
     <div class="container-3">
         <div class="inner-wrapper">
             <h1>Change Password</h1>
-            <p>It`s a good idea to use a strong password that <br> you`re not using elsewhere.</p>
+            <p>Tip: You'll want to use passwords that are long, strong, <br> and difficult for someone else to guess.</p>
             <form class="email" action="" method="POST">
                 <span class="account">
                     <label for="">
