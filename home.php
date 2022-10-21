@@ -59,32 +59,53 @@ if (empty($_SESSION['email'])){
             <div class="card mt-2 p-5 d-flex align-items-center" style="border:none; border-radius: 0; height: 80%;">
                 <div class="row g-5">
                     <div class="col-lg-4">
-                        <img src="src/img/sample9.PNG" height="250px" width="200px" alt="">
+                        <a href="melt_tee.php">
+                            <?php
+                            $select_melt_tee = "SELECT * FROM products WHERE product_id = '84562983'";
+                            $query_melt_tee = mysqli_query($conn, $select_melt_tee);
+                            $rows = mysqli_fetch_array($query_melt_tee);
+                            ?>
+                        <img src="src/img/<?php echo $rows['image'];?>" height="250px" width="200px" alt="">
                         <span class="text-center">
-                            <small><h6 class="p-0 m-0">Melt Tee</h6></small>
-                            <small><h6 class="p-0 m-0">₱450.00</h6></small>
+                            <small><h6 class="p-0 m-0"><?php echo $rows['name'];?></h6></small>
+                            <small><h6 class="p-0 m-0">₱ <?php echo number_format($rows['price'],2);?></h6></small>
                         </span>
+                        </a>
                     </div>
                     <div class="col-lg-4">
-                        <img src="src/img/sample8.PNG" height="250px" width="200px" alt="">
+                        <a href="take_risk_dye.php">
+                        <?php
+                            $select_takerisk = "SELECT * FROM products WHERE product_id = '82758426'";
+                            $query_takerisk = mysqli_query($conn, $select_takerisk);
+                            $rows = mysqli_fetch_array($query_takerisk);
+                            ?>
+                        <img src="src/img/<?php echo $rows['image'];?>" height="250px" width="200px" alt="">
                         <span class="text-center">
-                            <small><h6 class="p-0 m-0">Take Risk Dye</h6></small>
-                            <small><h6 class="p-0 m-0">₱600.00</h6></small>
+                            <small><h6 class="p-0 m-0"><?php echo $rows['name'];?></h6></small>
+                            <small><h6 class="p-0 m-0">₱ <?php echo number_format($rows['price'],2);?></h6></small>
                         </span>
+                        </a>
                     </div>
                     <div class="col-lg-4">
-                        <img src="src/img/sample2.PNG" height="250px" width="200px" alt="">
+                        <a href="kedrick_bootleg.php">
+                        <?php
+                            $select_kendrick = "SELECT * FROM products WHERE product_id = '38175967'";
+                            $query_kendrick = mysqli_query($conn, $select_kendrick);
+                            $rows = mysqli_fetch_array($query_kendrick);
+                            ?>
+                        <img src="src/img/<?php echo $rows['image'];?>" height="250px" width="200px" alt="">
                         <span class="text-center">
-                            <small><h6 class="p-0 m-0">Kendrick L. Bootleg</h6></small>
-                            <small><h6 class="p-0 m-0">₱1000.00</h6></small>
+                            <small><h6 class="p-0 m-0"><?php echo $rows['name'];?></h6></small>
+                            <small><h6 class="p-0 m-0">₱ <?php echo number_format($rows['price'],2);?></h6></small>
                         </span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </main>
     <!-- <h1>Home</h1>
-    welcome user <?php echo $_SESSION['email'];?>
+    welcome user
     <a href="logout.php">logout</a> -->
 
 </body>
