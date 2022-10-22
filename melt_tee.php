@@ -19,13 +19,13 @@ if (empty($_SESSION['email'])){
     <nav class="navbar navbar-expand-lg navbar-dark bg-black">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="" alt="" sizes="" srcset="">
+                <img src="../ecommerce/src/img/logo.png" width="160" alt="" sizes="" srcset="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto" style="font-size: 20px;">
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Shop</a>
                     </li>
