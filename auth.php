@@ -32,7 +32,7 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/styles/css/style.css">
-    <title>Coozy Apparel</title>
+    <title>Coozy Apparel.</title>
 </head>
 <body>
 <div class="nav-container">
