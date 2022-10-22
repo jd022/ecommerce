@@ -15,6 +15,13 @@ if (empty($_SESSION['email'])){
     <link rel="stylesheet" href="bs-5/bootstrap/dist/css/bootstrap.css">
     <title>Coozy Apparel.</title>
 </head>
+<style>
+    @media screen and (width: 992) {
+        .card-wrapper{
+            width: 100%;
+        }
+    }
+</style>
 <body class="bg-maroon">
     <nav class="navbar navbar-expand-lg navbar-dark bg-black">
         <div class="container">
@@ -27,19 +34,19 @@ if (empty($_SESSION['email'])){
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto" style="font-size: 20px;">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Shop</a>
+                        <a class="nav-link" href="#">SHOP</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cart</a>
+                        <a class="nav-link" href="#">CART</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Products</a>
+                        <a class="nav-link" href="#">PRODUCTS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Order Status</a>
+                        <a class="nav-link" href="#">ORDER STATUS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Log Out</a>
+                        <a class="nav-link" href="logout.php">LOG OUT</a>
                         <!-- Temporary nav item -->
                     </li>
                 </ul>
@@ -50,16 +57,16 @@ if (empty($_SESSION['email'])){
         <div class="container-fluid mb-5">
             <!-- iwan nyo to para sa carousel -->
         </div>
-        <div class="container" style="height: 65vh; width: 70%;">
-            <span class="mb-4">
+        <div class="card-wrapper d-flex flex-column align-items-center" style="height: 65vh;">
+            <span class="mb-4 d-flex align-items-center justify-content-start w-75">
                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" class="bi bi-search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
                 <input type="text" name="" placeholder="Search...">
             </span>
-            <div class="card mt-2 p-5 d-flex align-items-center" style="border:none; border-radius: 0; height: 80%;">
-                <div class="row g-5">
-                    <div class="col-lg-4">
-                        <a href="melt_tee.php">
+            <div class="card product-wrapper mt-2 p-lg-5 p-xxl-5 p-sm-0 p-md-0 d-flex align-items-center w-75" style="border:none; border-radius: 0; height: auto;">
+                <div class="row g-5 ">
+                    <div class="col-lg-4 col-sm-12 text-center">
+                        <a href="melt_tee.php" class="text-dark" style="text-decoration: none;">
                             <?php
                             $select_melt_tee = "SELECT * FROM products WHERE product_id = '84562983'";
                             $query_melt_tee = mysqli_query($conn, $select_melt_tee);
@@ -72,8 +79,8 @@ if (empty($_SESSION['email'])){
                         </span>
                         </a>
                     </div>
-                    <div class="col-lg-4">
-                        <a href="take_risk_dye.php">
+                    <div class="col-lg-4 col-sm-12 text-center">
+                        <a href="take_risk_dye.php" class="text-dark" style="text-decoration: none;">
                         <?php
                             $select_takerisk = "SELECT * FROM products WHERE product_id = '82758426'";
                             $query_takerisk = mysqli_query($conn, $select_takerisk);
@@ -86,8 +93,8 @@ if (empty($_SESSION['email'])){
                         </span>
                         </a>
                     </div>
-                    <div class="col-lg-4">
-                        <a href="kedrick_bootleg.php">
+                    <div class="col-lg-4 text-center">
+                        <a href="kedrick_bootleg.php" class="text-dark" style="text-decoration: none;">
                         <?php
                             $select_kendrick = "SELECT * FROM products WHERE product_id = '38175967'";
                             $query_kendrick = mysqli_query($conn, $select_kendrick);
