@@ -27,19 +27,19 @@ if (empty($_SESSION['email'])){
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto" style="font-size: 20px;">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Shop</a>
+                        <a class="nav-link" href="#">SHOP</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cart</a>
+                        <a class="nav-link" href="#">CART</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Products</a>
+                        <a class="nav-link" href="#">PRODUCTS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Order Status</a>
+                        <a class="nav-link" href="#">ORDER STATUS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Log Out</a>
+                        <a class="nav-link" href="logout.php">LOG OUT</a>
                         <!-- Temporary nav item -->
                     </li>
                 </ul>
