@@ -13,7 +13,7 @@ if (empty($_SESSION['email'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bs-5/bootstrap/dist/css/bootstrap.css">
-    <title>Coozy Apparel.</title>
+    <title>Coozy Apparel</title>
 </head>
 <style>
     @media screen and (width: 992) {
@@ -32,21 +32,21 @@ if (empty($_SESSION['email'])){
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto" style="font-size: 20px;">
+                <ul class="navbar-nav ms-auto" style="font-size: 18px;">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Shop</a>
+                        <a class="nav-link" href="#">SHOP</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cart</a>
+                        <a class="nav-link" href="#">CART</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Products</a>
+                        <a class="nav-link" href="#">PRODUCTS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Order Status</a>
+                        <a class="nav-link" href="#">ORDER STATUS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Log Out</a>
+                        <a class="nav-link" href="logout.php">LOG OUT</a>
                         <!-- Temporary nav item -->
                     </li>
                 </ul>
@@ -57,8 +57,13 @@ if (empty($_SESSION['email'])){
         <div class="container-fluid mb-5">
             <!-- iwan nyo to para sa carousel -->
         </div>
+
         <div class="card-wrapper d-flex flex-column align-items-center" style="height: 65vh;">
             <span class="mb-4 d-flex align-items-center justify-content-start w-75">
+
+        <div class="container" style="height: 70vh; width: 70%;">
+            <span class="mb-4">
+
                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" class="bi bi-search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
                 <input type="text" name="" placeholder="Search...">
