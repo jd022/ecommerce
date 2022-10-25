@@ -111,7 +111,7 @@ use PHPMailer\PHPMailer\Exception;
                                 <input type="text" class="py-1 px-2 w-100" name="brgy_no" style="font-weight: 700;" placeholder="Brgy. No.">
                             </span>
                             <span class="col-12">
-                                <input type="text" class="py-1 px-2 w-100" name="email" style="font-weight: 700;" placeholder="Email">
+                                <input type="email" class="py-1 px-2 w-100" name="email" style="font-weight: 700;" placeholder="Email">
                             </span>
                             <span class="col-12">
                                 <input type="password" class="py-1 px-2 w-100" name="password"style="font-weight: 700;"  placeholder="Password">
