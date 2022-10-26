@@ -23,13 +23,13 @@ use PHPMailer\PHPMailer\Exception;
                 $mail->isSMTP();                                            //Send using SMTP
                 $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = 'teamagnat7@gmail.com';                     //SMTP username
-                $mail->Password   = 'tqgacspjvfsoynuj';                               //SMTP password
+                $mail->Username   = 'smadiccu@gmail.com';                     //SMTP username
+                $mail->Password   = 'fbikgzomkaxqtvqo';                               //SMTP password
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
                 $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
             
                 //Recipients
-                $mail->setFrom('teamagnat7@gmail.com', 'Coozy');//wait si dali
+                $mail->setFrom('smadiccu@gmail.com', 'Coozy');//wait si dali
                 $mail->addAddress($email);
                 // $mail->addAttachment($path);       //Add a recipient
             
@@ -56,6 +56,7 @@ use PHPMailer\PHPMailer\Exception;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bs-5/bootstrap/dist/css/bootstrap.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
     <title>Coozy Apparel.</title>
 </head>
 <body class="bg-maroon">
@@ -70,13 +71,13 @@ use PHPMailer\PHPMailer\Exception;
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="#">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#">ABOUT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a class="nav-link" href="#">CONTACT US</a>
                     </li>
                    
                 </ul>
@@ -96,29 +97,29 @@ use PHPMailer\PHPMailer\Exception;
                         <h4 class="mb-2" style="font-weight: 700;">Sign Up<br><hr class="featurette-divider my-0 mt-1" style="width:3vw; opacity: 1; background: black;border: 1px solid black;"></hr></h4>
                         <form action="" class="row px-2 gy-2 my-5" method="POST">
                             <span class="col-6 hstack">
-                                <input type="text" class="py-1 px-2 w-100" name="first_name" style="font-weight: 700;" placeholder="First Name">
+                                <input type="text" class="py-1 px-2 w-100" name="first_name" style="font-weight: 700;" maxlength="15" placeholder="First Name">
                             </span>
                             <span class="col-6">
-                            <input type="text" class="py-1 px-2 w-100" name="last_name" style="font-weight: 700;" placeholder="Last Name">
+                            <input type="text" class="py-1 px-2 w-100" name="last_name" style="font-weight: 700;" maxlength="15" placeholder="Last Name">
 
                             </span>
                             <span class="col-12">
-                                <input type="text" class="py-1 px-2 w-100" name="address" style="font-weight: 700;" placeholder="Address">
+                                <input type="text" class="py-1 px-2 w-100" name="address" style="font-weight: 700;" maxlength="50" placeholder="Address">
                             </span>
                             <span class="col-6">
-                                <input type="text" class="py-1 px-2 w-100" name="p_code" style="font-weight: 700;" placeholder="Postal Code">
+                                <input type="number" class="py-1 px-2 w-100" name="p_code" style="font-weight: 700;" min="0" max="1000" maxlength="15" placeholder="Postal Code">
                             </span>
                             <span class="col-6">
-                                <input type="text" class="py-1 px-2 w-100" name="brgy_no" style="font-weight: 700;" placeholder="Brgy. No.">
+                                <input type="number" class="py-1 px-2 w-100" name="brgy_no" style="font-weight: 700;" min="0" max="1000" maxlength="15" placeholder="Brgy. No.">
                             </span>
                             <span class="col-12">
-                                <input type="text" class="py-1 px-2 w-100" name="email" style="font-weight: 700;" placeholder="Email">
+                                <input type="email" class="py-1 px-2 w-100" name="email" style="font-weight: 700;" maxlength="30" placeholder="Email">
                             </span>
                             <span class="col-12">
-                                <input type="password" class="py-1 px-2 w-100" name="password"style="font-weight: 700;"  placeholder="Password">
+                                <input type="password" class="py-1 px-2 w-100" name="password"style="font-weight: 700;"  maxlength="15" placeholder="Password">
                             </span>
                             <span class="col-12 mb-1">
-                                <input type="password" class="py-1 px-2 w-100" name="c_password" style="font-weight: 700;" placeholder="Re-enter Password">
+                                <input type="password" class="py-1 px-2 w-100" name="c_password" style="font-weight: 700;" maxlength="15" placeholder="Re-enter Password">
                             </span>
                             <span class="col-7 px-3 d-flex align-items-center">
                                 <small><a href="login.php" class="text-dark text-decoration-none" style="font-weight: 600;">Already have an account?</a></small>
@@ -164,6 +165,7 @@ use PHPMailer\PHPMailer\Exception;
         $date = date('ymd');
         $rand = rand('0000', '9999');
         $otp = "".$date."".$rand."";
+        $uid = rand('000000', '999999').$date;
 
 
         // Checking if the field boxes is empty
@@ -174,34 +176,34 @@ use PHPMailer\PHPMailer\Exception;
         }
 
         if(empty($first_name)){
-            echo "First name is required";
+            echo '<script>alert("First name is required")</script>';
             exit();
         }else if(empty($last_name)){
-            echo "Last name is required";
+            echo '<script>alert("Last name is required")</script>';
             exit();
         }else if(empty($address)){
-            echo "Address is required";
+            echo '<script>alert("Address is required")</script>';
             exit();
         }else if(empty($p_code)){
-            echo "Postal code is required";
+            echo '<script>alert("Postal code is required")</script>';
             exit();
         }else if(empty($brgy_no)){
-            echo "Brgy number is required";
+            echo '<script>alert("Brgy number is required")</script>';
             exit();
         }else if(empty($email)){
-            echo "Email is required";
+            echo '<script>alert("Email is required")</script>';
             exit();
         }else if(empty($password)){
-            echo "Password is required";
+            echo '<script>alert("Password is required")</script>';
             exit();
         }else if(empty($c_password)){
-            echo "Confirm your password";
+            echo '<script>alert("Confirm your password")</script>';
             exit();
         }
 
         // Validation if the password and re enter password is not match
         if($_POST['password'] != $c_password){
-            echo "Password do not match";
+            echo '<script>alert("Password do not match")</script>';
             exit();
         }
 
@@ -225,11 +227,11 @@ use PHPMailer\PHPMailer\Exception;
         $validate_account = "SELECT * FROM `user` WHERE email = '$email'";
         $query_validate_account = mysqli_query($conn, $validate_account);
         if(mysqli_num_rows($query_validate_account) > 0){
-            echo "Account already registered";
+            echo '<script>alert("Email already exist")</script>';
             exit();
         }else{
-        $insert_account = "INSERT INTO `user`(`first_name`, `last_name`, `address`, `p_code`, `brgy_no`, `email`, `password`, `validation`, `otp`, `date_time_created`) 
-        VALUES ('$first_name','$last_name','$address','$p_code','$brgy_no','$email','$password','$validation','$otp','$date_time_created')";
+        $insert_account = "INSERT INTO `user`(`user_id`, `first_name`, `last_name`, `address`, `p_code`, `brgy_no`, `email`, `password`, `validation`, `otp`, `date_time_created`) 
+        VALUES ('$uid', '$first_name','$last_name','$address','$p_code','$brgy_no','$email','$password','$validation','$otp','$date_time_created')";
         $query_insert_account = mysqli_query($conn, $insert_account);
         if($query_insert_account){
             sendMail($email, $first_name, $otp);

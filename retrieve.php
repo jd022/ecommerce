@@ -62,8 +62,12 @@ include ("connection.php");
     <?php
         }else{
             ?>
-            <h1>Email Not Found</h1>
+            <div class="container-3">
+        <div class="inner-wrapper">
+        <h1>Email Not Found</h1>
             <p><a href="login.php">Back</a></p>
+        </div>
+        </div>
             <?php
         }
     }else{
@@ -91,7 +95,7 @@ include ("connection.php");
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="24" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
                     </label>
-                    <input type="text" name="email" class="email-input" placeholder="EMAIL">
+                    <input type="email" name="email" class="email-input" maxlength="40" placeholder="EMAIL">
                 </span>
                 <span class="button-section">
                     <a href="login.php" class="cancel">CANCEL</a>

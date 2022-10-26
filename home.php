@@ -27,19 +27,19 @@ if (empty($_SESSION['email'])){
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Shop</a>
+                        <a class="nav-link" href="#">SHOP</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cart</a>
+                        <a class="nav-link" href="cart.php">CART</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Products</a>
+                        <a class="nav-link" href="#">PRODUCTS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Order Status</a>
+                        <a class="nav-link" href="#">ORDER STATUS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Log Out</a>
+                        <a class="nav-link" href="logout.php">LOG OUT</a>
                         <!-- Temporary nav item -->
                     </li>
                 </ul>
@@ -59,12 +59,12 @@ if (empty($_SESSION['email'])){
             <div class="card mt-2 p-5 d-flex align-items-center" style="border:none; border-radius: 0; height: 80%;">
                 <div class="row g-5">
                     <div class="col-lg-4">
-                        <a href="melt_tee.php">
-                            <?php
+                        <?php
                             $select_melt_tee = "SELECT * FROM products WHERE product_id = '84562983'";
                             $query_melt_tee = mysqli_query($conn, $select_melt_tee);
                             $rows = mysqli_fetch_array($query_melt_tee);
                             ?>
+                        <a href="melt_tee.php?pid=<?php echo $rows['product_id'];?>">
                         <img src="src/img/<?php echo $rows['image'];?>" height="250px" width="200px" alt="">
                         <span class="text-center">
                             <small><h6 class="p-0 m-0"><?php echo $rows['name'];?></h6></small>
@@ -73,12 +73,12 @@ if (empty($_SESSION['email'])){
                         </a>
                     </div>
                     <div class="col-lg-4">
-                        <a href="take_risk_dye.php">
                         <?php
                             $select_takerisk = "SELECT * FROM products WHERE product_id = '82758426'";
                             $query_takerisk = mysqli_query($conn, $select_takerisk);
                             $rows = mysqli_fetch_array($query_takerisk);
                             ?>
+                        <a href="take_risk_dye.php">
                         <img src="src/img/<?php echo $rows['image'];?>" height="250px" width="200px" alt="">
                         <span class="text-center">
                             <small><h6 class="p-0 m-0"><?php echo $rows['name'];?></h6></small>
@@ -87,12 +87,12 @@ if (empty($_SESSION['email'])){
                         </a>
                     </div>
                     <div class="col-lg-4">
-                        <a href="kedrick_bootleg.php">
                         <?php
                             $select_kendrick = "SELECT * FROM products WHERE product_id = '38175967'";
                             $query_kendrick = mysqli_query($conn, $select_kendrick);
                             $rows = mysqli_fetch_array($query_kendrick);
                             ?>
+                        <a href="kedrick_bootleg.php">
                         <img src="src/img/<?php echo $rows['image'];?>" height="250px" width="200px" alt="">
                         <span class="text-center">
                             <small><h6 class="p-0 m-0"><?php echo $rows['name'];?></h6></small>

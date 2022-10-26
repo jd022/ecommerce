@@ -54,9 +54,10 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
             <p style="margin-bottom: 10px;">Enter the full name of your account</p>
             <form class="email" action="" method="POST">
                 <span style="display: flex; flex-direction: row; margin-bottom:12px ;">
-                    <input type="text" name="first_name" class="email-input" placeholder="FIRST NAME">
-                    <input type="text" name="last_name" class="email-input" placeholder="LAST NAME">
+                    <input type="text" name="first_name" class="email-input" maxlength="15" placeholder="FIRST NAME">
+                    <input type="text" name="last_name" class="email-input" maxlength="15" placeholder="LAST NAME">
                 </span>
+                <a href="login.php">Cancel</a>
                 <button type="submit" name="submit" style="padding: 6px 12px;">Submit</button>
             </form>
         </div>
@@ -68,6 +69,19 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
     if(isset($_POST['submit'])){
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
+
+        if(empty($first_name) && empty($last_name)){
+            echo '<script>alert("Please input the required info")</script>';
+            exit();
+        }
+        if(empty($first_name)){
+            echo '<script>alert("Please input your account first name")</script>';
+            exit();
+        }
+        if(empty($last_name)){
+            echo '<script>alert("Please input your account last name")</script>';
+            exit();
+        }
 
         $check_names = "SELECT * FROM `user` WHERE email = '$decrypted_email' AND first_name = '$first_name'
         AND last_name = '$last_name'";
