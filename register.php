@@ -63,23 +63,22 @@ use PHPMailer\PHPMailer\Exception;
     <nav class="navbar navbar-expand-lg navbar-dark bg-black">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="" alt="" sizes="" srcset="">
+                <img src="../ecommerce/src/img/logo.png" width="160" alt="" sizes="" srcset="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto" style="font-size: 20px;">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">HOME</a>
+                        <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ABOUT</a>
+                        <a class="nav-link" href="#">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">CONTACT US</a>
+                        <a class="nav-link" href="#">Contact Us</a>
                     </li>
-                   
                 </ul>
             </div>
         </div>
@@ -113,7 +112,7 @@ use PHPMailer\PHPMailer\Exception;
                                 <input type="number" class="py-1 px-2 w-100" name="brgy_no" style="font-weight: 700;" min="0" max="1000" maxlength="15" placeholder="Brgy. No.">
                             </span>
                             <span class="col-12">
-                                <input type="email" class="py-1 px-2 w-100" name="email" style="font-weight: 700;" maxlength="30" placeholder="Email">
+                                <input type="text" class="py-1 px-2 w-100" name="email" style="font-weight: 700;" placeholder="Email">
                             </span>
                             <span class="col-12">
                                 <input type="password" class="py-1 px-2 w-100" name="password"style="font-weight: 700;"  maxlength="15" placeholder="Password">

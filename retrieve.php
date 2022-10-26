@@ -8,7 +8,7 @@ include ("connection.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/styles/css/style.css">
-    <title>Coozy Apparel.</title>
+    <title>Coozy Apparel</title>
 </head>
 <body>
     <?php
@@ -72,8 +72,9 @@ include ("connection.php");
         }
     }else{
     ?>
+    
     <div class="nav-container">
-        <ul class="navbar">
+        <ul class="navbar" style="font-size: 20px;">
             <li class="navitem">
                 <a href="home.php">HOME</a>
             </li>

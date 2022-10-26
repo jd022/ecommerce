@@ -38,7 +38,7 @@ $decrypted_email=openssl_decrypt ($email, $ciphering,
     <div class="nav-container">
         <ul class="navbar">
             <li class="navitem">
-                <a href="login.php">HOME</a>
+                <a href="#">HOME</a>
             </li>
             <li class="navitem">
                 <a href="#">CONTACT</a>

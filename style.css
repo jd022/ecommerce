@@ -58,22 +58,19 @@ ul {
 }
 .rsnd{
     text-align: start;
-    width: 24%;
+    width: 25%;
     font-size: 12px;
     text-decoration: none;
+    background: none;
     color: black;
-    font-weight: 700;
-}
-.rsnd:hover{
-    color: rgb(228, 108, 21);
+    opacity: 100%;
+    border: none;
+    font-weight: 500;
 }
 .cncl{
     color: rgb(0, 0, 0);
     text-decoration: none;
     font-size: 13px;
-}
-.cncl:hover{
-    color: rgb(228, 108, 21);
 }
 .button-section{
     width: 12em;
@@ -85,10 +82,6 @@ button{
     color: white;
     padding: 3px 2px;
     cursor: pointer;
-}
-button:hover, button:focus{
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
 }
 .ps {
     display: flex;
@@ -117,9 +110,6 @@ button:hover, button:focus{
     text-decoration: none;
     font-size: 13px;
 }
-.cancel:hover{
-    color: rgb(228, 108, 21);
-}
 .button-section{
     width: 12em;
     text-align: end;
@@ -130,10 +120,6 @@ button{
     color: white;
     padding: 3px 2px;
     cursor: pointer;
-}
-button:hover, button:focus{
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
 }
 .container-2{
     width: 750px;
