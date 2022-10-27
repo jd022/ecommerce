@@ -63,23 +63,23 @@ if (empty($_SESSION['email'])){
         </div>
     </nav>
     <main class="container d-flex justify-content-center mt-5">
-        <img src="../ecommerce/src/img/MeltTee/Melt Tee.PNG" class="m-4" height="400px" width="290px" alt="">       
+        <img src="../ecommerce/src/img/Take Risk Dye.PNG" class="m-4" height="400px" width="290px" alt="">       
             <div class="container-fluid row" style="width: 30%;">
                 <!-- card start -->
                 <div class="card product-wrapper mt-4 px-3 py-4 col-12 mb-0 pb-0 border border-dark" style="border:none; border-radius: 0; height: 28vh;">
                     <div class="row d-flex">
                         <div class="col-lg-12 col-sm-12 text-left">
                             <div class="row">
-                                <a href="melt_tee.php" class="text-dark" style="text-decoration: none;">
-                                    <?php
-                                    $select_melt_tee = "SELECT * FROM products WHERE product_id = '84562983'";
-                                    $query_melt_tee = mysqli_query($conn, $select_melt_tee);
-                                    $rows = mysqli_fetch_array($query_melt_tee);
-                                    ?>
-                                        <span class="text-center">
-                                            <small><h5 class="p-0 mt-0"><?php echo $rows['name'];?> ₱ <?php echo number_format($rows['price'],2);?></h5></small>
-                                        </span>    
-                                </a>
+                            <a href="take_risk_dye.php" class="text-dark" style="text-decoration: none;">
+                                <?php
+                                $select_takerisk = "SELECT * FROM products WHERE product_id = '82758426'";
+                                $query_takerisk = mysqli_query($conn, $select_takerisk);
+                                $rows = mysqli_fetch_array($query_takerisk);
+                                ?>
+                                    <span class="text-center">
+                                        <small><h5 class="p-0 mt-0"><?php echo $rows['name'];?> ₱ <?php echo number_format($rows['price'],2);?></h5></small>
+                                    </span> 
+                        </a>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-6">
@@ -114,9 +114,9 @@ if (empty($_SESSION['email'])){
                 </div>
                 <!-- card end -->
                 <div class="col-12 text-white" style="font-size: 20px;">
-                    <p>Cop this first easeful design Ice Melt Tee cooz!<br>
-                        Keep it Cool and Cozy!<br>
-                        and also follow us on<br>
+                    <p>Available Sizes:<br>
+                        M • L • XL • 2XL<br>
+                        Free 2 Stickers<br>
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
   <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
 </svg> : CoozyAppparelCo<br>
