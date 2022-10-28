@@ -56,7 +56,35 @@ if (empty($_SESSION['email'])){
                         <h4 style="font-size: 1.3em;">******</h4>
                     </span>
                     <span class="col-2 d-flex align-items-end justify-content-end">
-                        <a href="#" class="h4 text-decoration-none color: text-black" style="font-size: 1.4em;">EDIT</a>
+                        <a href="#" class="h4 text-decoration-none color: text-black" style="font-size: 1.4em;" data-bs-toggle="modal" data-bs-target="#password">EDIT</a>
+
+                        <!-- Modal for name -->
+                        <div class="modal fade" id="password" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                    <p class="mt-3 mb-0">Current Password</p>
+                                    <input type="password" name="" class="form-control">
+
+                                    <p class="mt-3 mb-0">New Password</p>
+                                    <input type="password" name="" class="form-control">
+
+                                    <p class="mt-3 mb-0">Re-enter Password</p>
+                                    <input type="password" name="" class="form-control">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                     </span>
                     <?php
                     }else{
@@ -73,8 +101,37 @@ if (empty($_SESSION['email'])){
                         <h4 style="font-size: 1.3em;"><?php echo $rows['first_name'] . " " . $rows['last_name'];?></h4>
                     </span>
                     <span class="col-2 d-flex align-items-end justify-content-end">
-                        <a href="#" class="h4 text-decoration-none color: text-black" style="font-size: 1.4em;">EDIT</a>
+                        <a href="#" class="h4 text-decoration-none color: text-black" style="font-size: 1.4em;" data-bs-toggle="modal" data-bs-target="#nameModal">EDIT</a>
+
+                        <!-- Modal for name -->
+                        <div class="modal fade" id="nameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                    <p class="mb-0">First Name</p>
+                                    <input type="text" name="" class="form-control" value="<?= $rows['first_name']; ?>">
+                                    
+                                    <p class="mb-0">Last Name</p>
+                                    <input type="text" name="" class="form-control" value="<?= $rows['last_name']; ?>">
+                                    
+                                    <p class="mt-3 mb-0">Confirm Password</p>
+                                    <input type="password" name="" class="form-control">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                     </span>
+
                 </div>
                 <div class="col-12 d-flex justify-content-between">
                     <span>
@@ -82,7 +139,29 @@ if (empty($_SESSION['email'])){
                         <h4 style="font-size: 1.3em;"><?php echo $rows['email'];?></h4>
                     </span>
                     <span class="col-2 d-flex align-items-end justify-content-end">
-                        <a href="" class="h4 text-decoration-none color: text-black" style="font-size: 1.4em;">EDIT</a>
+                        <a href="" class="h4 text-decoration-none color: text-black" style="font-size: 1.4em;" data-bs-toggle="modal" data-bs-target="#emailModal">EDIT</a>
+                        <!-- Modal for email -->
+                        <div class="modal fade" id="emailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                    <p class="mb-0">Email</p>
+                                    <input type="email" name="" class="form-control" value="<?= $rows['email']?>">
+                                    <p class="mt-3 mb-0">Confirm Password</p>
+                                    <input type="password" name="" class="form-control">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                     </span>
                 </div>
                 <div class="col-12 d-flex justify-content-between">
@@ -91,7 +170,29 @@ if (empty($_SESSION['email'])){
                         <h4 style="font-size: 1.3em;"><?php echo $rows['address'];?></h4>
                     </span>
                     <span class="col-2 d-flex align-items-end justify-content-end">
-                        <a href="" class="h4 text-decoration-none color: text-black" style="font-size: 1.4em;">EDIT</a>
+                        <a href="" class="h4 text-decoration-none color: text-black" style="font-size: 1.4em;" data-bs-toggle="modal" data-bs-target="#addressModal">EDIT</a>
+                        <!-- Modal for address -->
+                        <div class="modal fade" id="addressModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body my-5">
+                                <form action="">
+                                    <p class="mb-0">Address</p>
+                                    <textarea name="" id="" rows="5" class="form-control" style="resize:none;"><?= $rows['address']?></textarea>
+                                    <p class="mt-3 mb-0">Confirm Password</p>
+                                    <input type="password" name="" class="form-control">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                     </span>
                 </div>
                 <div>
