@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2022 at 08:01 AM
+-- Generation Time: Oct 28, 2022 at 04:33 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `ecommerce`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(250) NOT NULL,
+  `date_time_created` datetime NOT NULL,
+  `date_time_updated` datetime NOT NULL,
+  `remarks` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `email`, `password`, `date_time_created`, `date_time_updated`, `remarks`) VALUES
+(1, 'smadiccu@gmail.com', '$2y$10$Sfbz.Rk.O01G20ulYaYwzeGDOLY1HEjdajcNy3o9AkEAX6OkO3gi2', '2022-10-28 11:05:18', '2022-10-28 11:05:18', '');
 
 -- --------------------------------------------------------
 
@@ -73,7 +95,7 @@ CREATE TABLE `product_stocks` (
 --
 
 INSERT INTO `product_stocks` (`id`, `product_id`, `size`, `quantity`, `stock`, `date_time_created`, `date_time_updated`, `remarks`) VALUES
-(1, '84562983', 'Medium', 10, 'in', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
+(1, '84562983', 'Medium', 7, 'in', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
 (2, '84562983', 'Large', 10, 'in', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
 (3, '84562983', 'X-Large', 10, 'in', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
 (4, '84562983', 'XX-Large', 10, 'in', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '');
@@ -129,8 +151,23 @@ CREATE TABLE `user_orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `user_orders`
+--
+
+INSERT INTO `user_orders` (`id`, `user_id`, `order_id`, `product_id`, `quantity`, `size`, `price`, `status`, `date_time_created`, `date_time_updated`, `remarks`) VALUES
+(48, '670732221028', '002210111', '84562983', 2, 'Large', '900', 'Delivered', '2022-10-28 15:25:22', '0000-00-00 00:00:00', ''),
+(49, '670732221028', '0022109205', '84562983', 3, 'X-Large', '1350', 'Pending', '2022-10-28 15:25:58', '0000-00-00 00:00:00', ''),
+(53, '670732221028', '', '84562983', 3, 'Medium', '1350', 'Cart', '2022-10-28 21:13:43', '0000-00-00 00:00:00', '');
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `products`
@@ -159,11 +196,18 @@ ALTER TABLE `user`
 ALTER TABLE `user_orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `product_id` (`product_id`);
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `order_id` (`order_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -187,7 +231,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_orders`
 --
 ALTER TABLE `user_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- Constraints for dumped tables
