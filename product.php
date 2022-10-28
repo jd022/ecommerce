@@ -34,7 +34,7 @@ $user_id = $rows['user_id'];
         $select_product = "SELECT *
         FROM products 
         LEFT JOIN product_stocks on products.product_id = product_stocks.product_id
-        WHERE products.product_id = '84562983' and product_stocks.stock = 'in'";
+        WHERE products.product_id = '$product_id' and product_stocks.stock = 'in'";
         $query_product = mysqli_query($conn, $select_product);
         if(mysqli_num_rows($query_product) > 0){
         $rows = mysqli_fetch_array($query_product);
@@ -54,11 +54,15 @@ $user_id = $rows['user_id'];
                             <div class="row mt-2">
                                 <div class="col-6">
                                     <select class="form-select border border-dark" name="size" id="">
-                                        <option value="">Sizes</option>
+                                        <option selected="true" disabled="disabled" hidden value="">Sizes</option>
                                         <?php
-                                        if($rows['size'] == 'Medium' && $rows['quantity'] == 0 && $rows['stock'] == 'in'){
-                                            ?>
-                                        <option disabled value="Medium">Medium</option>
+                                        $check_medium_size = "SELECT * FROM product_stocks
+                                        WHERE product_id = '$product_id' and quantity = 0
+                                        and product_stocks.stock = 'in' and size = 'Medium'";
+                                        $query_medium_size = mysqli_query($conn, $check_medium_size);
+                                        if(mysqli_num_rows($query_medium_size) > 0){
+                                        ?>
+                                        <option disabled="disabled" value="Medium">Medium</option>
                                         <?php
                                         }else{
                                         ?>
@@ -68,9 +72,13 @@ $user_id = $rows['user_id'];
                                         ?>
 
                                         <?php
-                                        if($rows['size'] == 'Large' && $rows['quantity'] == 0 && $rows['stock'] == 'in'){
-                                            ?>
-                                        <option disabled value="Large">Large</option>
+                                        $check_large_size = "SELECT * FROM product_stocks
+                                        WHERE product_id = '$product_id' and quantity = 0
+                                        and product_stocks.stock = 'in' and size = 'Large'";
+                                        $query_large_size = mysqli_query($conn, $check_large_size);
+                                        if(mysqli_num_rows($query_large_size) > 0){
+                                        ?>
+                                        <option disabled="disabled" value="Large">Large</option>
                                         <?php
                                         }else{
                                         ?>
@@ -80,9 +88,13 @@ $user_id = $rows['user_id'];
                                         ?>
 
                                         <?php
-                                        if($rows['size'] == 'X-Large' && $rows['quantity'] == 0 && $rows['stock'] == 'in'){
-                                            ?>
-                                        <option disabled value="X-Large">XL</option>
+                                        $check_xlarge_size = "SELECT * FROM product_stocks
+                                        WHERE product_id = '$product_id' and quantity = 0
+                                        and product_stocks.stock = 'in' and size = 'X-Large'";
+                                        $query_xlarge_size = mysqli_query($conn, $check_xlarge_size);
+                                        if(mysqli_num_rows($query_xlarge_size) > 0){
+                                        ?>
+                                        <option disabled="disabled" value="X-Large">XL</option>
                                         <?php
                                         }else{
                                         ?>
@@ -93,13 +105,17 @@ $user_id = $rows['user_id'];
                                         
                                         
                                         <?php
-                                        if($rows['size'] == 'XX-Large' && $rows['quantity'] == 0 && $rows['stock'] == 'in'){
-                                            ?>
-                                        <option disabled value="XX-Large">2XL</option>
+                                        $check_xxlarge_size = "SELECT * FROM product_stocks
+                                        WHERE product_id = '$product_id' and quantity = 0
+                                        and product_stocks.stock = 'in' and size = 'XX-Large'";
+                                        $query_xxlarge_size = mysqli_query($conn, $check_xxlarge_size);
+                                        if(mysqli_num_rows($query_xxlarge_size) > 0){
+                                        ?>
+                                        <option disabled="disabled" value="XX-Large">XXL</option>
                                         <?php
                                         }else{
                                         ?>
-                                        <option value="XX-Large">2XL</option>
+                                        <option value="XX-Large">XXL</option>
                                         <?php
                                         }
                                         ?>
@@ -163,15 +179,31 @@ $user_id = $rows['user_id'];
         $t_product_price = $rows['price'] * $quantity;
         $status = 'Cart';
         
+        $check_cart = "SELECT * FROM `user_orders` WHERE user_id = '$user_id' AND
+        `product_id` = '$product_id' AND `size` = '$size' AND `status` = '$status'";
+        $query_check_cart = mysqli_query($conn, $check_cart);
+        if(mysqli_num_rows($query_check_cart) > 0){
+            echo '<script>alert("Product already added in your cart, please check your cart to edit your order")</script>';
+            exit();
+        }else{
         $add_to_cart = "INSERT INTO `user_orders`(`user_id`, `product_id`, `quantity`, `size`, `price`, `status`, `date_time_created`) 
         VALUES ('$user_id','$product_id','$quantity','$size','$t_product_price','$status', '$date_time_created')";
         $query_add_to_cart = mysqli_query($conn, $add_to_cart);
         if($query_add_to_cart){
+            $update_stocks = "UPDATE `product_stocks` SET `quantity` = quantity - $quantity
+            WHERE product_id = '$product_id' and size = '$size'";
+            $query_update_stocks = mysqli_query($conn, $update_stocks);
+            if($query_update_stocks){
             echo '<script>alert("Product added to cart")</script>';
             exit();
+            }else{
+            echo '<script>alert("Something went wrong in stock update")</script>';
+            exit();
+            }
         }else{
             echo '<script>alert("Something went wrong")</script>';
             exit();
+        }
         }
     }
 ?>

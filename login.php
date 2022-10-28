@@ -163,6 +163,18 @@ if(isset($_POST['submit'])){
     $rand = rand('0000', '9999');
     $otp = "".$date."".$rand."";
 
+    if(empty($email) && empty($password)){
+        echo '<script>alert("Please input the required info")</script>';
+        exit();
+    }
+    if(empty($email)){
+        echo '<script>alert("Please input your email")</script>';
+        exit();
+    }
+    if(empty($password)){
+        echo '<script>alert("Please input your password")</script>';
+        exit();
+    }
 
     $check_account = "SELECT * FROM `user` WHERE email = '$email' and validation = 0";
     $query_check_account = mysqli_query($conn, $check_account);
@@ -191,9 +203,22 @@ if(isset($_POST['submit'])){
             exit();
         }
     }else{
+        // for admin credentials
+        $check_admin = "SELECT * FROM `admin` WHERE `email` = '$email'";
+        $query_admin = mysqli_query($conn, $check_admin);
+        if(mysqli_num_rows($query_admin) > 0){
+        $row = mysqli_fetch_array($query_admin);
+        if(password_verify($password, $row['password'])){
+        $_SESSION['email'] = $row['email'];
+        header("location:admin/home.php");
+        }else{
+            echo '<script>alert("Incorrect admin credentials")</script>';
+            exit();
+        }
         echo '<script>alert("Account not found")</script>';
         exit();
     }
     }
+}
 }
 ?>

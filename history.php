@@ -48,8 +48,8 @@ if (empty($_SESSION['email'])){
             ?>
             <h2><?php echo $rows['order_id'];?></h2>
             <p>DATE DELIVERED</p>
-            <small><?php echo date("F d, Y", strtotime($rows['date_time_updated']))?></small><br>
-            <span>STATUS: <?php echo $rows['status'];?></span><br><br>
+            <small><?php echo date("F d, Y", strtotime($rows['date_time_updated']));?></small><br>
+            <span>STATUS: <?php echo strtoupper($rows['status']);?></span><br><br>
             <?php
                 }
             }else{
