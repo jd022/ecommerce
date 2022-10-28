@@ -21,95 +21,99 @@ if (empty($_SESSION['email'])){
     <title>Document</title>
 </head>
 <body class="bg-maroon">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="" alt="" sizes="" srcset="">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="home.php
-                        ">SHOP</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">CART</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">PRODUCTS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ORDER STATUS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">LOG OUT</a>
-                        <!-- Temporary nav item -->
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <main class="container">
-    <div class="card mt-5 p-5 d-flex align-items-center" style="border:none; border-radius: 0; height: 80%;">
+    <?php include 'includes/nav.php';?>
+    <main class="container px">
+    <div class="card mt-5 mx-lg-5 p-5 d-flex align-items-center" style="border:none; border-radius: 0; height: 80%;">
+            <table class="table">
+                <tbody>
                 <?php
                 $status = 'Cart';
-                $sql = "SELECT * FROM `user_orders` WHERE user_id = '$user_id' AND status = '$status'";
+                $sql = "SELECT user_orders.user_id, user_orders.order_id, user_orders.product_id, user_orders.quantity, user_orders.size,
+                user_orders.status, user_orders.price, products.product_id, products.image, products.name
+                FROM `user_orders` LEFT JOIN products on products.product_id = user_orders.product_id
+                WHERE user_id = '$user_id' AND status = '$status'";
                 $result = mysqli_query($conn, $sql) or die (mysqli_error($con));
                 if(mysqli_num_rows($result) > 0){
+                while ($rows = mysqli_fetch_array($result)){
+					?>
+                    <tr id="cart">
+                        <td class="col-lg-3 text-lg-center">
+                            <a href="product.php?p=<?php echo $rows['product_id'];?>" class="text-dark" style="text-decoration: none;">
+                                <img src="src/img/<?php echo $rows['image'];?>" height="100px" width="100px" alt="">
+                            </a>
+                        </td>
+                        <td>
+                            <span>
+                                <p class="h2 p-0 m-0"><?= $rows['name'];?></p>
+                                <p class="h5 p-0 m-0"><?php echo $rows['size'];?></p>
+                                <span class="d-flex">
+                                    <p>₱</p>
+                                    <p id="price"><?php echo $rows['price'];?></p>
+                                </span>
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                <p class="m-0 text-center">Quantity</p>
+                                <input type="number" class="form-control" id="qty" min="0" max="99" value="<?php echo $rows['quantity'];?>">
 
-                ?>
-                    <table>
-					<thead>
-					<tr>
-					<th>Name</th>
-                    <th>Size</th>
-                    <th>Quantity</th>
-					<th>Price</th>
-                    <th>Operation</th>
-					</tr>
-					</thead>
-				
-					<?php 
-							while ($rows = mysqli_fetch_array($result)){
-					?>
-					<tbody>
-					<tr>
-                    <td>Melt Tee</td>
-					<td><?php echo $rows['size'];?></td>
-					<td><?php echo $rows['quantity'];?></td>
-                    <td>₱ <?php echo $rows['price'];?></td>
-                    <td><a class="confirm-buton" href="#">Edit Product</a></td>
-					</tr>
-					</tbody>
-					<?php
-					}
-					?>
-					</table>
-                    <span>Mode of Payment: Cash on Delivery</span>
-                    <?php
-                    $total_bill = "SELECT SUM(price) as total_price FROM user_orders 
-                    WHERE user_id = '$user_id' and status = '$status'";
-                    $query_total_bill = mysqli_query($conn, $total_bill);
-                    $rows = mysqli_fetch_array($query_total_bill);
-                    echo "Total: ₱" . $rows['total_price'];
-                    ?>
-                    <a href="cart.php?c=<?php echo $user_id;?>">CHECK OUT</a>
+                            </span>
+                        </td>
+                        
+                    </tr>
+                    
+                        <?php
+                        }
+                        ?>
+                </tbody>
+            </table>
+                    <div class="container bg-light p-5">
+                        <span class="h5">Mode of Payment: Cash on Delivery</span>
+                        <span class="d-flex h5">
+                            <p>Total: ₱</p>
+                            <p class="total"></p>
+                        </span>
+                        <span>
+                            <a class="btn btn-primary" href="cart.php?c=<?php echo $user_id;?>">CHECK OUT</a>
+                        </span>
+                    </div>
                     <?php
                 }else{
                     ?>
                     <h4>No item in your cart yet</h4>
                 <?php }?>
                     </div>
+        </div>
     </main>
     <!-- <h1>Home</h1>
     welcome user
     <a href="logout.php">logout</a> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    // let qty = $('#qty').val();
+    // let price = $('#price').text();
+    // console.log(price)
+    // console.log(qty)
+    // // console.log(sum)
+    upAmount();
+    $('tbody #qty').on('keyup keypress blur change', function(e){
+        upAmount();
+    });   
+});
+function upAmount(){
+    var sum = 0.0;
+    $('tbody #cart').each(function(){
+        var qty = $(this).find('#qty').val();
+        var price = $(this).find('#price').text();
+        var amount = (qty*price)
+        sum+=amount;
+    })
+    $('.total').text(sum);
+}
+</script>
+<?php include 'includes/footer.php';?>
 
-</body>
-</html>
 <?php
     if(isset($_GET['c'])){
         $date = date('ym');

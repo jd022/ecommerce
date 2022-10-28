@@ -17,7 +17,7 @@ $result = mysqli_query($conn, $sql) or die (mysqli_error($con));
 if(mysqli_num_rows($result) > 0){
     while($rows = mysqli_fetch_array($result)){
 ?>
-<div class="container px-5 mx-5">
+<div class="container px-5 mx-5 mb-4">
     <div class="row">
         <span class="col-lg-6">
             <p class="h3 m-0 p-0"><?php echo $rows['order_id'];?></p>
