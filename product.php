@@ -42,7 +42,8 @@ $user_id = $rows['user_id'];
                         <a class="nav-link" href="home.php">SHOP</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">CART</a>
+                        <a class="nav-link" href="cart.php
+                        ">CART</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
@@ -151,7 +152,7 @@ $user_id = $rows['user_id'];
                                     </select>
                                 </div>
                                 <div class="col-6">
-                                    <input type="number" name="quantity" class="form-select border border-dark" placeholder="QUANTITY">
+                                    <input type="number" name="quantity" min="0" max="200" class="form-select border border-dark" placeholder="QUANTITY">
                                 </div>
                             </div>
                             <div class="row mt-2 p-1">
