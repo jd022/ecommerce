@@ -100,3 +100,36 @@ if (empty($_SESSION['email'])){
 
 </body>
 </html>
+<?php
+    if(isset($_GET['c'])){
+        $date = date('ymd');
+
+        $check_order_id = "SELECT * FROM user_orders WHERE order_id ORDER BY order_id DESC";
+        $query_order_id = mysqli_query($conn, $check_order_id);
+        $row = mysqli_fetch_array($query_order_id);
+        $last_id = $row['order_id'];
+        if($last_id == ""){
+            $order_item = "1";
+        }
+        else{
+            $order_item = substr($last_id,0);
+            $order_item = intval($order_item);
+            $order_item = ($order_item + 1);
+            $order_id = "".$date."";
+        }
+
+        date_default_timezone_set('Asia/Manila');
+		$date_time_updated = date("Y-m-d H:i:s");
+		
+		$update_user_order = "UPDATE `user_orders` SET `order_id` = '$order_item', `status` = 'Pending'
+        WHERE user_id = '$user_id'";
+        $query_update_user_order = mysqli_query($conn, $update_user_order);
+        if($query_update_user_order == true){
+            echo "<script>alert('Order submitted, check your order status to check your orders.')</script>";
+            exit();
+        }else{
+            echo $conn->error;
+            exit();
+        }
+    }
+?>

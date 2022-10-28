@@ -195,9 +195,6 @@ $user_id = $rows['user_id'];
 
         $size = $_POST['size'];
         $quantity = $_POST['quantity'];
-        
-        $t_product_price = $rows['price'] * $quantity;
-        $status = 'Cart';
 
         if($size == ""){
             echo '<script>alert("Please pick a product size")</script>';
@@ -208,6 +205,9 @@ $user_id = $rows['user_id'];
             exit();
         }
 
+        $t_product_price = $rows['price'] * $quantity;
+        $status = 'Cart';
+        
         $add_to_cart = "INSERT INTO `user_orders`(`user_id`, `product_id`, `quantity`, `size`, `price`, `status`, `date_time_created`) 
         VALUES ('$user_id','$product_id','$quantity','$size','$t_product_price','$status', '$date_time_created')";
         $query_add_to_cart = mysqli_query($conn, $add_to_cart);
