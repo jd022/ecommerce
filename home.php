@@ -54,7 +54,7 @@ if (empty($_SESSION['email'])){
                         </div>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="#">ORDER STATUS</a>
+                        <a class="nav-link" href="order_status.php">ORDER STATUS</a>
                     </li>
                     <li class="nav-item dropdown align-items-center d-flex">
                         <a class="nav-link py-0 dropdown-toggle" href="#" id="navbarDropdown" data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -62,6 +62,7 @@ if (empty($_SESSION['email'])){
                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                         </svg></a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="history.php">Order History</a>
                             <a class="dropdown-item" href="settings.php">Settings</a>
                             <a class="dropdown-item" href="logout.php">Logout</a>
                         </div>
