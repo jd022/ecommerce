@@ -63,7 +63,7 @@ if (empty($_SESSION['email'])){
         </div>
     </nav>
     <main class="container d-flex justify-content-center mt-5">
-        <img src="../ecommerce/src/img/MeltTee/Melt Tee.PNG" class="m-4" height="400px" width="290px" alt="">       
+        <img src="../ecommerce/src/img/Melt_tee.PNG" class="m-4" height="400px" width="290px" alt="">       
             <div class="container-fluid row" style="width: 30%;">
                 <!-- card start -->
                 <div class="card product-wrapper mt-4 px-3 py-4 col-12 mb-0 pb-0 border border-dark" style="border:none; border-radius: 0; height: 28vh;">

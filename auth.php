@@ -56,6 +56,7 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
             <form action="" method="POST" style="display: flex; flex-direction:column; text-align: center;">
                 <span>
                     <input type="text" name="otp" class="email-input" placeholder="OTP CODE">
+                    <a href="auth_code.php?e=<?php echo $email;?>" class="rsnd">RESEND</a>
                     <button type="submit" name="submit" style="padding: 8px 12px;">Enter</button>
                 </span>
                

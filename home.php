@@ -4,6 +4,8 @@ session_start();
 if (empty($_SESSION['email'])){
     header("location:login.php");
     exit();
+}else{
+    $email = $_SESSION['email'];
 }
 ?>
 <!DOCTYPE html>
@@ -37,7 +39,7 @@ if (empty($_SESSION['email'])){
                         <a class="nav-link" href="#">SHOP</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">CART</a>
+                        <a class="nav-link" href="cart.php">CART</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
@@ -60,7 +62,7 @@ if (empty($_SESSION['email'])){
                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                         </svg></a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="settings.html">Settings</a>
+                            <a class="dropdown-item" href="settings.php">Settings</a>
                             <a class="dropdown-item" href="logout.php">Logout</a>
                         </div>
                         <!-- Temporary nav item -->
@@ -102,12 +104,12 @@ if (empty($_SESSION['email'])){
             <div class="card product-wrapper mt-2 p-lg-5 p-xxl-5 p-sm-0 p-md-0 d-flex align-items-center w-75" style="border:none; border-radius: 0; height: auto;">
                 <div class="row g-5">
                     <div class="col-lg-4 col-sm-12 text-center">
-                        <a href="melt_tee.php" class="text-dark" style="text-decoration: none;">
                             <?php
                             $select_melt_tee = "SELECT * FROM products WHERE product_id = '84562983'";
                             $query_melt_tee = mysqli_query($conn, $select_melt_tee);
                             $rows = mysqli_fetch_array($query_melt_tee);
                             ?>
+                            <a href="product.php?p=<?php echo $rows['product_id'];?>" class="text-dark" style="text-decoration: none;">
                         <img src="src/img/<?php echo $rows['image'];?>" height="250px" width="200px" alt="">
                         <span class="text-center">
                             <small><h6 class="mt-2 mb-0"><?php echo $rows['name'];?></h6></small>
@@ -116,12 +118,12 @@ if (empty($_SESSION['email'])){
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-12 text-center">
-                        <a href="take_risk_dye.php" class="text-dark" style="text-decoration: none;">
                         <?php
                             $select_takerisk = "SELECT * FROM products WHERE product_id = '82758426'";
                             $query_takerisk = mysqli_query($conn, $select_takerisk);
                             $rows = mysqli_fetch_array($query_takerisk);
                             ?>
+                            <a href="product.php?p=<?php echo $rows['product_id'];?>" class="text-dark" style="text-decoration: none;">
                         <img src="src/img/<?php echo $rows['image'];?>" height="250px" width="200px" alt="">
                         <span class="text-center">
                             <small><h6 class="p-0 mt-2 mb-0"><?php echo $rows['name'];?></h6></small>
@@ -130,12 +132,12 @@ if (empty($_SESSION['email'])){
                         </a>
                     </div>
                     <div class="col-lg-4 text-center">
-                        <a href="kedrick_bootleg.php" class="text-dark" style="text-decoration: none;">
                         <?php
                             $select_kendrick = "SELECT * FROM products WHERE product_id = '38175967'";
                             $query_kendrick = mysqli_query($conn, $select_kendrick);
                             $rows = mysqli_fetch_array($query_kendrick);
                             ?>
+                            <a href="product.php?p=<?php echo $rows['product_id'];?>" class="text-dark" style="text-decoration: none;">
                         <img src="src/img/<?php echo $rows['image'];?>" height="250px" width="200px" alt="">
                         <span class="text-center">
                             <small><h6 class="p-0 mt-2 mb-0"><?php echo $rows['name'];?></h6></small>
@@ -144,12 +146,12 @@ if (empty($_SESSION['email'])){
                         </a>
                     </div>
                     <div class="col-lg-4 text-center">
-                        <a href="WICO_hoodie.php" class="text-dark" style="text-decoration: none;">
                         <?php
                             $select_WICO = "SELECT * FROM products WHERE product_id = '83721543'";
                             $query_WICO = mysqli_query($conn, $select_WICO);
                             $rows = mysqli_fetch_array($query_WICO);
                             ?>
+                            <a href="product.php?p=<?php echo $rows['product_id'];?>" class="text-dark" style="text-decoration: none;">
                         <img src="src/img/<?php echo $rows['image'];?>" height="250px" width="200px" alt="">
                         <span class="text-center">
                             <small><h6 class="p-0 mt-2 mb-0"><?php echo $rows['name'];?></h6></small>
@@ -158,12 +160,12 @@ if (empty($_SESSION['email'])){
                         </a>
                     </div>
                     <div class="col-lg-4 text-center">
-                        <a href="Frank_Ocean.php" class="text-dark" style="text-decoration: none;">
                         <?php
                             $select_frank = "SELECT * FROM products WHERE product_id = '67251438'";
                             $query_frank = mysqli_query($conn, $select_frank);
                             $rows = mysqli_fetch_array($query_frank);
                             ?>
+                            <a href="product.php?p=<?php echo $rows['product_id'];?>" class="text-dark" style="text-decoration: none;">
                         <img src="src/img/<?php echo $rows['image'];?>" height="250px" width="200px" alt="">
                         <span class="text-center">
                             <small><h6 class="p-0 mt-2 mb-0"><?php echo $rows['name'];?></h6></small>
@@ -172,12 +174,12 @@ if (empty($_SESSION['email'])){
                         </a>
                     </div>
                     <div class="col-lg-4 text-center">
-                        <a href="Miata.php" class="text-dark" style="text-decoration: none;">
                         <?php
                             $select_miata = "SELECT * FROM products WHERE product_id = '62514837'";
                             $query_miata = mysqli_query($conn, $select_miata);
                             $rows = mysqli_fetch_array($query_miata);
                             ?>
+                            <a href="product.php?p=<?php echo $rows['product_id'];?>" class="text-dark" style="text-decoration: none;">
                         <img src="src/img/<?php echo $rows['image'];?>" height="250px" width="200px" alt="">
                         <span class="text-center">
                             <small><h6 class="p-0 mt-2 mb-0"><?php echo $rows['name'];?></h6></small>

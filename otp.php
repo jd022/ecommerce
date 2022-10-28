@@ -83,7 +83,8 @@ $decrypted_email=openssl_decrypt ($email, $ciphering,
                 $delete_otp = "UPDATE `user` SET otp = '' WHERE email = '$decrypted_email'";
                 $query_delete_otp = mysqli_query($conn, $delete_otp);
                 if($query_delete_otp == true){
-                    echo '<script>alert("Your email has been verified")</script>';
+                    echo "<script>alert('Your email has been verified');
+                    window.location.href='login.php'</script>";
                 }
             }else{
                 echo $conn->error;

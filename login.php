@@ -6,6 +6,53 @@ include ("connection.php");
     }
 ob_start();
 ?>
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+
+
+        function sendMail($email,$otp){
+        require ("PHPMailer.php");
+        require("SMTP.php");
+        require("Exception.php");
+
+
+            
+            try {
+
+                $mail = new PHPMailer(true);
+                //Server settings
+                $mail->isSMTP();                                            //Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                $mail->Username   = 'smadiccu@gmail.com';                     //SMTP username
+                $mail->Password   = 'fbikgzomkaxqtvqo';                               //SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            
+                //Recipients
+                $mail->setFrom('smadiccu@gmail.com', 'Coozy');//wait si dali
+                $mail->addAddress($email);
+                // $mail->addAttachment($path);       //Add a recipient
+            
+                //Content
+                $mail->isHTML(true);                                  //Set email format to HTML
+                $mail->Subject = 'Testing';
+                $mail->Body    = "TRY OTP: $otp";
+    
+                $mail->send();
+                return true;
+            } 
+            catch (Exception $e) {
+                return false;
+            }
+
+    
+   
+                    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,13 +141,42 @@ if(isset($_POST['submit'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    // Store the cipher method
+    $ciphering = "AES-128-CTR";
+
+    // Use OpenSSl Encryption method
+    $iv_length = openssl_cipher_iv_length($ciphering);
+    $options = 0;
+
+    // Non-NULL Initialization Vector for encryption
+    $encryption_iv = '1234567891011121';
+
+    // Store the encryption key
+    $encryption_key = "TeamAgnat";
+
+    // Use openssl_encrypt() function to encrypt the data
+    $encryption = openssl_encrypt($email, $ciphering,
+                $encryption_key, $options, $encryption_iv);
+
+
+    $date = date('ymd');
+    $rand = rand('0000', '9999');
+    $otp = "".$date."".$rand."";
 
 
     $check_account = "SELECT * FROM `user` WHERE email = '$email' and validation = 0";
     $query_check_account = mysqli_query($conn, $check_account);
     if(mysqli_num_rows($query_check_account) > 0){
-        echo '<script>alert("Account is not yet verified")</script>';
+        $update_otp = "UPDATE `user` SET otp = '$otp' WHERE email = '$email' and validation = 0";
+        $query_update_otp = mysqli_query($conn, $update_otp);
+        if($query_update_otp == true){
+        sendMail($email, $otp);
+        echo "<script>alert('Account is not yet verified');
+        window.location.href='otp.php?e=$encryption'</script>";
         exit();
+        }else{
+        echo '<script>alert("Something went wrong with the system")</script>';
+        }
     }else{
     // for verified accounts
     $check_sql = "SELECT * FROM `user` WHERE `email` = '$email'";

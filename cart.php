@@ -56,34 +56,42 @@ if (empty($_SESSION['email'])){
                     <table>
 					<thead>
 					<tr>
-					<th>Product ID:</th>
-					<th>Item Name</th>
+					<th>Name</th>
+                    <th>Size</th>
                     <th>Quantity</th>
 					<th>Price</th>
-					<th>Operation</th>
+                    <th>Operation</th>
 					</tr>
 					</thead>
 				
 					<?php 
-						$sql = "SELECT * FROM `user_orders` WHERE user_id = '$user_id'";
+                        $status = 'Cart';
+						$sql = "SELECT * FROM `user_orders` WHERE user_id = '$user_id' AND status = '$status'";
 						$result = mysqli_query($conn, $sql) or die (mysqli_error($con));
 							while ($rows = mysqli_fetch_array($result)){
 					?>
 					<tbody>
 					<tr>
-					<td><?php echo $rows['product_id'];?></td>
                     <td>Melt Tee</td>
-					<td><?php echo $rows['quantity'];?></td>
 					<td><?php echo $rows['size'];?></td>
-					<td><a class="confirm-buton" href="#">Edit Product</a>
-					</td>
+					<td><?php echo $rows['quantity'];?></td>
+                    <td>₱ <?php echo $rows['price'];?></td>
+                    <td><a class="confirm-buton" href="#">Edit Product</a></td>
 					</tr>
 					</tbody>
 					<?php
 					}
 					?>
 					</table>
-                
+                    <span>Mode of Payment: Cash on Delivery</span>
+                    <?php
+                    $total_bill = "SELECT SUM(price) as total_price FROM user_orders 
+                    WHERE user_id = '$user_id' and status = '$status'";
+                    $query_total_bill = mysqli_query($conn, $total_bill);
+                    $rows = mysqli_fetch_array($query_total_bill);
+                    echo "Total: ₱" . $rows['total_price'];
+                    ?>
+                    <a href="cart.php?c=<?php echo $user_id;?>">CHECK OUT</a>
                     </div>
     </main>
     <!-- <h1>Home</h1>
