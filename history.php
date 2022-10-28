@@ -36,37 +36,7 @@ if (empty($_SESSION['email'])){
 		setInterval(orderStatus, 5000);
 	</script>
 <body class="bg-maroon">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="" alt="" sizes="" srcset="">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="home.php
-                        ">SHOP</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">CART</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">PRODUCTS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ORDER STATUS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">LOG OUT</a>
-                        <!-- Temporary nav item -->
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php include 'includes/nav.php';?>
     <main class="container">
     <div class="card mt-5 p-5 d-flex align-items-center" style="border:none; border-radius: 0; height: 80%;">
             <h1>ORDER HISTORY</h1>
@@ -88,5 +58,4 @@ if (empty($_SESSION['email'])){
             <?php }?>
         </div>
     </main>
-</body> 
-</html>
+<?php include 'includes/footer.php';?>

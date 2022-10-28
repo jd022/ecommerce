@@ -121,7 +121,7 @@ use PHPMailer\PHPMailer\Exception;
                                 <small><a href="register.php" class="text-dark text-decoration-none text-start w-100" style="font-weight: 900;">Create New Account</a></small>                                    
                             </span>
                             <span class="col-4 px-3 d-flex align-items-center justify-content-end">
-                                <input type="submit" name="submit" id="" class="btn btn-dark" style="border-radius: 0;" value="Submit">
+                                <input type="submit" name="submit" id="" style="border-radius: 0; background: none; border: none; font-weight: bolder;" value="LOGIN">
                             </span>
                         </form>
                     </div>
