@@ -19,7 +19,7 @@ if (empty($_SESSION['email'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bs-5/bootstrap/dist/css/bootstrap.css">
-    <title>Document</title>
+    <title>Coozy Apparel.</title>
 </head>
 <style>
     p{
@@ -34,7 +34,6 @@ if (empty($_SESSION['email'])){
             <div class="card-header px-5 pt-4 pb-2" style="background: none; border: none; border-bottom: 2px solid black;">
                 <p class="h4 mb-0" style="font-family: var(--sanchez);">ORDER DETAILS</p>
                 <hr class="featurette-divider m-0 mb-2" style="opacity:1; width: 4vw; background: black; border: 1px solid gray;">
-
             </div>
             <div class="container mx-5 px-5 pt-4">
                 <div class="row">
