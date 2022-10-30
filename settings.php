@@ -49,16 +49,17 @@ if (empty($_SESSION['email'])){
                     $user_info = "SELECT * FROM user WHERE email = '$email'";
                     $query_user_info = mysqli_query($conn, $user_info);
                     $rows = mysqli_fetch_array($query_user_info);
+                    $password = preg_replace("|.|","*",$rows['password']);
                     ?>
                 <div class="col-12 mt-3 d-flex justify-content-between">
                     <span>
                         <label for="" class="text-black-50">PASSWORD</label>
-                        <h4 style="font-size: 1.3em;">******</h4>
+                        <h4 style="font-size: 1.3em;"><?php echo substr($password, 0,15)?></h4>
                     </span>
                     <span class="col-2 d-flex align-items-end justify-content-end">
                         <a href="#" class="h4 text-decoration-none color: text-black" style="font-size: 1.4em;" data-bs-toggle="modal" data-bs-target="#password">EDIT</a>
 
-                        <!-- Modal for name -->
+                        <!-- Modal for password -->
                         <div class="modal fade" id="password" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -66,22 +67,21 @@ if (empty($_SESSION['email'])){
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="">
+                                <form action="" method="POST">
                                     <p class="mt-3 mb-0">Current Password</p>
-                                    <input type="password" name="" class="form-control">
+                                    <input type="password" name="c_password" class="form-control">
 
                                     <p class="mt-3 mb-0">New Password</p>
-                                    <input type="password" name="" class="form-control">
+                                    <input type="password" name="password" class="form-control">
 
                                     <p class="mt-3 mb-0">Re-enter Password</p>
-                                    <input type="password" name="" class="form-control">
-                                </form>
+                                    <input type="password" name="r_password" class="form-control">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" name="uPassword" class="btn btn-primary">Save</button>
                             </div>
+                            </form>
                             </div>
                         </div>
                         </div>
@@ -115,17 +115,17 @@ if (empty($_SESSION['email'])){
                                     <p class="mb-0">First Name</p>
                                     <input type="text" name="" class="form-control" value="<?= $rows['first_name']; ?>">
                                     
-                                    <p class="mb-0">Last Name</p>
+                                    <p class="mt-3 mb-0">Last Name</p>
                                     <input type="text" name="" class="form-control" value="<?= $rows['last_name']; ?>">
                                     
                                     <p class="mt-3 mb-0">Confirm Password</p>
                                     <input type="password" name="" class="form-control">
-                                </form>
+                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
                                 <button type="submit" class="btn btn-primary">Save</button>
+                                </form>
                             </div>
                             </div>
                         </div>
@@ -153,11 +153,11 @@ if (empty($_SESSION['email'])){
                                     <input type="email" name="" class="form-control" value="<?= $rows['email']?>">
                                     <p class="mt-3 mb-0">Confirm Password</p>
                                     <input type="password" name="" class="form-control">
-                                </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Save</button>
+                                </form>
                             </div>
                             </div>
                         </div>
@@ -184,11 +184,11 @@ if (empty($_SESSION['email'])){
                                     <textarea name="" id="" rows="5" class="form-control" style="resize:none;"><?= $rows['address']?></textarea>
                                     <p class="mt-3 mb-0">Confirm Password</p>
                                     <input type="password" name="" class="form-control">
-                                </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Save</button>
+                                </form>
                             </div>
                             </div>
                         </div>
@@ -203,3 +203,64 @@ if (empty($_SESSION['email'])){
     </div>
     </div>
 <?php include 'includes/footer.php';?>
+<?php
+    if(isset($_POST['uPassword'])){
+        date_default_timezone_set('Asia/Manila');
+		$date_time_updated = date("Y-m-d H:i:s");
+
+        $c_password = $_POST['c_password'];
+        $password = $_POST['password'];
+        $r_password = $_POST['r_password'];
+
+        // hashed password
+        $password = password_hash($password,PASSWORD_DEFAULT);
+        
+
+        if(empty($c_password) && empty($_POST['password']) && empty($r_password)){
+            echo '<script>alert("Please input the required info")</script>';
+            exit();
+        }
+        if(empty($c_password)){
+            echo '<script>alert("Please input your current password")</script>';
+            exit();
+        }
+        if(empty($_POST['password'])){
+            echo '<script>alert("Please input your new password")</script>';
+            exit();
+        }
+        if(empty($r_password)){
+            echo '<script>alert("Please re-type your password")</script>';
+            exit();
+        }
+        if(strlen($c_password) < 8 || strlen($password) < 8 || strlen($r_password) < 8){
+            echo '<script>alert("Password must be greater than 8 characters")</script>';
+            exit();
+        }
+        if($_POST['password'] != $r_password){
+            echo '<script>alert("Password do not match")</script>';
+            exit();
+        }
+
+        $validate_password = "SELECT * FROM `user` WHERE `email` = '$email'";
+        $query_password = mysqli_query($conn, $validate_password);
+        if(mysqli_num_rows($query_password) > 0){
+            $row = mysqli_fetch_array($query_password);
+            if(password_verify($password, $row['password'])){
+            $update_password = "UPDATE `user` SET password = '$password' WHERE email = '$email'";
+            $query_update_password = mysqli_query($conn, $update_password);
+                if($query_update_password == true){
+                echo '<script>alert("New password updated")</script>';
+                exit();
+                }else{
+                    echo '<script>alert("Something went wrong")</script>';
+                    exit();
+                }
+            }else{
+            echo '<script>alert("Incorrect Password")</script>';
+            exit();
+            }
+    }else{
+        echo '<script>alert("Email does not exist")</script>';
+        exit();
+    }
+?>
