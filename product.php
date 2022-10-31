@@ -17,20 +17,8 @@ $select_userid = "SELECT * FROM `user` WHERE email = '$email'";
 $query_userid = mysqli_query($conn, $select_userid);
 $rows = mysqli_fetch_array($query_userid);
 $user_id = $rows['user_id'];
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="src/icon/android-chrome-512x512.png" type="image/x-icon">
-    <link rel="stylesheet" href="bs-5/bootstrap/dist/css/bootstrap.css">
-    <link rel="icon" type="image/png" href="src/img/favicon.png">
-    <title>Coozy Apparel.</title>
-</head>
-<body class="bg-maroon">
-    <?php include 'includes/nav.php';?>
+include 'includes/header.php';
+include 'includes/nav.php';?>
     <main class="container d-flex justify-content-center mt-5">
     <?php
         $select_product = "SELECT *
@@ -124,12 +112,16 @@ $user_id = $rows['user_id'];
                                     </select>
                                 </div>
                                 <div class="col-6">
-                                    <input type="number" name="quantity" min="0" max="200" class="form-select border border-dark" placeholder="QUANTITY">
+                                    <input type="number" name="quantity" min="0" max="200" class="form-control border border-dark" placeholder="QUANTITY">
                                 </div>
                             </div>
-                            <div class="row mt-2 p-1">
-                                    <button type="submit" name="submit" class="btn btn-warning text-black">ADD TO CART</button>
-                                    <a href="home.php" class="btn btn-dark text-white">CANCEL</a>
+                            <div class="d-flex mt-4 row">
+                                <div class="col-lg-6">
+                                    <button type="submit" name="submit" class="btn btn-warning text-black w-100">ADD TO CART</button>
+                                </div>
+                                <div class="col-lg-6">
+                                    <a href="home.php" class="col-lg-5 btn btn-dark text-white w-100">CANCEL</a>
+                                </div>
                                     </form>
                             </div>
                         </div>

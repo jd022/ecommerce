@@ -7,30 +7,8 @@ if (empty($_SESSION['email'])){
 }else{
     $email = $_SESSION['email'];
 }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="src/icon/android-chrome-512x512.png" type="image/x-icon">
-    <link rel="stylesheet" href="bs-5/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="OwlCarousel/dist/assets/owl.carousel.css">
-    <link rel="stylesheet" href="OwlCarousel/dist/assets/owl-customnav.css">
-    <link rel="stylesheet" href="OwlCarousel/dist/assets/owl.theme.default.min.css">
-    <link rel="icon" type="image/png" href="src/img/favicon.png">
-    <title>Coozy Apparel.</title>
-</head> 
-<style>
-    @media screen and (width: 992) {
-        .card-wrapper{
-            width: 100%;
-        }
-    }
-</style>
-<body class="bg-maroon">
-    <?php include 'includes/nav.php';?>
+include 'includes/header.php';
+include 'includes/nav.php';?>
     <main class="container">
         <div class="container-fluid mt-3 mb-4">
             <div id="carousel" class="carousel slide" data-bs-ride="carousel">
