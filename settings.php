@@ -198,7 +198,7 @@ if (empty($_SESSION['email'])){
             </div>
         </div>
     </div>
-    </div>
+</div>
 <?php include 'includes/footer.php';?>
 <?php
     if(isset($_POST['uPassword'])){
