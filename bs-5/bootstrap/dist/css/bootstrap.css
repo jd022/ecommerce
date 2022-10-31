@@ -6,6 +6,7 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ @import url('https://fonts.googleapis.com/css2?family=Sanchez&display=swap');
  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
 
 :root {
@@ -78,6 +79,7 @@
   --maroon: #801727;
   --nunito: 'Nunito', sans-serif;
   --poppins: 'Poppins', sans-serif;
+  --sanchez: 'Sanchez', serif;
 }
 
 *,
@@ -90,8 +92,6 @@
   :root {
     scroll-behavior: smooth;
   }
-}
-
 body {
   margin: 0;
   font-family: var(--nunito);

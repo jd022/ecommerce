@@ -59,7 +59,9 @@ use PHPMailer\PHPMailer\Exception;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="src/icon/android-chrome-512x512.png" type="image/x-icon">
     <link rel="stylesheet" href="bs-5/bootstrap/dist/css/bootstrap.css">
+    <link rel="icon" type="image/png" href="src/img/favicon.png">
     <title>Coozy Apparel.</title>
 </head>
 <body class="bg-maroon">
@@ -107,14 +109,14 @@ use PHPMailer\PHPMailer\Exception;
                                     <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
                                 </svg>
                                 <input type="text" 
-                                class="py-1 mx-2 w-100" name="email" style="font-weight: 800;" placeholder="Email">
+                                class="py-1 mx-2 w-100" name="email" style="font-weight: 800;" maxlength="50" placeholder="Email">
                             </span>
                             <span class="col-lg-12 hstack mb-4 px-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-shield-lock-fill" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm0 5a1.5 1.5 0 0 1 .5 2.915l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99A1.5 1.5 0 0 1 8 5z"/>
                                 </svg>
                                 <input type="password"
-                                class="py-1 mx-2 w-100" name="password" style="font-weight: 800;" maxlength="30" placeholder="Password">
+                                class="py-1 mx-2 w-100" name="password" style="font-weight: 800;" maxlength="50" placeholder="Password">
                             </span>
                             <span class="col-8 px-3 d-flex flex-column align-items-start">
                                 <small><a href="retrieve.php" class="text-dark text-decoration-none text-start w-100" style="font-weight: 900;">Forgot Password?</a></small>
@@ -163,6 +165,18 @@ if(isset($_POST['submit'])){
     $rand = rand('0000', '9999');
     $otp = "".$date."".$rand."";
 
+    if(empty($email) && empty($password)){
+        echo '<script>alert("Please input the required info")</script>';
+        exit();
+    }
+    if(empty($email)){
+        echo '<script>alert("Please input your email")</script>';
+        exit();
+    }
+    if(empty($password)){
+        echo '<script>alert("Please input your password")</script>';
+        exit();
+    }
 
     $check_account = "SELECT * FROM `user` WHERE email = '$email' and validation = 0";
     $query_check_account = mysqli_query($conn, $check_account);
@@ -191,9 +205,22 @@ if(isset($_POST['submit'])){
             exit();
         }
     }else{
+        // for admin credentials
+        $check_admin = "SELECT * FROM `admin` WHERE `email` = '$email'";
+        $query_admin = mysqli_query($conn, $check_admin);
+        if(mysqli_num_rows($query_admin) > 0){
+        $row = mysqli_fetch_array($query_admin);
+        if(password_verify($password, $row['password'])){
+        $_SESSION['email'] = $row['email'];
+        header("location:admin/home.php");
+        }else{
+            echo '<script>alert("Incorrect admin credentials")</script>';
+            exit();
+        }
         echo '<script>alert("Account not found")</script>';
         exit();
     }
     }
+}
 }
 ?>

@@ -23,13 +23,13 @@ use PHPMailer\PHPMailer\Exception;
                 $mail->isSMTP();                                            //Send using SMTP
                 $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = 'smadiccu@gmail.com';                     //SMTP username
-                $mail->Password   = 'fbikgzomkaxqtvqo';                               //SMTP password
+                $mail->Username   = 'moonfangluna189@gmail.com';                     //SMTP username
+                $mail->Password   = 'vwcodlmsuhmfxche';                               //SMTP password
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
                 $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
             
                 //Recipients
-                $mail->setFrom('smadiccu@gmail.com', 'Coozy');//wait si dali
+                $mail->setFrom('moonfangluna189@gmail.com', 'Coozy');//wait si dali
                 $mail->addAddress($email);
                 // $mail->addAttachment($path);       //Add a recipient
             
@@ -57,6 +57,7 @@ use PHPMailer\PHPMailer\Exception;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bs-5/bootstrap/dist/css/bootstrap.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+    <link rel="icon" type="image/png" href="src/img/favicon.png">
     <title>Coozy Apparel.</title>
 </head>
 <body class="bg-maroon">
@@ -106,22 +107,22 @@ use PHPMailer\PHPMailer\Exception;
                                 <input type="text" class="py-1 px-2 w-100" name="address" style="font-weight: 700;" maxlength="50" placeholder="Address">
                             </span>
                             <span class="col-6">
-                                <input type="number" class="py-1 px-2 w-100" name="p_code" style="font-weight: 700;" min="0" max="1000" maxlength="15" placeholder="Postal Code">
+                                <input type="text" class="py-1 px-2 w-100" name="p_code" style="font-weight: 700;" maxlength="10" placeholder="Postal Code">
                             </span>
                             <span class="col-6">
-                                <input type="number" class="py-1 px-2 w-100" name="brgy_no" style="font-weight: 700;" min="0" max="1000" maxlength="15" placeholder="Brgy. No.">
+                                <input type="text" class="py-1 px-2 w-100" name="brgy_no" style="font-weight: 700;" maxlength="10" placeholder="Brgy. No.">
                             </span>
                             <span class="col-12">
-                                <input type="text" class="py-1 px-2 w-100" name="email" style="font-weight: 700;" placeholder="Email">
+                                <input type="text" class="py-1 px-2 w-100" name="email" style="font-weight: 700;" maxlength="50" placeholder="Email">
                             </span>
                             <span class="col-12">
-                                <input type="password" class="py-1 px-2 w-100" name="password"style="font-weight: 700;"  maxlength="15" placeholder="Password">
+                                <input type="password" class="py-1 px-2 w-100" name="password"style="font-weight: 700;"  maxlength="50" placeholder="Password">
                             </span>
                             <span class="col-12 mb-1">
-                                <input type="password" class="py-1 px-2 w-100" name="c_password" style="font-weight: 700;" maxlength="15" placeholder="Re-enter Password">
+                                <input type="password" class="py-1 px-2 w-100" name="c_password" style="font-weight: 700;" maxlength="50" placeholder="Re-enter Password">
                             </span>
                             <span class="col-7 px-3 d-flex align-items-center">
-                                <small><a href="login.php" class="text-dark text-decoration-none" style="font-weight: 600;">Already have an account?</a></small>
+                                <small><a href="index.php" class="text-dark text-decoration-none" style="font-weight: 600;">Already have an account?</a></small>
                             </span>
                             <span class="col-5 px-3 text-end">
                                 <input type="submit" id="" class="btn btn-dark" style="border-radius: 0;" name="register" value="Submit">
@@ -166,7 +167,11 @@ use PHPMailer\PHPMailer\Exception;
         $otp = "".$date."".$rand."";
         $uid = rand('000000', '999999').$date;
 
+        $validate_p_code = filter_input(INPUT_POST, 'p_code', FILTER_VALIDATE_FLOAT);
 
+        $validate_brgy_no = filter_input(INPUT_POST, 'brgy_no', FILTER_VALIDATE_FLOAT);
+
+        $validate_email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         // Checking if the field boxes is empty
         if(empty($first_name) && empty($last_name) && empty($address) && empty($p_code) && empty($brgy_no)
             && empty($email) && empty($password) && empty($c_password)){
@@ -174,26 +179,57 @@ use PHPMailer\PHPMailer\Exception;
             exit();
         }
 
+
         if(empty($first_name)){
             echo '<script>alert("First name is required")</script>';
+            exit();
+        }else if(strlen($first_name) > 15){
+            echo '<script>alert("First name must not be exceeds in 15 characters")</script>';
+            exit();
+        }else if (!preg_match("/^[a-zA-Z-' ]*$/",$first_name)) {
+            echo '<script>alert("First name must be letters only")</script>';
             exit();
         }else if(empty($last_name)){
             echo '<script>alert("Last name is required")</script>';
             exit();
+        }else if (!preg_match("/^[a-zA-Z-' ]*$/",$last_name)) {
+            echo '<script>alert("Last name must be letters only")</script>';
+            exit();
+        }else if(strlen($last_name) > 15){
+            echo '<script>alert("Last name must not be exceeds in 15 characters")</script>';
+            exit();
         }else if(empty($address)){
             echo '<script>alert("Address is required")</script>';
+            exit();
+        }else if(strlen($address) > 50){
+            echo '<script>alert("Address must not be exceeds in 50 characters")</script>';
             exit();
         }else if(empty($p_code)){
             echo '<script>alert("Postal code is required")</script>';
             exit();
+        }else if($validate_p_code == false){
+            echo '<script>alert("Invalid postal code")</script>';
+            exit();
         }else if(empty($brgy_no)){
             echo '<script>alert("Brgy number is required")</script>';
+            exit();
+        }else if($validate_brgy_no == false){
+            echo '<script>alert("Invalid brgy number")</script>';
             exit();
         }else if(empty($email)){
             echo '<script>alert("Email is required")</script>';
             exit();
-        }else if(empty($password)){
+        }else if(strlen($email) > 50){
+            echo '<script>alert("Email must not be exceeds in 50 characters")</script>';
+            exit();
+        }else if($validate_email == false){
+            echo '<script>alert("Invalid email format")</script>';
+            exit();
+        }else if(empty($_POST['password'])){
             echo '<script>alert("Password is required")</script>';
+            exit();
+        }else if(strlen($_POST['password']) > 50){
+            echo '<script>alert("Email must not be exceeds in 50 characters")</script>';
             exit();
         }else if(empty($c_password)){
             echo '<script>alert("Confirm your password")</script>';
