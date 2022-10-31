@@ -61,14 +61,6 @@ if (empty($_SESSION['email'])){
                                     <input type="password" name="" class="form-control" maxlength="30">
                                 </form>
 
-                                    <input type="password" name="c_password" class="form-control">
-
-                                    <p class="mt-3 mb-0">New Password</p>
-                                    <input type="password" name="password" class="form-control">
-
-                                    <p class="mt-3 mb-0">Re-enter Password</p>
-                                    <input type="password" name="r_password" class="form-control">
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
