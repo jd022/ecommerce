@@ -3,7 +3,7 @@ ob_implicit_flush(true);
 include ("connection.php");
 session_start();
 if (empty($_SESSION['email'])){
-    header("location:login.php");
+    header("location:index.php");
     exit();
 }
     $email = $_SESSION['email'];

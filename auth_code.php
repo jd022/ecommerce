@@ -7,7 +7,7 @@ if(isset($_GET['e'])){
     exit();
 }
 if(empty($_GET['e'])){
-    header("location:login.php");
+    header("location:index.php");
     exit();
 }
 ?>

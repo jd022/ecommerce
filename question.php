@@ -7,7 +7,7 @@ if(isset($_GET['e'])){
     exit();
 }
 if(empty($_GET['e'])){
-    header("location:login.php");
+    header("location:index.php");
     exit();
 }
 ?>
@@ -57,7 +57,7 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
                     <input type="text" name="first_name" class="email-input" maxlength="15" placeholder="FIRST NAME">
                     <input type="text" name="last_name" class="email-input" maxlength="15" placeholder="LAST NAME">
                 </span>
-                <a href="login.php">Cancel</a>
+                <a href="index.php">Cancel</a>
                 <button type="submit" name="submit" style="padding: 6px 12px;">Submit</button>
             </form>
         </div>

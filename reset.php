@@ -7,7 +7,7 @@ if(isset($_GET['e'])){
     exit();
 }
 if(empty($_GET['e'])){
-    header("location:login.php");
+    header("location:index.php");
     exit();
 }
 ?>
@@ -109,7 +109,7 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
         $query_update_password = mysqli_query($conn, $update_password);
 
         if($query_update_password == true){
-            header("location:login.php");
+            header("location:index.php");
             exit();
         }else{
             echo $conn->error;
