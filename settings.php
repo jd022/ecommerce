@@ -106,7 +106,6 @@ if (empty($_SESSION['email'])){
                                     <p class="mt-3 mb-0">Confirm Password</p>
                                     <input type="password" name="" class="form-control" maxlength="30">
                                 </form>
-                                    <input type="password" name="" class="form-control">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -139,7 +138,6 @@ if (empty($_SESSION['email'])){
                                     <p class="mt-3 mb-0">Confirm Password</p>
                                     <input type="password" name="" class="form-control" maxlength="30">
                                 </form>
-                                    <input type="password" name="" class="form-control">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -172,7 +170,6 @@ if (empty($_SESSION['email'])){
                                     <p class="mt-3 mb-0">Confirm Password</p>
                                     <input type="password" name="" class="form-control" maxlength="30">
                                 </form>
-                                    <input type="password" name="" class="form-control">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
