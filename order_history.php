@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="bs-5/bootstrap/dist/css/bootstrap.css">
     <title>Coozy Apparel.</title>
 </head>
-<style>
-    p{
+<style> 
+    body{
         font-family: var(--sanchez);
-    }
-</style>
+        }
+    </style>
 <body class="bg-maroon">
     <?php include 'includes/nav.php';?>
     <main class="container">

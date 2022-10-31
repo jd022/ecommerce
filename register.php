@@ -60,6 +60,11 @@ use PHPMailer\PHPMailer\Exception;
     <link rel="icon" type="image/png" href="src/img/favicon.png">
     <title>Coozy Apparel.</title>
 </head>
+<style>
+    body{
+        font-family: var(--sanchez);
+    }
+</style>
 <body class="bg-maroon">
     <nav class="navbar navbar-expand-lg navbar-dark bg-black">
         <div class="container">
@@ -124,8 +129,8 @@ use PHPMailer\PHPMailer\Exception;
                             <span class="col-7 px-3 d-flex align-items-center">
                                 <small><a href="index.php" class="text-dark text-decoration-none" style="font-weight: 600;">Already have an account?</a></small>
                             </span>
-                            <span class="col-5 px-3 text-end">
-                                <input type="submit" id="" class="btn btn-dark" style="border-radius: 0;" name="register" value="Submit">
+                            <span class="col-4 px-3 d-flex align-items-center justify-content-end">
+                                <input type="submit" name="submit" id="" style="border-radius: 0; background: none; border: none; font-weight: bolder;" value="ENTER">
                             </span>
                         </form>
                     </div>

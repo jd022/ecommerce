@@ -64,6 +64,11 @@ use PHPMailer\PHPMailer\Exception;
     <link rel="icon" type="image/png" href="src/img/favicon.png">
     <title>Coozy Apparel.</title>
 </head>
+<style>
+    body{
+        font-family: var(--sanchez);
+    }
+</style>
 <body class="bg-maroon">
     <nav class="navbar navbar-expand-lg navbar-dark bg-black">
     <div class="container">
