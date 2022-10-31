@@ -12,7 +12,9 @@ $rows = mysqli_fetch_array($query_userid);
 $user_id = $rows['user_id'];
 ?>
 <?php
-$sql = "SELECT * FROM `user_orders` WHERE user_id = '$user_id' AND status != 'Cart'";
+$sql = "SELECT distinct user_orders.order_id, user_orders.status 
+FROM user_orders WHERE user_orders.user_id = '$user_id' 
+AND status != 'Cart'";
 $result = mysqli_query($conn, $sql) or die (mysqli_error($con));
 if(mysqli_num_rows($result) > 0){
     while($rows = mysqli_fetch_array($result)){
