@@ -68,13 +68,13 @@ if (empty($_SESSION['email'])){
                             <div class="modal-body">
                                 <form action="">
                                     <p class="mt-3 mb-0">Current Password</p>
-                                    <input type="password" name="" class="form-control">
+                                    <input type="password" name="" class="form-control" maxlength="30">
 
                                     <p class="mt-3 mb-0">New Password</p>
-                                    <input type="password" name="" class="form-control">
+                                    <input type="password" name="" class="form-control" maxlength="30">
 
                                     <p class="mt-3 mb-0">Re-enter Password</p>
-                                    <input type="password" name="" class="form-control">
+                                    <input type="password" name="" class="form-control" maxlength="30">
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -119,7 +119,7 @@ if (empty($_SESSION['email'])){
                                     <input type="text" name="" class="form-control" value="<?= $rows['last_name']; ?>">
                                     
                                     <p class="mt-3 mb-0">Confirm Password</p>
-                                    <input type="password" name="" class="form-control">
+                                    <input type="password" name="" class="form-control" maxlength="30">
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -152,7 +152,7 @@ if (empty($_SESSION['email'])){
                                     <p class="mb-0">Email</p>
                                     <input type="email" name="" class="form-control" value="<?= $rows['email']?>">
                                     <p class="mt-3 mb-0">Confirm Password</p>
-                                    <input type="password" name="" class="form-control">
+                                    <input type="password" name="" class="form-control" maxlength="30">
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -183,7 +183,7 @@ if (empty($_SESSION['email'])){
                                     <p class="mb-0">Address</p>
                                     <textarea name="" id="" rows="5" class="form-control" style="resize:none;"><?= $rows['address']?></textarea>
                                     <p class="mt-3 mb-0">Confirm Password</p>
-                                    <input type="password" name="" class="form-control">
+                                    <input type="password" name="" class="form-control" maxlength="30">
                                 </form>
                             </div>
                             <div class="modal-footer">

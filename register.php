@@ -71,19 +71,19 @@ use PHPMailer\PHPMailer\Exception;
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto" style="font-size: 20px;">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="#">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#">ABOUT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a class="nav-link" href="#">CONTACT US</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container px-0 pt-5 d-flex flex-column align-items-end justify-content-center">
+    <div class="container px-0 pt-3 d-flex flex-column align-items-end justify-content-center">
         <div class="card" style="width: 50vw; height: 30rem; border-radius: 0; border:none; font-family: var(--poppins);">
             <div class="card-body py-0 px-2" style="border: none; overflow: hidden;">
                 <div class="row d-flex justify-content-end align-items-end" style="background:url(src/img/CoozyLogo.png); background-repeat: no-repeat; background-size: 50% 100%; height: 100%; z-index: 000;">
@@ -93,7 +93,7 @@ use PHPMailer\PHPMailer\Exception;
                         </span> -->
                     <!-- Logo End -->
                     <div class="col-6 d-flex justify-content-center align-items-start flex-column">
-                        <h4 class="mb-2" style="font-weight: 700;">Sign Up<br><hr class="featurette-divider my-0 mt-1" style="width:3vw; opacity: 1; background: black;border: 1px solid black;"></hr></h4>
+                        <h4 class="mb-2" style="font-weight: 700;">SIGN UP<br><hr class="featurette-divider my-0 mt-1" style="width:3vw; opacity: 1; background: black;border: 1px solid black;"></hr></h4>
                         <form action="" class="row px-2 gy-2 my-5" method="POST">
                             <span class="col-6 hstack">
                                 <input type="text" class="py-1 px-2 w-100" name="first_name" style="font-weight: 700;" maxlength="15" placeholder="First Name">

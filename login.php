@@ -74,19 +74,19 @@ use PHPMailer\PHPMailer\Exception;
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item active" style="font-size: 22px;">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="#">HOME</a>
                     </li>
                     <li class="nav-item" style="font-size: 22px;">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#">ABOUT</a>
                     </li>
                     <li class="nav-item" style="font-size: 22px;">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a class="nav-link" href="#">CONTACT US</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container px-0 pt-5 d-flex flex-column align-items-end justify-content-center">
+    <div class="container px-0 pt-3 d-flex flex-column align-items-end justify-content-center">
         <div class="card" style="width: 50vw; height: 30rem; border-radius: 0; border: none; font-family: var(--poppins); overflow:hidden;">
             <div class="card-body py-0 px-2" style="border:none;">
                 <div class="row d-flex justify-content-end align-items-start" style="background:url(src/img/CoozyLogo.png); background-repeat: no-repeat; background-size: 50% 100%; z-index: 000; height: 100%;">
@@ -99,8 +99,8 @@ use PHPMailer\PHPMailer\Exception;
                     <!-- Logo End -->
 
                     <!-- Login Form -->
-                    <div class="col-7 py-5 px-5 d-flex justify-content-start align-items-start flex-column">
-                        <h4 class="mb-2" style="font-weight: 700;">Sign In<br><hr class="featurette-divider my-0 mt-1" style="width:3vw; opacity: 1; background: black;border: 1px solid black;"></hr></h4>
+                    <div class="col-7 p-5 px-5 d-flex justify-content-start align-items-start flex-column">
+                        <h4 class="mb-2" style="font-weight: 700;">SIGN IN<br><hr class="featurette-divider my-0 mt-1" style="width:3vw; opacity: 1; background: black;border: 1px solid black;"></hr></h4>
                         <form action="" class="row g-2 px-lg-2 my-5" method="POST">
                             <span class="col-lg-12 px-4 hstack">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="50" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">

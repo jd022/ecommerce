@@ -80,7 +80,7 @@ if (empty($_SESSION['email'])){
                     <?php
                 }else{
                     ?>
-                    <h4>No item in your cart yet</h4>
+                    <h4>No item in your cart yet.</h4>
                 <?php }?>
                     </div>
         </div>
