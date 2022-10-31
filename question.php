@@ -31,6 +31,7 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="src/icon/android-chrome-512x512.png" type="image/x-icon">
     <link rel="stylesheet" href="src/styles/css/style.css">
     <title>Coozy Apparel.</title>
 </head>

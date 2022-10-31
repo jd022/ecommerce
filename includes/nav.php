@@ -26,7 +26,7 @@
                             <a class="dropdown-item" href="#">Bags</a>
                         </div>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="nav-link" href="order_status.php">ORDER STATUS</a>
                     </li>
                     <li class="nav-item dropdown align-items-center d-flex">
