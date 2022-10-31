@@ -72,6 +72,11 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
     if(isset($_POST['submit'])){
         $otp = $_POST['otp'];
 
+        if(empty($_POST['otp'])){
+            echo '<script>alert("Please enter the otp number")</script>';
+            exit();
+        }
+
         // Store the cipher method
         $ciphering = "AES-128-CTR";
 
@@ -98,10 +103,12 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
                 header("location:reset.php?e=$encryption");
                 exit();
             }else{
-                echo $conn->error;
+            echo '<script>alert("Something went wrong")</script>';
+            exit();
             }
         }else{
-            echo $conn->error;
+            echo '<script>alert("Invalid OTP number")</script>';
+            exit();
         }
     }
 ?>

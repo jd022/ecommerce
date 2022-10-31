@@ -32,6 +32,7 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/styles/css/style.css">
+    <link rel="icon" type="image/png" href="src/img/favicon.png">
     <title>Coozy Apparel.</title>
 </head>
 <body>
@@ -83,14 +84,19 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
             exit();
         }
 
-        $check_names = "SELECT * FROM `user` WHERE email = '$decrypted_email' AND first_name = '$first_name'
-        AND last_name = '$last_name'";
+        $check_names = "SELECT * FROM `user` WHERE email = '$decrypted_email'";
         $query_check_names = mysqli_query($conn, $check_names);
         if(mysqli_num_rows($query_check_names) > 0){
-            header("location:reset.php?e=$email");
+            $rows = mysqli_fetch_array($query_check_names);
+            if($rows['first_name'] == $first_name && $rows['last_name'] == $last_name){
+                header("location:reset.php?e=$email");
+                exit();
+            }else{
+            echo '<script>alert("Incorrect first name and last name")</script>';
             exit();
+            }
         }else{
-            echo "Account not found";
+            echo '<script>alert("Account not found")</script>';
             exit();
         }
     }

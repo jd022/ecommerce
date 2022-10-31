@@ -18,6 +18,7 @@ if (empty($_SESSION['email'])){
     <link rel="stylesheet" href="OwlCarousel/dist/assets/owl.carousel.css">
     <link rel="stylesheet" href="OwlCarousel/dist/assets/owl-customnav.css">
     <link rel="stylesheet" href="OwlCarousel/dist/assets/owl.theme.default.min.css">
+    <link rel="icon" type="image/png" href="src/img/favicon.png">
     <title>Coozy Apparel.</title>
 </head> 
 <style>

@@ -32,6 +32,7 @@ $decrypted_email=openssl_decrypt ($email, $ciphering,
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="icon" type="image/png" href="src/img/favicon.png">
     <title>Coozy Apparel.</title>
 </head>
 <body>

@@ -32,13 +32,13 @@ use PHPMailer\PHPMailer\Exception;
                 $mail->isSMTP();                                            //Send using SMTP
                 $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = 'smadiccu@gmail.com';                     //SMTP username
-                $mail->Password   = 'fbikgzomkaxqtvqo';                               //SMTP password
+                $mail->Username   = 'moonfangluna189@gmail.com';                     //SMTP username
+                $mail->Password   = 'vwcodlmsuhmfxche';                               //SMTP password
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
                 $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
             
                 //Recipients
-                $mail->setFrom('smadiccu@gmail.com', 'Coozy');//wait si dali
+                $mail->setFrom('moonfangluna189@gmail.com', 'Coozy');//wait si dali
                 $mail->addAddress($decrypted_email);
                 // $mail->addAttachment($path);       //Add a recipient
             
@@ -93,7 +93,7 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
             echo $conn->error;
         }
     }else{
-        echo "Account not found";
+        echo '<script>alert("Account not found")</script>';
         exit();
     }
 ?>
