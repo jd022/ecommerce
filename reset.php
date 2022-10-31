@@ -7,7 +7,7 @@ if(isset($_GET['e'])){
     exit();
 }
 if(empty($_GET['e'])){
-    header("location:login.php");
+    header("location:index.php");
     exit();
 }
 ?>
@@ -32,6 +32,7 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/styles/css/style.css">
+    <link rel="icon" type="image/png" href="src/img/favicon.png">
     <title>Coozy Apparel.</title>
 </head>
 <body>
@@ -92,11 +93,11 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
             exit();
         }
 
-        if(empty($password) && empty($c_password)){
+        if(empty($_POST['password']) && empty($c_password)){
             echo '<script>alert("Please input the required info")</script>';
             exit();
         }
-        if(empty($password)){
+        if(empty($_POST['password'])){
             echo '<script>alert("Please input your password")</script>';
             exit();
         }
@@ -109,10 +110,10 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
         $query_update_password = mysqli_query($conn, $update_password);
 
         if($query_update_password == true){
-            header("location:login.php");
+            header("location:index.php");
             exit();
         }else{
-            echo $conn->error;
+            echo '<script>alert("Something went wrong")</script>';
             exit();
         }
     }

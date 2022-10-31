@@ -3,7 +3,7 @@ ob_implicit_flush(true);
 include ("connection.php");
 session_start();
 if (empty($_SESSION['email'])){
-    header("location:login.php");
+    header("location:index.php");
     exit();
 }
     $email = $_SESSION['email'];
@@ -20,6 +20,7 @@ if (empty($_SESSION['email'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="src/icon/android-chrome-512x512.png" type="image/x-icon">
     <link rel="stylesheet" href="bs-5/bootstrap/dist/css/bootstrap.css">
+    <link rel="icon" type="image/png" href="src/img/favicon.png">
     <title>Coozy Apparel.</title>
 </head>
 <style>

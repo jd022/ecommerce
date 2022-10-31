@@ -8,6 +8,7 @@ include ("connection.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/styles/css/style.css">
+    <link rel="icon" type="image/png" href="src/img/favicon.png">
     <title>Coozy Apparel.</title>
 </head>
 <body>
@@ -65,7 +66,7 @@ include ("connection.php");
             <div class="container-3">
         <div class="inner-wrapper">
         <h1>Email Not Found</h1>
-            <p><a href="login.php">Back</a></p>
+            <p><a href="index.php">Back</a></p>
         </div>
         </div>
             <?php
@@ -76,7 +77,7 @@ include ("connection.php");
     <div class="nav-container">
         <ul class="navbar" style="font-size: 20px;">
             <li class="navitem">
-                <a href="home.php">HOME</a>
+                <a href="index.php">HOME</a>
             </li>
             <li class="navitem">
                 <a href="#">CONTACT</a>

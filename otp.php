@@ -8,7 +8,7 @@ if(isset($_GET['e'])){
     exit();
 }
 if(empty($_GET['e'])){
-    header("location:login.php");
+    header("location:index.php");
     exit();
 }
 // Store the cipher method
@@ -32,6 +32,7 @@ $decrypted_email=openssl_decrypt ($email, $ciphering,
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="icon" type="image/png" href="src/img/favicon.png">
     <title>Coozy Apparel.</title>
 </head>
 <body>
@@ -57,7 +58,7 @@ $decrypted_email=openssl_decrypt ($email, $ciphering,
                 <input type="text" name="otp" maxlength="15" placeholder="PIN"></span>
             <a href="#" class="rsnd">RESEND</a>
             <span class="button-section">
-                <a href="login.php" class="cncl">CANCEL</a>
+                <a href="index.php" class="cncl">CANCEL</a>
                 <button type="submit" name="submit" class="Enter">ENTER</button>
             </span>
         </form>
@@ -84,7 +85,7 @@ $decrypted_email=openssl_decrypt ($email, $ciphering,
                 $query_delete_otp = mysqli_query($conn, $delete_otp);
                 if($query_delete_otp == true){
                     echo "<script>alert('Your email has been verified');
-                    window.location.href='login.php'</script>";
+                    window.location.href='index.php'</script>";
                 }
             }else{
                 echo $conn->error;
