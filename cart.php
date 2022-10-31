@@ -10,19 +10,8 @@ if (empty($_SESSION['email'])){
     $query_userid = mysqli_query($conn, $select_userid);
     $rows = mysqli_fetch_array($query_userid);
     $user_id = $rows['user_id'];
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="src/icon/android-chrome-512x512.png" type="image/x-icon">
-    <link rel="stylesheet" href="bs-5/bootstrap/dist/css/bootstrap.css">
-    <title>Coozy Apparel</title>
-</head>
-<body class="bg-maroon">
-    <?php include 'includes/nav.php';?>
+    include 'includes/header.php';
+    include 'includes/nav.php';?>
     <form action="" method="POST">
     <main class="container px">
     <div class="card mt-5 mx-lg-5 p-5 d-flex align-items-center" style="border:none; border-radius: 0; height: 80%;">

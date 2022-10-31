@@ -7,36 +7,17 @@ if (empty($_SESSION['email'])){
 }else{
     $email = $_SESSION['email'];
 }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="src/icon/android-chrome-512x512.png" type="image/x-icon">
-    <link rel="stylesheet" href="bs-5/bootstrap/dist/css/bootstrap.css">
-    <link rel="icon" type="image/png" href="src/img/favicon.png">
-    <title>Coozy Apparel.</title>
-</head>
-<style>
-    .row-divider{
-        border: 1px solid black;
-        background: black;
-        height: 100%;
-    }
-</style>
-<body class="bg-maroon">
-<?php include 'includes/nav.php';?>
+ include 'includes/header.php';
+ include 'includes/nav.php';?>
     <div class="container d-flex justify-content-center">
         <div class="card px-2 mt-5 d-flex flex-row justify-content-evenly" style="border-radius: 0; width: 65em;">
             <div class="row py-4 px-3 w-50">
                 <div class="col-12 justify-content-center">
                     <h3 class="p-3 m-2">ACCOUNT SETTINGS<br><hr class="featurette-divider my-0 p-0 mt-1 text-center" style="width:4.5vw; opacity: 1; background: black;border: 1px solid black;"></hr></h3>
                     <div class="row px-5">
-                        <div class="col-12 mt-3 py-1 px-5">
+                        <div class="col-12 mt-3 py-1 px-4">
                             <a href="settings.php" class="p-0 m-0 text-decoration-none color: text-black" style="font-size: 1.2em;">GENERAL SETTINGS</a>
-                            <a href="settings.php?p" class="p-1 m-0 text-decoration-none color: text-black" style="font-size: 1.2em;">PRIVACY</a>
+                            <a href="settings.php?p" class="p-0 m-0 text-decoration-none color: text-black" style="font-size: 1.2em;">PRIVACY</a>
                         </div>
                     </div>
                 </div>
@@ -46,7 +27,7 @@ if (empty($_SESSION['email'])){
                     <?php 
                     if(isset($_GET['p'])){
                     ?>
-                    <h5 class="p-3 m-0">ACCOUNT PRIVACY</h5>
+                    <h5 class="p-3 px-0 m-0">ACCOUNT PRIVACY</h5>
                     <?php
                     $user_info = "SELECT * FROM user WHERE email = '$email'";
                     $query_user_info = mysqli_query($conn, $user_info);
@@ -91,7 +72,7 @@ if (empty($_SESSION['email'])){
                     <?php
                     }else{
                     ?>
-                    <h5 class="p-3 m-0">GENERAL SETTINGS</h5>
+                    <h5 class="p-3 px-0 m-0">GENERAL SETTINGS</h5>
                     <?php
                     $user_info = "SELECT * FROM user WHERE email = '$email'";
                     $query_user_info = mysqli_query($conn, $user_info);
@@ -265,4 +246,5 @@ if (empty($_SESSION['email'])){
         echo '<script>alert("Email does not exist")</script>';
         exit();
     }
+}
 ?>
