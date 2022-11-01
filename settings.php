@@ -4,9 +4,13 @@ session_start();
 if (empty($_SESSION['email'])){
     header("location:index.php");
     exit();
-}else{
-    $email = $_SESSION['email'];
 }
+    $email = $_SESSION['email'];
+    $select_userid = "SELECT * FROM `user` WHERE email = '$email'";
+    $query_userid = mysqli_query($conn, $select_userid);
+    $rows = mysqli_fetch_array($query_userid);
+    $user_id = $rows['user_id'];
+
  include 'includes/header.php';
  include 'includes/nav.php';?>
     <div class="container d-flex justify-content-center">
@@ -52,14 +56,13 @@ if (empty($_SESSION['email'])){
                             <div class="modal-body">
                                 <form action="" method="POST">
                                     <p class="mt-3 mb-0">Current Password</p>
-                                    <input type="password" name="" class="form-control" maxlength="30">
+                                    <input type="password" name="c_password" class="form-control" maxlength="30">
 
                                     <p class="mt-3 mb-0">New Password</p>
-                                    <input type="password" name="" class="form-control" maxlength="30">
+                                    <input type="password" name="password" class="form-control" maxlength="30">
 
                                     <p class="mt-3 mb-0">Re-enter Password</p>
-                                    <input type="password" name="" class="form-control" maxlength="30">
-                                </form>
+                                    <input type="password" name="r_password" class="form-control" maxlength="30">
 
                             </div>
                             <div class="modal-footer">
@@ -96,20 +99,19 @@ if (empty($_SESSION['email'])){
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="">
+                                <form action="" method="POST">
                                     <p class="mb-0">First Name</p>
-                                    <input type="text" name="" class="form-control" value="<?= $rows['first_name']; ?>">
+                                    <input type="text" name="first_name" class="form-control" maxlength="15" value="<?= $rows['first_name']; ?>">
                                     
                                     <p class="mt-3 mb-0">Last Name</p>
-                                    <input type="text" name="" class="form-control" value="<?= $rows['last_name']; ?>">
+                                    <input type="text" name="last_name" class="form-control" maxlength="15" value="<?= $rows['last_name']; ?>">
                                     
                                     <p class="mt-3 mb-0">Confirm Password</p>
-                                    <input type="password" name="" class="form-control" maxlength="30">
-                                </form>
+                                    <input type="password" name="n_password" class="form-control" maxlength="30">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" name="u_name" class="btn btn-primary">Save</button>
                                 </form>
                             </div>
                             </div>
@@ -132,16 +134,15 @@ if (empty($_SESSION['email'])){
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="">
+                                <form action="" method="POST">
                                     <p class="mb-0">Email</p>
-                                    <input type="email" name="" class="form-control" value="<?= $rows['email']?>">
+                                    <input type="email" name="email" maxlength="30" class="form-control" value="<?= $rows['email']?>">
                                     <p class="mt-3 mb-0">Confirm Password</p>
-                                    <input type="password" name="" class="form-control" maxlength="30">
-                                </form>
+                                    <input type="password" name="e_password" class="form-control" maxlength="30">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" name="u_email" class="btn btn-primary">Save</button>
                                 </form>
                             </div>
                             </div>
@@ -152,7 +153,7 @@ if (empty($_SESSION['email'])){
                 <div class="col-12 d-flex justify-content-between">
                     <span>
                         <label for="" class="text-black-50">HOME ADDRESS</label>
-                        <h4 style="font-size: 1.3em;"><?php echo $rows['address'];?></h4>
+                        <h4 style="font-size: 1.3em;"><?php echo $rows['address'] . " " . $rows['p_code'] . " " . $rows['brgy_no'];?></h4>
                     </span>
                     <span class="col-2 d-flex align-items-end justify-content-end">
                         <a href="" class="h4 text-decoration-none color: text-black" style="font-size: 1.4em;" data-bs-toggle="modal" data-bs-target="#addressModal">EDIT</a>
@@ -163,17 +164,20 @@ if (empty($_SESSION['email'])){
                             <div class="modal-header">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body my-5">
-                                <form action="">
+                            <div class="modal-body my-1">
+                                <form action="" method="POST">
                                     <p class="mb-0">Address</p>
-                                    <textarea name="" id="" rows="5" class="form-control" style="resize:none;"><?= $rows['address']?></textarea>
-                                    <p class="mt-3 mb-0">Confirm Password</p>
-                                    <input type="password" name="" class="form-control" maxlength="30">
-                                </form>
+                                    <textarea name="address" id="" maxlength="50" rows="5" class="form-control" style="resize:none;"><?= $rows['address']?></textarea>
+                                    <p class="mt-1 mb-0">Postal Code</p>
+                                    <input type="text" name="p_code" class="form-control" value="<?= $rows['p_code']?>" maxlength="30">
+                                    <p class="mt-1 mb-0">Brgy no</p>
+                                    <input type="text" name="brgy_no" class="form-control" value="<?= $rows['brgy_no']?>" maxlength="30">
+                                    <p class="mt-1 mb-0">Confirm Password</p>
+                                    <input type="password" name="a_password" class="form-control" maxlength="30">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" name="u_address" class="btn btn-primary">Save</button>
                                 </form>
                             </div>
                             </div>
@@ -190,6 +194,179 @@ if (empty($_SESSION['email'])){
 </div>
 <?php include 'includes/footer.php';?>
 <?php
+    if(isset($_POST['u_address'])){
+        date_default_timezone_set('Asia/Manila');
+		$date_time_updated = date("Y-m-d H:i:s");
+
+        $address = $_POST['address'];
+        $p_code = $_POST['p_code'];
+        $brgy_no = $_POST['brgy_no'];
+        $a_password = $_POST['a_password'];
+
+        $validate_p_code = filter_input(INPUT_POST, 'p_code', FILTER_VALIDATE_FLOAT);
+
+        $validate_brgy_no = filter_input(INPUT_POST, 'brgy_no', FILTER_VALIDATE_FLOAT);
+
+        if(empty($address)){
+            echo '<script>alert("Address is required")</script>';
+            exit();
+        }else if(strlen($address) > 50){
+            echo '<script>alert("Address must not be exceeds in 50 characters")</script>';
+            exit();
+        }else if(empty($p_code)){
+            echo '<script>alert("Postal code is required")</script>';
+            exit();
+        }else if($validate_p_code == false){
+            echo '<script>alert("Invalid postal code")</script>';
+            exit();
+        }else if(empty($brgy_no)){
+            echo '<script>alert("Brgy number is required")</script>';
+            exit();
+        }else if($validate_brgy_no == false){
+            echo '<script>alert("Invalid brgy number")</script>';
+            exit();
+        }else if(empty($_POST['a_password'])){
+            echo '<script>alert("Password is required")</script>';
+            exit();
+        }else{
+            $get_address = "SELECT * FROM `user` WHERE email = '$email'";
+            $query_address = mysqli_query($conn, $get_address);
+            if(mysqli_num_rows($query_address) > 0){
+                $rows = mysqli_fetch_array($query_address);
+                if(password_verify($a_password, $rows['password'])){
+                    $update_address = "UPDATE `user` SET `address` = '$address', `p_code` = '$p_code',
+                    `brgy_no` = '$brgy_no', `date_time_updated` = '$date_time_updated'
+                    WHERE email = '$email'";
+                    $query_address = mysqli_query($conn, $update_address);
+                    if($query_address == true){
+                        echo '<script>alert("Address has been updated");
+                        window.location.href="settings.php"</script>';
+                        exit();
+                    }else{
+                        echo '<script>alert("Something went wrong check address")</script>';
+                        exit();
+                    }
+                }else{
+                    echo '<script>alert("Incorrect password")</script>';
+                    exit();
+                }
+            }else{
+                echo '<script>alert("Email does not exist")</script>';
+                exit();
+            }
+
+        }
+    }
+
+    if(isset($_POST['u_email'])){
+        date_default_timezone_set('Asia/Manila');
+		$date_time_updated = date("Y-m-d H:i:s");
+
+        $email = $_POST['email'];
+        $e_password = $_POST['e_password'];
+
+        $validate_email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+
+        if(empty($email)){
+            echo '<script>alert("Email is required")</script>';
+            exit();
+        }else if(strlen($email) > 50){
+            echo '<script>alert("Email must not be exceeds in 50 characters")</script>';
+            exit();
+        }else if($validate_email == false){
+            echo '<script>alert("Invalid email format")</script>';
+            exit();
+        }else if(empty($_POST['e_password'])){
+            echo '<script>alert("Password is required")</script>';
+            exit();
+        }else{
+            $get_email = "SELECT * FROM user WHERE user_id = '$user_id'";
+            $query_email = mysqli_query($conn, $get_email);
+            if(mysqli_num_rows($query_email) > 0){
+                $rows = mysqli_fetch_array($query_email);
+                $hashed_pass = $rows['password'];
+                if(password_verify($e_password, $hashed_pass)){
+                    $update_fullname = "UPDATE `user` SET `email` = '$email', `date_time_updated` = '$date_time_updated'
+                    WHERE password = '$hashed_pass'";
+                    $query_fullname = mysqli_query($conn, $update_fullname);
+                    if($query_fullname == true){
+                        echo "<script>alert('Email has been updated, your account will be logout after this message.');
+                        window.location.href='logout.php'</script>";
+                        exit();
+                    }else{
+                        echo '<script>alert("Something went wrong check name")</script>';
+                        exit();
+                    }
+                }else{
+                    echo '<script>alert("Incorrect password")</script>';
+                    exit();
+                }
+            }else{
+                echo '<script>alert("Email does not exist")</script>';
+                exit();
+            }
+        }
+    }
+    if(isset($_POST['u_name'])){
+        date_default_timezone_set('Asia/Manila');
+		$date_time_updated = date("Y-m-d H:i:s");
+
+        $first_name = ucwords($_POST['first_name']);
+        $last_name = ucwords($_POST['last_name']);
+        $n_password = $_POST['n_password'];
+
+
+        if(empty($first_name)){
+            echo '<script>alert("First name is required")</script>';
+            exit();
+        }else if(strlen($first_name) > 15){
+            echo '<script>alert("First name must not be exceeds in 15 characters")</script>';
+            exit();
+        }else if (!preg_match("/^[a-zA-Z-' ]*$/",$first_name)) {
+            echo '<script>alert("First name must be letters only")</script>';
+            exit();
+        }else if(empty($last_name)){
+            echo '<script>alert("Last name is required")</script>';
+            exit();
+        }else if (!preg_match("/^[a-zA-Z-' ]*$/",$last_name)) {
+            echo '<script>alert("Last name must be letters only")</script>';
+            exit();
+        }else if(strlen($last_name) > 15){
+            echo '<script>alert("Last name must not be exceeds in 15 characters")</script>';
+            exit();
+        }else if(empty($_POST['n_password'])){
+            echo '<script>alert("Password is required")</script>';
+            exit();
+        }else{
+            $get_password = "SELECT * FROM user WHERE email = '$email'";
+            $query_password = mysqli_query($conn, $get_password);
+            if(mysqli_num_rows($query_password) > 0){
+                $rows = mysqli_fetch_array($query_password);
+                $hashed_pass = $rows['password'];
+                if(password_verify($n_password, $hashed_pass)){
+                    $update_fullname = "UPDATE `user` SET `first_name` = '$first_name', 
+                    `last_name` = '$last_name', `date_time_updated` = '$date_time_updated'
+                    WHERE password = '$hashed_pass'";
+                    $query_fullname = mysqli_query($conn, $update_fullname);
+                    if($query_fullname == true){
+                        echo '<script>alert("Name has been updated");
+                        window.location.href="settings.php"</script>';
+                        exit();
+                    }else{
+                        echo '<script>alert("Something went wrong check name")</script>';
+                        exit();
+                    }
+                }else{
+                    echo '<script>alert("Incorrect password")</script>';
+                    exit();
+                }
+            }else{
+                echo '<script>alert("Email does not exist")</script>';
+                exit();
+            }
+        }
+
+    }
     if(isset($_POST['uPassword'])){
         date_default_timezone_set('Asia/Manila');
 		$date_time_updated = date("Y-m-d H:i:s");
@@ -197,57 +374,51 @@ if (empty($_SESSION['email'])){
         $c_password = $_POST['c_password'];
         $password = $_POST['password'];
         $r_password = $_POST['r_password'];
-
-        // hashed password
-        $password = password_hash($password,PASSWORD_DEFAULT);
         
 
         if(empty($c_password) && empty($_POST['password']) && empty($r_password)){
             echo '<script>alert("Please input the required info")</script>';
             exit();
-        }
-        if(empty($c_password)){
+        }else if(empty($c_password)){
             echo '<script>alert("Please input your current password")</script>';
             exit();
-        }
-        if(empty($_POST['password'])){
+        }else if(empty($_POST['password'])){
             echo '<script>alert("Please input your new password")</script>';
             exit();
-        }
-        if(empty($r_password)){
+        }else if(strlen($_POST['password']) < 8){
+            echo '<script>alert("New password must be greater than 8 characters")</script>';
+            exit();
+        }else if(empty($r_password)){
             echo '<script>alert("Please re-type your password")</script>';
             exit();
-        }
-        if(strlen($c_password) < 8 || strlen($password) < 8 || strlen($r_password) < 8){
-            echo '<script>alert("Password must be greater than 8 characters")</script>';
-            exit();
-        }
-        if($_POST['password'] != $r_password){
+        }else if($_POST['password'] != $r_password){
             echo '<script>alert("Password do not match")</script>';
             exit();
-        }
-
-        $validate_password = "SELECT * FROM `user` WHERE `email` = '$email'";
-        $query_password = mysqli_query($conn, $validate_password);
-        if(mysqli_num_rows($query_password) > 0){
-            $row = mysqli_fetch_array($query_password);
-            if(password_verify($password, $row['password'])){
-            $update_password = "UPDATE `user` SET password = '$password' WHERE email = '$email'";
-            $query_update_password = mysqli_query($conn, $update_password);
-                if($query_update_password == true){
-                echo '<script>alert("New password updated")</script>';
-                exit();
-                }else{
-                    echo '<script>alert("Something went wrong")</script>';
+        }else{
+            $validate_password = "SELECT * FROM `user` WHERE `email` = '$email'";
+            $query_password = mysqli_query($conn, $validate_password);
+            if(mysqli_num_rows($query_password) > 0){
+                $row = mysqli_fetch_array($query_password);
+                if(password_verify($c_password, $row['password'])){
+                $update_password = "UPDATE `user` SET password = '$password', date_time_updated = '$date_time_updated'
+                WHERE email = '$email'";
+                $query_update_password = mysqli_query($conn, $update_password);
+                    if($query_update_password == true){
+                    echo '<script>alert("New password updated");
+                    window.location.href="settings.php"</script>';
                     exit();
+                    }else{
+                        echo '<script>alert("Something went wrong")</script>';
+                        exit();
+                    }
+                }else{
+                echo '<script>alert("Incorrect Password")</script>';
+                exit();
                 }
             }else{
-            echo '<script>alert("Incorrect Password")</script>';
-            exit();
+                echo '<script>alert("Email does not exist")</script>';
+                exit();
             }
-    }else{
-        echo '<script>alert("Email does not exist")</script>';
-        exit();
-    }
+        }
 }
 ?>

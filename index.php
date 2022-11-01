@@ -147,7 +147,7 @@ use PHPMailer\PHPMailer\Exception;
 if(isset($_POST['submit'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
-
+    
     // Store the cipher method
     $ciphering = "AES-128-CTR";
 
@@ -170,7 +170,7 @@ if(isset($_POST['submit'])){
     $rand = rand('0000', '9999');
     $otp = "".$date."".$rand."";
 
-    if(empty($email) && empty($password)){
+    if(empty($email) && empty($_POST['password'])){
         echo '<script>alert("Please input the required info")</script>';
         exit();
     }
@@ -178,7 +178,7 @@ if(isset($_POST['submit'])){
         echo '<script>alert("Please input your email")</script>';
         exit();
     }
-    if(empty($password)){
+    if(empty($_POST['password'])){
         echo '<script>alert("Please input your password")</script>';
         exit();
     }

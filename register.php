@@ -130,7 +130,7 @@ use PHPMailer\PHPMailer\Exception;
                                 <small><a href="index.php" class="text-dark text-decoration-none" style="font-weight: 600;">Already have an account?</a></small>
                             </span>
                             <span class="col-4 px-3 d-flex align-items-center justify-content-end">
-                                <input type="submit" name="submit" id="" style="border-radius: 0; background: none; border: none; font-weight: bolder;" value="ENTER">
+                                <input type="submit" name="register" id="" style="border-radius: 0; background: none; border: none; font-weight: bolder;" value="ENTER">
                             </span>
                         </form>
                     </div>
@@ -177,15 +177,30 @@ use PHPMailer\PHPMailer\Exception;
         $validate_brgy_no = filter_input(INPUT_POST, 'brgy_no', FILTER_VALIDATE_FLOAT);
 
         $validate_email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+
+        // Store the cipher method
+        $ciphering = "AES-128-CTR";
+
+        // Use OpenSSl Encryption method
+        $iv_length = openssl_cipher_iv_length($ciphering);
+        $options = 0;
+
+        // Non-NULL Initialization Vector for encryption
+        $encryption_iv = '1234567891011121';
+
+        // Store the encryption key
+        $encryption_key = "TeamAgnat";
+
+        // Use openssl_encrypt() function to encrypt the data
+        $encryption = openssl_encrypt($email, $ciphering,
+                    $encryption_key, $options, $encryption_iv);
+
         // Checking if the field boxes is empty
         if(empty($first_name) && empty($last_name) && empty($address) && empty($p_code) && empty($brgy_no)
             && empty($email) && empty($password) && empty($c_password)){
             echo "You must fill up the required info";
             exit();
-        }
-
-
-        if(empty($first_name)){
+        }else if(empty($first_name)){
             echo '<script>alert("First name is required")</script>';
             exit();
         }else if(strlen($first_name) > 15){
@@ -239,45 +254,25 @@ use PHPMailer\PHPMailer\Exception;
         }else if(empty($c_password)){
             echo '<script>alert("Confirm your password")</script>';
             exit();
-        }
-
-        // Validation if the password and re enter password is not match
-        if($_POST['password'] != $c_password){
+        }else if($_POST['password'] != $c_password){ // Validation if the password and re enter password is not match
             echo '<script>alert("Password do not match")</script>';
             exit();
-        }
-
-         // Store the cipher method
-         $ciphering = "AES-128-CTR";
-
-         // Use OpenSSl Encryption method
-         $iv_length = openssl_cipher_iv_length($ciphering);
-         $options = 0;
-
-         // Non-NULL Initialization Vector for encryption
-         $encryption_iv = '1234567891011121';
-
-         // Store the encryption key
-         $encryption_key = "TeamAgnat";
-
-         // Use openssl_encrypt() function to encrypt the data
-         $encryption = openssl_encrypt($email, $ciphering,
-                     $encryption_key, $options, $encryption_iv);
-
-        $validate_account = "SELECT * FROM `user` WHERE email = '$email'";
-        $query_validate_account = mysqli_query($conn, $validate_account);
-        if(mysqli_num_rows($query_validate_account) > 0){
-            echo '<script>alert("Email already exist")</script>';
-            exit();
         }else{
-        $insert_account = "INSERT INTO `user`(`user_id`, `first_name`, `last_name`, `address`, `p_code`, `brgy_no`, `email`, `password`, `validation`, `otp`, `date_time_created`) 
-        VALUES ('$uid', '$first_name','$last_name','$address','$p_code','$brgy_no','$email','$password','$validation','$otp','$date_time_created')";
-        $query_insert_account = mysqli_query($conn, $insert_account);
-        if($query_insert_account){
-            sendMail($email, $first_name, $otp);
-            header("location:otp.php?e=$encryption");
-            exit();
-        }
+            $validate_account = "SELECT * FROM `user` WHERE email = '$email'";
+            $query_validate_account = mysqli_query($conn, $validate_account);
+            if(mysqli_num_rows($query_validate_account) > 0){
+                echo '<script>alert("Email already exist")</script>';
+                exit();
+            }else{
+            $insert_account = "INSERT INTO `user`(`user_id`, `first_name`, `last_name`, `address`, `p_code`, `brgy_no`, `email`, `password`, `validation`, `otp`, `date_time_created`) 
+            VALUES ('$uid', '$first_name','$last_name','$address','$p_code','$brgy_no','$email','$password','$validation','$otp','$date_time_created')";
+            $query_insert_account = mysqli_query($conn, $insert_account);
+            if($query_insert_account){
+                sendMail($email, $first_name, $otp);
+                header("location:otp.php?e=$encryption");
+                exit();
+                }
+            }
         }
 
         

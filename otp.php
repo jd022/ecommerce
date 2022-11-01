@@ -56,7 +56,7 @@ $decrypted_email=openssl_decrypt ($email, $ciphering,
         <form class="pin" action="" method="POST">
         <span class="al"><svg xmlns="http://www.w3.org/2000/svg" width="27" height="23" viewBox="0 0 24 24" style="fill: rgb(0, 0, 0);transform:msFilter;"><path d="M20 12c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5S7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7z"></path></svg>
                 <input type="text" name="otp" maxlength="15" placeholder="PIN"></span>
-            <a href="#" class="rsnd">RESEND</a>
+            <a href="otp_code.php?e=<?php echo $email;?>" class="rsnd">RESEND</a>
             <span class="button-section">
                 <a href="index.php" class="cncl">CANCEL</a>
                 <button type="submit" name="submit" class="Enter">ENTER</button>
