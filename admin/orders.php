@@ -62,139 +62,49 @@ if (empty($_SESSION['email'])){
         </div>
     </nav>
     <main class="container">
-        <div class="card-wrapper d-flex flex-column align-items-center" style="height: 65vh;">
-            <div class="card product-wrapper mt-5 p-lg-5 p-xxl-5 p-sm-0 p-md-0 w-75" style="text-align:justify; border:none; border-radius: 0; height: auto;">
-                <h2>CUSTOMER ORDERS</h2>
-                <span><a href="orders.php?p">PENDING</a>
-                <a href="orders.php?td">TO DELIVER</a>
-                <a href="orders.php?h">HISTORY</a></span>
-                <?php
-                if(isset($_GET['h'])){
-                ?>
-                <?php
-                $deliver_order = "SELECT * FROM user_orders 
-                WHERE status = 'Delivered' ORDER BY date_time_created DESC";
-                $query_deliver_order = mysqli_query($conn, $deliver_order);
-                if($row_count = mysqli_num_rows($query_deliver_order) > 0){
-                ?>
-                <table style="text-align: center;">
-					<thead>
-					<tr>
-					<th>NO</th>
-                    <th>ORDER ID</th>
-                    <th>DATE OF ORDER</th>
-                    <th>Operation</th>
-					</tr>
-					</thead>
-				
-					<?php 
-							while($rows = mysqli_fetch_array($query_deliver_order)){
-					?>
-					<tbody>
-					<tr>
-                    <td><?php echo $row_count;?></td>
-					<td><?php echo $rows['order_id'];?></td>
-					<td><?php echo date("F d, Y h:i:s A", strtotime($rows['date_time_created']));?></td>
-                    <td><a class="confirm-buton" href="#">ACCEPT</a>
-                        <a href="">REJECT</a>
-                    </td>
-					</tr>
-					</tbody>
-					<?php
-					}
-					?>
-					</table>
-                <?php
-                }else{
-                    echo '<h1>No Order</h1>';
-                }
-                ?>
-                <?php
-                }else if(isset($_GET['td'])){
-                ?>
-                <?php
-                $deliver_order = "SELECT * FROM user_orders 
-                WHERE status = 'To Deliver' ORDER BY date_time_created DESC";
-                $query_deliver_order = mysqli_query($conn, $deliver_order);
-                if($row_count = mysqli_num_rows($query_deliver_order) > 0){
-                ?>
-                <table style="text-align: center;">
-					<thead>
-					<tr>
-					<th>NO</th>
-                    <th>ORDER ID</th>
-                    <th>DATE OF ORDER</th>
-                    <th>Operation</th>
-					</tr>
-					</thead>
-				
-					<?php 
-							while($rows = mysqli_fetch_array($query_deliver_order)){
-					?>
-					<tbody>
-					<tr>
-                    <td><?php echo $row_count;?></td>
-					<td><?php echo $rows['order_id'];?></td>
-					<td><?php echo date("F d, Y h:i:s A", strtotime($rows['date_time_created']));?></td>
-                    <td><a class="confirm-buton" href="#">ACCEPT</a>
-                        <a href="">REJECT</a>
-                    </td>
-					</tr>
-					</tbody>
-					<?php
-					}
-					?>
-					</table>
-                <?php
-                }else{
-                    echo '<h1>No Order</h1>';
-                }
-                ?>
-                <?php
-                }else{
-                ?>
-                <?php
-                $pending_order = "SELECT * FROM user_orders 
-                
-                WHERE status = 'Pending'";
-                $query_pending_order = mysqli_query($conn, $pending_order);
-                if($row_count = mysqli_num_rows($query_pending_order) > 0){
-                ?>
-                <table style="text-align: center;">
-					<thead>
-					<tr>
-					<th>NO</th>
-                    <th>ORDER ID</th>
-                    <th>DATE OF ORDER</th>
-                    <th>Operation</th>
-					</tr>
-					</thead>
-				
-					<?php 
-							while($rows = mysqli_fetch_array($query_pending_order)){
-					?>
-					<tbody>
-					<tr>
-                    <td><?php echo $row_count;?></td>
-					<td><?php echo $rows['order_id'];?></td>
-					<td><?php echo date("F d, Y h:i:s A", strtotime($rows['date_time_created']));?></td>
-                    <td><a class="confirm-buton" href="#">ACCEPT</a>
-                        <a href="">REJECT</a>
-                    </td>
-					</tr>
-					</tbody>
-					<?php
-					}
-					?>
-					</table>
-                    <?php
-                    }else{
-                        echo '<h1>No Order</h1>';
-                    }
-                    ?>
-                <?php
-                }
-                ?>
+        <div class="card-wrapper d-flex flex-column align-items-center" style="height: 60vh;">
+            <div class="card mb-3 w-75 mt-5" style="height: 400px; border: none; border-radius: 0;">
+                <div class="row g-0" style="height: 100%;">
+                    <div class="col-md-4 p-0 m-0 bg-secondary">
+                        <div class="py-5 d-flex flex-column align-items-center">
+                            <p class="h3" style="color: rgba(0,0,0,0.4);">DASHBOARD</p>
+                                <span class="d-flex justify-content-center flex-column align-items-center">
+                                    <a class="text-dark fs-4 text-center" href="" style="text-decoration: none;">ORDERS</a>
+                                    <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">PRODUCTS</a>
+                                    <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">INVENTORY</a>
+                                    <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">USERS</a>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="col-md-8 py-4 px-3">
+                        <h5 class="text-muted px-3">CUSTOMER ORDERS</h5>
+                        <span class="fs-5 fw-normal d-flex justify-content-evenly mt-4">
+                            <a class="text-dark" style="text-decoration: none;">PENDING</a>
+                            <a class="text-dark" style="text-decoration: none;">TO DELIVER</a>
+                            <a class="text-dark" style="text-decoration: none;">HISTORY</a>
+                        </span>
+                        <hr style="width:90%">
+                        <table class="table text-center">
+                            <thead>
+                                <th style="font-weight: 500;">NO.</th>
+                                <th style="font-weight: 500;">ORDER ID</th>
+                                <th style="font-weight: 500;">DATE OF ORDER</th>
+                                <th style="font-weight: 500;">OPERATION</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>000907221</td>
+                                    <td>10/22/2022 10:30:31 AM</td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</button>
+                                        <button class="btn btn-danger btn-sm" style="border-radius: 0;">REJECT</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
