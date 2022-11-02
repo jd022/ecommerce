@@ -195,6 +195,7 @@ if(isset($_POST['submit'])){
         exit();
         }else{
         echo '<script>alert("Something went wrong with the system")</script>';
+        exit();
         }
     }else{
     // for verified accounts
@@ -222,6 +223,7 @@ if(isset($_POST['submit'])){
             echo '<script>alert("Incorrect admin credentials")</script>';
             exit();
         }
+    }else{
         echo '<script>alert("Account not found")</script>';
         exit();
     }

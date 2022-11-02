@@ -30,11 +30,11 @@ if(mysqli_num_rows($result) > 0){
             <?php 
             if($rows['status'] == 'Pending'){
                 ?>
-                <span class="h2 text-warning"><?php echo $rows['status'];?></span>
+                <span class="h2 text-warning"><?php echo strtoupper($rows['status']);?></span>
                 <?php
             }else{
                 ?>
-                <span class="h2 text-success"><?php echo $rows['status'];?></span>
+                <span class="h2 text-success"><?php echo strtoupper($rows['status']);?></span>
                 <?php
             }
             ?>

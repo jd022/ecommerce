@@ -31,46 +31,66 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="src/icon/android-chrome-512x512.png" type="image/x-icon">
-    <link rel="stylesheet" href="src/styles/css/style.css">
-    <link rel="icon" type="image/png" href="src/img/favicon.png">
+    <link rel="stylesheet" href="bs-5/bootstrap/dist/css/bootstrap.css">
     <title>Coozy Apparel.</title>
 </head>
-<body>
-<div class="nav-container">
-        <ul class="navbar">
-            <li class="navitem">
-                <a href="home.php">HOME</a>
-            </li>
-            <li class="navitem">
-                <a href="#">CONTACT</a>
-            </li>
-            <li class="navitem">
-                <a href="#">ABOUT US</a>
-            </li>
-        </ul>
-    </div>
-    <div class="container-3">
-        <div class="inner-wrapper">
-            <h1>What is your name?</h1>
-            <p style="margin-bottom: 10px;">Enter the full name of your account</p>
-            <form class="email" action="" method="POST">
-                <span style="display: flex; flex-direction: row; margin-bottom:12px ;">
+<style>
+     body {
+        font-family: var(--sanchez);
+     }
+</style>
+<body class="bg-maroon">
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+    <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../ecommerce/src/img/logo.png" width="150" alt="" sizes="" srcset="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item active" style="font-size: 22px;">
+                        <a class="nav-link" href="#">HOME</a>
+                    </li>
+                    <li class="nav-item" style="font-size: 22px;">
+                        <a class="nav-link" href="#">ABOUT</a>
+                    </li>
+                    <li class="nav-item" style="font-size: 22px;">
+                        <a class="nav-link" href="#">CONTACT</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+            <div class="container mt-2 pt-4 p-1 d-flex flex-column align-items-center justify-content-center">
+            <div class="card d-flex align-content-center justify-content-center align-items-center" style="width: 60vw; height: 25rem; border-radius: 0; border: none; font-family: var(--nunito); overflow:hidden;">
+            <h6 class="pt-5 p-2 d-flex justify-content-center align-content-center h4" style="font-weight: 200;">WHAT IS YOUR NAME?</h6>
+            <h4 class="pt-3 d-flex justify-content-center align-content-center h5" style="font-weight: 100; ">Enter the full name of your account.</h4>
+                <span class="py-5 px-5 w-75 d-flex align-content-center justify-content-evenly">
+                <form action="" method="POST">
                     <input type="text" name="first_name" class="email-input" maxlength="15" placeholder="FIRST NAME">
                     <input type="text" name="last_name" class="email-input" maxlength="15" placeholder="LAST NAME">
                 </span>
-                <a href="index.php">Cancel</a>
-                <button type="submit" name="submit" style="padding: 6px 12px;">Submit</button>
+                <div class="container">
+		   <div class="text-center py-1"><br>
+		   <a href="index.php" class="btn">CANCEL</a>
+		   <button class="btn btn-dark" name="submit" style="border-radius: 0;">SUBMIT</button>
             </form>
-        </div>
-    </div>
-   
-</body>
+		   </div>
+
+
+
+
+
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    </body>
 </html>
 <?php
     if(isset($_POST['submit'])){
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
+        $first_name = ucwords($_POST['first_name']);
+        $last_name = ucwords($_POST['last_name']);
 
         if(empty($first_name) && empty($last_name)){
             echo '<script>alert("Please input the required info")</script>';
@@ -93,7 +113,7 @@ $decrypted_email=openssl_decrypt ($_GET['e'], $ciphering,
                 header("location:reset.php?e=$email");
                 exit();
             }else{
-            echo '<script>alert("Incorrect first name and last name")</script>';
+            echo '<script>alert("Incorrect first name or last name")</script>';
             exit();
             }
         }else{
