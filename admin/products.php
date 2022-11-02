@@ -24,6 +24,11 @@ if (empty($_SESSION['email'])){
             width: 100%;
         }
     }
+    .row-divider{
+        border: 1px solid black;
+        background: black;
+        height: 100%;
+    }
 </style>
 <body class="bg-maroon">
     <nav class="navbar navbar-expand-lg navbar-dark bg-black">
@@ -37,7 +42,7 @@ if (empty($_SESSION['email'])){
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto" style="font-size: 20px;">
                     <li class="nav-item active">
-                        <a class="nav-link" href="orders.php">DASHBOARD</a>
+                        <a class="nav-link" href="#">DASHBOARD</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">SALES</a>
@@ -57,138 +62,54 @@ if (empty($_SESSION['email'])){
         </div>
     </nav>
     <main class="container">
-        <div class="card-wrapper d-flex flex-column align-items-center" style="height: 65vh;">
-            <div class="card product-wrapper mt-5 p-lg-5 p-xxl-5 p-sm-0 p-md-0 w-75" style="text-align:justify; border:none; border-radius: 0; height: auto;">
-                <h2>PRODUCTS</h2>
-                <span><a href="products.php?t">T-SHIRTS</a>
-                <a href="products.php?j">JACKET</a>
-                <a href="products.php?o">OTHER</a></span>
-                <?php
-                if(isset($_GET['o'])){
-                ?>
-                <?php
-                $other_product = "SELECT * FROM products 
-                WHERE product_type = 'Other' ORDER BY date_time_created DESC";
-                $query_other_product = mysqli_query($conn, $other_product);
-                if($row_count = mysqli_num_rows($query_other_product) > 0){
-                ?>
-                <table style="text-align: center;">
-					<thead>
-					<tr>
-                    <th>ITEM ID</th>
-                    <th>NAME</th>
-                    <th>DATE ADDED</th>
-                    <th>Operation</th>
-					</tr>
-					</thead>
-				
-					<?php 
-							while($rows = mysqli_fetch_array($query_other_product)){
-					?>
-					<tbody>
-					<tr>
-					<td><?php echo $rows['product_id'];?></td>
-                    <td><?php echo $rows['name'];?></td>
-					<td><?php echo date("F d, Y h:i:s A", strtotime($rows['date_time_created']));?></td>
-                    <td><a class="confirm-buton" href="#">EDIT</a>
-                        <a href="">REMOVE</a>
-                    </td>
-					</tr>
-					</tbody>
-					<?php
-					}
-					?>
-					</table>
-                <?php
-                }else{
-                    echo '<h1>No Product Yet</h1>';
-                }
-                ?>
-                <?php
-                }else if(isset($_GET['j'])){
-                ?>
-                <?php
-                $jacket_product = "SELECT * FROM products 
-                WHERE product_type = 'Jacket' ORDER BY date_time_created DESC";
-                $query_jacket_product = mysqli_query($conn, $jacket_product);
-                if($row_count = mysqli_num_rows($query_jacket_product) > 0){
-                ?>
-                <table style="text-align: center;">
-					<thead>
-					<tr>
-                    <th>ITEM ID</th>
-                    <th>NAME</th>
-                    <th>DATE ADDED</th>
-                    <th>Operation</th>
-					</tr>
-					</thead>
-				
-					<?php 
-							while($rows = mysqli_fetch_array($query_jacket_product)){
-					?>
-					<tbody>
-					<tr>
-					<td><?php echo $rows['product_id'];?></td>
-                    <td><?php echo $rows['name'];?></td>
-					<td><?php echo date("F d, Y h:i:s A", strtotime($rows['date_time_created']));?></td>
-                    <td><a class="confirm-buton" href="#">EDIT</a>
-                        <a href="">REMOVE</a>
-                    </td>
-					</tr>
-					</tbody>
-					<?php
-					}
-					?>
-					</table>
-                <?php
-                }else{
-                    echo '<h1>No Product Yet</h1>';
-                }
-                ?>
-                <?php
-                }else{
-                ?>
-                <?php
-                $tshirt_product = "SELECT * FROM products 
-                WHERE product_type = 'T-Shirt' ORDER BY date_time_created DESC";
-                $query_tshirt_product = mysqli_query($conn, $tshirt_product);
-                if(mysqli_num_rows($query_tshirt_product) > 0){
-                ?>
-                <table style="text-align: center;">
-					<thead>
-					<tr>
-                    <th>ITEM ID</th>
-                    <th>NAME</th>
-                    <th>DATE ADDED</th>
-                    <th>Operation</th>
-					</tr>
-					</thead>
-				
-					<?php 
-							while($rows = mysqli_fetch_array($query_tshirt_product)){
-					?>
-					<tbody>
-					<tr>
-					<td><?php echo $rows['product_id'];?></td>
-                    <td><?php echo $rows['name'];?></td>
-					<td><?php echo date("F d, Y h:i:s A", strtotime($rows['date_time_created']));?></td>
-                    <td><a class="confirm-buton" href="#">EDIT</a>
-                        <a href="">REMOVE</a>
-                    </td>
-					</tr>
-					</tbody>
-					<?php
-					}
-					?>
-					</table>
-                    <?php
-                    }else{
-                        echo '<h1>No Product Yet</h1>';
-                    }
-                    ?>
-                <?php
-                }
-                ?>
+        <div class="card-wrapper mt-4 d-flex flex-column align-items-center" style="height: 600px;">
+            <div class="card mb-3 w-75 mt-5" style="height: 400px; border: none; border-radius: 0;">
+                <div class="row g-0" style="height: 100%;">
+                    <div class="col-md-4 p-0 m-0 bg-secondary">
+                        <div class="py-5 d-flex flex-column align-items-center">
+                            <p class="h3" style="color: rgba(0,0,0,0.4);">DASHBOARD</p>
+                                <span class="d-flex justify-content-center flex-column align-items-center">
+                                    <a class="text-dark fs-4 text-center" href="" style="text-decoration: none;">ORDERS</a>
+                                    <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">PRODUCTS</a>
+                                    <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">INVENTORY</a>
+                                    <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">USERS</a>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="col-md-8 py-4 px-3">
+                        <h5 class="text-muted px-3">PRODUCTS</h5>
+                        <span class="fs-5 fw-normal d-flex justify-content-evenly mt-4">
+                            <a class="text-dark" style="text-decoration: none;">T-SHIRTS</a>
+                            <a class="text-dark" style="text-decoration: none;">JACKETS</a>
+                            <a class="text-dark" style="text-decoration: none;">OTHERS</a>
+                        </span>
+                        <hr style="width:90%">
+                        <table class="table text-center">
+                        <span class="mb-4 d-flex align-items-center justify-content-end w-70">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="black" class="bi bi-search" viewBox="0 0 15 15">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
+                            <input type="text" name="" class="py-1 mx-2"placeholder="Search...">
+                        </span>
+                            <thead>
+                                <th style="font-weight: 500;">NO.</th>
+                                <th style="font-weight: 500;">PRODUCT ID</th> 
+                                <th style="font-weight: 500;">DATE ADDED</th>
+                                <th style="font-weight: 500;">OPERATION</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>000907221</td>
+                                    <td>10/22/2022 10:30:31 AM</td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm" href="" style="border-radius: 0;">EDIT</button>
+                                        <button class="btn btn-danger btn-sm" href="" style="border-radius: 0;">REMOVE</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
