@@ -57,19 +57,19 @@ if (empty($_SESSION['email'])){
                         </div>
                         <!-- Temporary nav item -->
                     </li>
-                </ul>
+                </ul>   
             </div>
         </div>
     </nav>
     <main class="container">
         <div class="card-wrapper mt-4 d-flex flex-column align-items-center" style="height: 600px;">
-            <div class="card mb-3 w-75 mt-5" style="height: 400px; border: none; border-radius: 0;">
+            <div class="card mb-2 w-75 mt-4" style="height: 450px; width: 75%; border: none; border-radius: 0;">
                 <div class="row g-0" style="height: 100%;">
-                    <div class="col-md-4 p-0 m-0 bg-secondary">
+                    <div class="col-md-4 p-0 m-0 bg-secondary" style="width: 29%;">
                         <div class="py-5 d-flex flex-column align-items-center">
                             <p class="h3" style="color: rgba(0,0,0,0.4);">DASHBOARD</p>
                                 <span class="d-flex justify-content-center flex-column align-items-center">
-                                    <a class="text-dark fs-4 text-center" href="" style="text-decoration: none;">ORDERS</a>
+                                    <a class="text-dark mt-3 fs-4 text-center" href="" style="text-decoration: none;">ORDERS</a>
                                     <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">PRODUCTS</a>
                                     <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">INVENTORY</a>
                                     <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">USERS</a>
