@@ -48,7 +48,7 @@
              <div class="container">
 		  <div class="text-center py-4">
 		   <button class="btn">CANCEL</button>
-		   <button class="btn btn-dark" style="border-radius: 0;">ENTER</button>
+		   <button class="btn btn-dark" style="border-radius: 0;">SEARCH</button>
 		  </div>
         </div>
 

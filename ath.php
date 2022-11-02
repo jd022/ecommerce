@@ -37,14 +37,14 @@
         </div>
     </nav>
             <div class="container mt-2 pt-4 p-1 d-flex flex-column align-items-center justify-content-center">
-            <div class="card" style="width: 60vw; height: 25rem; border-radius: 0; border: none; font-family: var(--nunito); overflow:hidden;">
+            <div class="card d-flex align-items-center justify-content-center" style="width: 60vw; height: 25rem; border-radius: 0; border: none; font-family: var(--nunito); overflow:hidden;">
             <h6 class="pt-5 p-0 d-flex justify-content-center align-content-center h4" style="font-weight: 200;">VERIFICATION CODE</h6>
             <p class="pt-5 d-flex justify-content-center align-content-center h6" style="font-weight: 100; ">Please check your email to enter OTP.</p>
             <span class="d-flex justify-content-center align-content-center">Email: kristenmoira@gmail.com</span>
-            <span class="mb-2 mt-4 d-flex align-items-center justify-content-center">
+            <span class="mt-4 d-flex flex-column align-items-center justify-content-center">
                     <input type="text" name="otp" class="email-input" placeholder="OTP CODE">
                 <div class="container">
-		      <div class="text-center py-5 mt-2">
+		      <div class="text-center py-5 pt-0 mt-2">
 		   <button class="btn">RESEND</button>
 		   <button class="btn btn-dark" style="border-radius: 0;">ENTER</button>
            <br><a href="#">Choose different method</a>

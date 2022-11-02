@@ -37,15 +37,15 @@
         </div>
     </nav>
             <div class="container mt-2 pt-4 p-1 d-flex flex-column align-items-center justify-content-center">
-            <div class="card" style="width: 60vw; height: 25rem; border-radius: 0; border: none; font-family: var(--nunito); overflow:hidden;">
+            <div class="card d-flex align-content-center justify-content-center align-items-center" style="width: 60vw; height: 25rem; border-radius: 0; border: none; font-family: var(--nunito); overflow:hidden;">
             <h6 class="pt-5 p-2 d-flex justify-content-center align-content-center h4" style="font-weight: 200;">WHAT IS YOUR NAME?</h6>
-            <h4 class="pt-5 d-flex justify-content-center align-content-center h5" style="font-weight: 100; ">Enter the full name of your account.</h4>
-            <span style="display: flex; flex-direction: row;" class="py-1 px-2 d-flex align-content-center justify-content-center">
+            <h4 class="pt-3 d-flex justify-content-center align-content-center h5" style="font-weight: 100; ">Enter the full name of your account.</h4>
+            <span class="py-5 px-5 w-75 d-flex align-content-center justify-content-evenly">
                     <input type="text" name="first_name" class="email-input" maxlength="15" placeholder="FIRST NAME">
                     <input type="text" name="last_name" class="email-input" maxlength="15" placeholder="LAST NAME">
                 </span>
                 <div class="container">
-		   <div class="text-center py-4">
+		   <div class="text-center py-1">
 		   <button class="btn">CANCEL</button>
 		   <button class="btn btn-dark" style="border-radius: 0;">SUBMIT</button>
 		   </div>
