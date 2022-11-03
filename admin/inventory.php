@@ -69,8 +69,8 @@ if (empty($_SESSION['email'])){
                         <div class="py-5 d-flex flex-column align-items-center">
                             <p class="h3" style="color: rgba(0,0,0,0.4);">DASHBOARD</p>
                             <span class="d-flex justify-content-center flex-column align-items-center">
-                                    <a class="text-dark mt-3 fs-4 text-center" href="" style="text-decoration: none;">ORDERS</a>
-                                    <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">PRODUCTS</a>
+                                    <a class="text-dark mt-3 fs-4 text-center" href="orders.php" style="text-decoration: none;">ORDERS</a>
+                                    <a class="text-dark mt-3 fs-4" href="products.php" style="text-decoration: none;">PRODUCTS</a>
                                     <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">INVENTORY</a>
                                     <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">USERS</a>
                                 </span>
