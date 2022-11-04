@@ -101,6 +101,74 @@ if (empty($_SESSION['email'])){
                                     </form>
                                 </span>
                         <table class="table text-center overflow-y">
+                        <?php
+                                    if(isset($_POST['submit'])){
+                                        $search = $_POST['search'];
+                                        $status = $_POST['status'];
+                                        if(empty($search)){
+                                            echo "<script>alert('Input order id');
+                                            window.location.href('orders.php?p')</script>";
+                                        }
+                                        $get_order_search = "SELECT distinct order_id, date_time_created FROM user_orders 
+                                        WHERE order_id LIKE '%".$search."%' AND status = '$status' ORDER BY date_time_created DESC";
+                                        $query_order_search = mysqli_query($conn, $get_order_search);
+                                        if(mysqli_num_rows($query_order_search) > 0){
+
+                                    ?>
+                                    
+                                    <thead>
+                                        <th style="font-weight: 500;">NO.</th>
+                                        <th style="font-weight: 500;">ORDER ID</th> 
+                                        <th style="font-weight: 500;">DATE OF ORDER</th>
+                                        <th style="font-weight: 500;">OPERATION</th>
+                                    </thead>
+                                    <tbody>
+                                            <?php 
+                                                $i = 1;
+                                                while($rows = mysqli_fetch_array($query_order_search)){
+                                                    // Store the cipher method
+                                        $ciphering = "AES-128-CTR";
+
+                                        // Use OpenSSl Encryption method
+                                        $iv_length = openssl_cipher_iv_length($ciphering);
+                                        $options = 0;
+
+                                        // Non-NULL Initialization Vector for encryption
+                                        $encryption_iv = '1234567891011121';
+
+                                        // Store the encryption key
+                                        $encryption_key = "TeamAgnat";
+
+                                        // Use openssl_encrypt() function to encrypt the data
+                                        $encryption_oid = openssl_encrypt($rows['order_id'], $ciphering,
+                                                    $encryption_key, $options, $encryption_iv);
+                                            ?>
+                                        <tr>
+                                            <td>
+                                                <?php 
+                                                    echo $i;
+                                                    $i++;
+                                                ?>
+                                            </td>
+                                            <td><?php echo $rows['order_id'];?></td>
+                                            <td><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
+                                            <td>
+                                                <a href="config.php?a&s=<?php echo $status;?>&oid=<?php echo $encryption_oid;?>" class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>
+                                                <a href="config.php?r&p&oid=<?php echo $encryption_oid;?>"
+                                                onclick="return  confirm('do you want to delete this ORDER ID: <?php echo $rows['order_id'];?>')" class="btn btn-danger btn-sm" 
+                                                style="border-radius: 0;">REJECT</a>
+                                            </td>
+                                        </tr>
+                                            <?php
+                                                }
+                                            ?>
+                                    </tbody>
+                                    <?php
+                                        }else{
+                                            echo "<td>There is no data in table </td>";
+                                        }
+                                    
+                                    ?>
                                     <?php
                                         }else if(isset($_GET['h'])){
                                         $get_order_history = "SELECT distinct order_id FROM user_orders WHERE status = 'Done' ORDER BY date_time_created DESC";
