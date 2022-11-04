@@ -102,22 +102,40 @@ if (empty($_SESSION['email'])){
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
                             <input type="text" name="" class="py-1 mx-2"placeholder="Search...">
                         </span>
-                            <thead>
-                                <th style="font-weight: 500;">ITEM ID</th>
-                                <th style="font-weight: 500;">NAME</th> 
-                                <th style="font-weight: 500;">DATE ADDED</th>
-                                <th style="font-weight: 500;">OPERATION</th>
-                            </thead>
-                            <tbody>
-                                <tr style="cursor:pointer;" class="inventory" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#inventory">
-                                    <td>84562983</td>
-                                    <td>Melt Tee</td>
-                                    <td>November 30, -0001 12:00:00 AM</td>
-                                    <td style="z-index: 11111;">
-                                        <button class="btn btn-success btn-sm inventory" href="#" style="border-radius: 0;" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#inventory">EDIT</button>
-                                        <button class="btn btn-danger btn-sm" href="#" style="border-radius: 0;">REMOVE</button>
-                                    </td>
-                                </tr>
+                        <?php
+                                    $get_product = "SELECT distinct product_id, date_time_created FROM product_stocks";
+                                    $query_get_product = mysqli_query($conn, $get_product);
+                                    if(mysqli_num_rows($query_get_product) > 0){
+                                    ?>
+                                <thead>
+                                    <th style="font-weight: 500;">NO.</th>
+                                    <th style="font-weight: 500;">PRODUCT ID</th> 
+                                    <th style="font-weight: 500;">DATE ADDED</th>
+                                    <th style="font-weight: 500;">OPERATION</th>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        $i = 1;
+                                        while($rows = mysqli_fetch_array($query_get_product)){
+                                    ?>
+                                    <tr>
+                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#inventory"><?php echo $i++;?></td>
+                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#inventory"><?php echo $rows['product_id'];?></td>
+                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#inventory"><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
+                                        <td style="z-index:1111;">
+                                            <a class="btn btn-success btn-sm product" href="" style="border-radius: 0;" data-id="<?php echo $product_id?>" data-bs-toggle="modal" data-bs-target="#inventory">EDIT</a>
+                                            <a class="btn btn-danger btn-sm" href="og.php" style="border-radius: 0;">REMOVE</a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                        }
+                                    ?>
+                                </tbody>
+                                <?php
+                                    }else{
+                                        echo "<td>There is no data in table</td>";
+                                    }
+                                ?>
                             </tbody>
                         </table>
                     </div>

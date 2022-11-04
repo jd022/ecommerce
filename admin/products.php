@@ -79,9 +79,9 @@ if (empty($_SESSION['email'])){
                         <div class="col-md-8 py-4 px-3">
                             <h5 class="text-muted px-3">PRODUCTS</h5>
                             <span class="fs-5 fw-normal d-flex justify-content-evenly mt-4">
-                                <a class="text-dark" style="text-decoration: none;">T-SHIRTS</a>
-                                <a class="text-dark" style="text-decoration: none;">JACKETS</a>
-                                <a class="text-dark" style="text-decoration: none;">OTHERS</a>
+                                <a href = "products.php?ts"class="text-dark" style="text-decoration: none;">T-SHIRTS</a>
+                                <a href = "products.php?j" class="text-dark" style="text-decoration: none;">JACKETS</a>
+                                <a href = "products.php?o" class="text-dark" style="text-decoration: none;">OTHERS</a>
                             </span>
                             <hr>
                                 <table class="table text-center table-hover">
@@ -90,6 +90,118 @@ if (empty($_SESSION['email'])){
                                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
                                     <input type="text" name="" class="py-1 mx-2"placeholder="Search...">
                                 </span>
+                                <?php
+                                if(isset($_GET['ts'])){
+                                    $get_product_ts = "SELECT * FROM products WHERE product_type = 'T-Shirt'";
+                                    $query_get_product_ts = mysqli_query($conn, $get_product_ts);
+                                    if(mysqli_num_rows($query_get_product_ts) > 0){?>
+                                    <thead>
+                                    <th style="font-weight: 500;">NO.</th>
+                                    <th style="font-weight: 500;">PRODUCT ID</th> 
+                                    <th style="font-weight: 500;">DATE ADDED</th>
+                                    <th style="font-weight: 500;">OPERATION</th>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        $i = 1;
+                                        while($rows = mysqli_fetch_array($query_get_product_ts)){
+                                    ?>
+                                    <tr>
+                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product"><?php echo $i++;?></td>
+                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product"><?php echo $rows['product_id'];?></td>
+                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product"><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
+                                        <td style="z-index:1111;">
+                                            <a class="btn btn-success btn-sm product" href="" style="border-radius: 0;" data-id="<?php echo $product_id?>" data-bs-toggle="modal" data-bs-target="#product">EDIT</a>
+                                            <a class="btn btn-danger btn-sm" href="og.php" style="border-radius: 0;">REMOVE</a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                        }
+                                    ?>
+                                </tbody>
+                                <?php
+                                    }else{
+                                        echo "<td>There is no data in table</td>";
+                                    }
+                                ?>
+                                <?php
+                                }else if(isset($_GET['j'])){
+                                    $get_product_j = "SELECT * FROM products WHERE product_type = 'Jacket'";
+                                    $query_get_product_j = mysqli_query($conn, $get_product_j);
+                                    if(mysqli_num_rows($query_get_product_j) > 0){
+                                ?>
+                                 <thead>
+                                    <th style="font-weight: 500;">NO.</th>
+                                    <th style="font-weight: 500;">PRODUCT ID</th> 
+                                    <th style="font-weight: 500;">DATE ADDED</th>
+                                    <th style="font-weight: 500;">OPERATION</th>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        $i = 1;
+                                        while($rows = mysqli_fetch_array($query_get_product_j)){
+                                    ?>
+                                    <tr>
+                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product"><?php echo $i++;?></td>
+                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product"><?php echo $rows['product_id'];?></td>
+                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product"><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
+                                        <td style="z-index:1111;">
+                                            <a class="btn btn-success btn-sm product" href="" style="border-radius: 0;" data-id="<?php echo $product_id?>" data-bs-toggle="modal" data-bs-target="#product">EDIT</a>
+                                            <a class="btn btn-danger btn-sm" href="og.php" style="border-radius: 0;">REMOVE</a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                        }
+                                    ?>
+                                </tbody>
+                                <?php
+                                    }else{
+                                        echo "<td>There is no data in table</td>";
+                                    }
+                                ?>
+                                <?php
+                                }else if(isset($_GET['o'])){
+                                    $get_product_j = "SELECT * FROM products WHERE product_type = 'Other'";
+                                    $query_get_product_j = mysqli_query($conn, $get_product_j);
+                                    if(mysqli_num_rows($query_get_product_j) > 0){
+                                    ?>
+                                    <thead>
+                                    <th style="font-weight: 500;">NO.</th>
+                                    <th style="font-weight: 500;">PRODUCT ID</th> 
+                                    <th style="font-weight: 500;">DATE ADDED</th>
+                                    <th style="font-weight: 500;">OPERATION</th>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        $i = 1;
+                                        while($rows = mysqli_fetch_array($query_get_product_j)){
+                                    ?>
+                                    <tr>
+                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product"><?php echo $i++;?></td>
+                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product"><?php echo $rows['product_id'];?></td>
+                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product"><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
+                                        <td style="z-index:1111;">
+                                            <a class="btn btn-success btn-sm product" href="" style="border-radius: 0;" data-id="<?php echo $product_id?>" data-bs-toggle="modal" data-bs-target="#product">EDIT</a>
+                                            <a class="btn btn-danger btn-sm" href="og.php" style="border-radius: 0;">REMOVE</a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                        }
+                                    ?>
+                                </tbody>
+                                    <?php
+                                     }else{
+                                        echo "<td>There is no data in table</td>";
+                                    }
+                                    ?>
+                                <?php
+                                }else{
+                                ?>
+                                <?php
+                                    $get_product = "SELECT * FROM products";
+                                    $query_get_product = mysqli_query($conn, $get_product);
+                                    if(mysqli_num_rows($query_get_product) > 0){
+                                    ?>
                                 <thead>
                                     <th style="font-weight: 500;">NO.</th>
                                     <th style="font-weight: 500;">PRODUCT ID</th> 
@@ -97,16 +209,29 @@ if (empty($_SESSION['email'])){
                                     <th style="font-weight: 500;">OPERATION</th>
                                 </thead>
                                 <tbody>
-                                    <tr style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product">
-                                        <td>1</td>
-                                        <td>000907221</td>
-                                        <td>10/22/2022 10:30:31 AM</td>
+                                    <?php
+                                        $i = 1;
+                                        while($rows = mysqli_fetch_array($query_get_product)){
+                                    ?>
+                                    <tr>
+                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product"><?php echo $i++;?></td>
+                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product"><?php echo $rows['product_id'];?></td>
+                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product"><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                         <td style="z-index:1111;">
-                                            <button class="btn btn-success btn-sm product" href="" style="border-radius: 0;" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product">EDIT</button>
-                                            <button class="btn btn-danger btn-sm" href="" style="border-radius: 0;">REMOVE</button>
+                                            <a class="btn btn-success btn-sm product" href="" style="border-radius: 0;" data-id="<?php echo $product_id?>" data-bs-toggle="modal" data-bs-target="#product">EDIT</a>
+                                            <a class="btn btn-danger btn-sm" href="og.php" style="border-radius: 0;">REMOVE</a>
                                         </td>
                                     </tr>
+                                    <?php
+                                        }
+                                    ?>
                                 </tbody>
+                                <?php
+                                    }else{
+                                        echo "<td>There is no data in table</td>";
+                                    }
+                                }
+                                ?>
                             </table>
                         </div>
                     </div>
