@@ -88,20 +88,22 @@ if (empty($_SESSION['email'])){
                         <span class="mb-4 d-flex align-items-center justify-content-end w-70">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="black" class="bi bi-search" viewBox="0 0 15 15">
                                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
-                                    <input type="text" name="" class="py-1 mx-2"placeholder="Search...">
+                                    <form action="" method="post">
+                                    <input type="text" name="search" class="py-1 mx-2"placeholder="Search ORDER ID Here">
+                                    <button type="submit" name="submit" hidden>Submit</button>
+                                    </form>
                                 </span>
                         <div class="card col-md-12 overflow-auto" style="height: 40%; border: none;">
                         <table class="table text-center overflow-y table-hover">
                         <?php
                                     if(isset($_POST['submit'])){
                                         $search = $_POST['search'];
-                                        $status = $_POST['status'];
                                         if(empty($search)){
                                             echo "<script>alert('Input order id');
                                             window.location.href('orders.php?p')</script>";
                                         }
-                                        $get_order_search = "SELECT distinct order_id, date_time_created FROM user_orders 
-                                        WHERE order_id LIKE '%".$search."%' AND status = '$status' ORDER BY date_time_created DESC";
+                                        $get_order_search = "SELECT distinct order_id,status, date_time_created FROM user_orders 
+                                        WHERE order_id LIKE '%".$search."%' AND NOT status = 'Done' ORDER BY date_time_created DESC";
                                         $query_order_search = mysqli_query($conn, $get_order_search);
                                         if(mysqli_num_rows($query_order_search) > 0){
 
@@ -133,18 +135,22 @@ if (empty($_SESSION['email'])){
                                         // Use openssl_encrypt() function to encrypt the data
                                         $encryption_oid = openssl_encrypt($rows['order_id'], $ciphering,
                                                     $encryption_key, $options, $encryption_iv);
+
+                                        // Use openssl_encrypt() function to encrypt the data
+                                        $e_status = openssl_encrypt($rows['status'], $ciphering,
+                                        $encryption_key, $options, $encryption_iv);
                                             ?>
-                                        <tr style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders">
-                                            <td>
+                                        <tr>
+                                            <td style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders">
                                                 <?php 
                                                     echo $i;
                                                     $i++;
                                                 ?>
                                             </td>
-                                            <td class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo $rows['order_id'];?></td>
-                                            <td><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
+                                            <td style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo $rows['order_id'];?></td>
+                                            <td style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                             <td>
-                                                <a href="config.php?a&s=<?php echo $status;?>&oid=<?php echo $encryption_oid;?>" 
+                                                <a href="config.php?a&s=<?php echo $e_status;?>&oid=<?php echo $encryption_oid;?>" 
                                                 onclick="return  confirm('do you want to accept this ORDER ID: <?php echo $rows['order_id'];?>')"
                                                 class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>
                                                 <a href="config.php?r&oid=<?php echo $encryption_oid;?>"
@@ -154,12 +160,14 @@ if (empty($_SESSION['email'])){
                                         </tr>
                                             <?php
                                                 }
+                                            }else{
+                                                echo "<td>There is no data in table </td>";
                                             }
                                             ?>
                                     </tbody>
                                     <?php
                                     }else if(isset($_GET['h'])){
-                                        $get_order_history = "SELECT * FROM user_orders WHERE status = 'Done' ORDER BY date_time_created DESC";
+                                        $get_order_history = "SELECT distinct order_id,status, date_time_created FROM user_orders WHERE status = 'Done' ORDER BY date_time_created DESC";
                                         $query_order_history = mysqli_query($conn, $get_order_history);
                                         if(mysqli_num_rows($query_order_history) > 0){
                                     ?>
@@ -189,15 +197,15 @@ if (empty($_SESSION['email'])){
                                         $encryption_oid = openssl_encrypt($rows['order_id'], $ciphering,
                                                     $encryption_key, $options, $encryption_iv);
                                             ?>
-                                        <tr style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders">
-                                            <td>
+                                        <tr>
+                                            <td style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders">
                                                 <?php 
                                                     echo $i;
                                                     $i++;
                                                 ?>
                                             </td>
-                                            <td><?php echo $rows['order_id'];?></td>
-                                            <td><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
+                                            <td style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo $rows['order_id'];?></td>
+                                            <td style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                         </tr>
                                             <?php
                                                 }
@@ -210,7 +218,7 @@ if (empty($_SESSION['email'])){
                                     ?>
                                     <?php 
                                     }else if(isset($_GET['td'])){
-                                        $get_order_deliver = "SELECT * FROM user_orders WHERE status = 'To deliver' ORDER BY date_time_created DESC";
+                                        $get_order_deliver = "SELECT distinct order_id,status, date_time_created FROM user_orders WHERE status = 'To deliver' ORDER BY date_time_created DESC";
                                         $query_order_deliver = mysqli_query($conn, $get_order_deliver);
                                         if(mysqli_num_rows($query_order_deliver) > 0){
                                         ?>
@@ -241,15 +249,15 @@ if (empty($_SESSION['email'])){
                                         $encryption_oid = openssl_encrypt($rows['order_id'], $ciphering,
                                                     $encryption_key, $options, $encryption_iv);
                                             ?>
-                                        <tr style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders">
-                                            <td>
+                                        <tr>
+                                            <td style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders">
                                                 <?php 
                                                     echo $i;
                                                     $i++;
                                                 ?>
                                             </td>
-                                            <td><?php echo $rows['order_id'];?></td>
-                                            <td><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
+                                            <td style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo $rows['order_id'];?></td>
+                                            <td style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                             <td>
                                             <a href="config.php?a&td&oid=<?php echo $encryption_oid;?>" 
                                             onclick="return  confirm('do you want to accept this ORDER ID: <?php echo $rows['order_id'];?>')"
@@ -271,7 +279,7 @@ if (empty($_SESSION['email'])){
 
                                     <?php 
                                     }else if(isset($_GET['c'])){
-                                        $get_order_confirm = "SELECT * FROM user_orders WHERE status = 'Confirm' ORDER BY date_time_created DESC";
+                                        $get_order_confirm = "SELECT distinct order_id,status, date_time_created FROM user_orders WHERE status = 'Confirm' ORDER BY date_time_created DESC";
                                         $query_order_confirm = mysqli_query($conn, $get_order_confirm);
                                         if(mysqli_num_rows($query_order_confirm) > 0){
                                         ?>
@@ -302,15 +310,15 @@ if (empty($_SESSION['email'])){
                                         $encryption_oid = openssl_encrypt($rows['order_id'], $ciphering,
                                                     $encryption_key, $options, $encryption_iv);
                                             ?>
-                                        <tr style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders">
-                                            <td>
+                                        <tr>
+                                            <td style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders">
                                                 <?php 
                                                     echo $i;
                                                     $i++;
                                                 ?>
                                             </td>
-                                            <td><?php echo $rows['order_id'];?></td>
-                                            <td><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
+                                            <td style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo $rows['order_id'];?></td>
+                                            <td style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                             <td>
                                             <a href="config.php?a&c&oid=<?php echo $encryption_oid;?>" 
                                             onclick="return  confirm('do you want to accept this ORDER ID: <?php echo $rows['order_id'];?>')"
@@ -331,7 +339,7 @@ if (empty($_SESSION['email'])){
                                     ?>
 
                                     <?php }else{
-                                        $get_order_pending = "SELECT * FROM user_orders WHERE status = 'Pending' ORDER BY date_time_created DESC";
+                                        $get_order_pending = "SELECT distinct order_id,status, date_time_created FROM user_orders WHERE status = 'Pending' ORDER BY date_time_created DESC";
                                         $query_order_pending = mysqli_query($conn, $get_order_pending);
                                         if(mysqli_num_rows($query_order_pending) > 0){?>
                                         <thead>
@@ -361,17 +369,19 @@ if (empty($_SESSION['email'])){
                                         $encryption_oid = openssl_encrypt($rows['order_id'], $ciphering,
                                                     $encryption_key, $options, $encryption_iv);
                                             ?>
-                                        <tr style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders">
-                                            <td>
+                                        <tr>
+                                            <td style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders">
                                                 <?php 
                                                     echo $i;
                                                     $i++;
                                                 ?>
                                             </td>
-                                            <td><?php echo $rows['order_id'];?></td>
-                                            <td><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
+                                            <td style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo $rows['order_id'];?></td>
+                                            <td style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                             <td>
-                                            <a href="config.php?a&p&oid=<?php echo $encryption_oid;?>" class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>
+                                            <a href="config.php?a&p&oid=<?php echo $encryption_oid;?>" 
+                                            onclick="return  confirm('do you want to accept this ORDER ID: <?php echo $rows['order_id'];?>')"
+                                            class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>
                                                 <a href="config.php?r&oid=<?php echo $encryption_oid;?>"
                                                 onclick="return  confirm('do you want to delete this ORDER ID: <?php echo $rows['order_id'];?>')" class="btn btn-danger btn-sm" 
                                                 style="border-radius: 0;">REJECT</a>
