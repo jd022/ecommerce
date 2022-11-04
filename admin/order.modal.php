@@ -5,21 +5,32 @@ if (empty($_SESSION['email'])){
     header("location:index.php");
     exit();
 }
-$email = $_SESSION['email'];
+// $email = $_SESSION['email'];
 
 
 $order = $_POST['order'];
-$select_userid = "SELECT * FROM `user` WHERE email = '$email'";
-$query_userid = mysqli_query($conn, $select_userid);
-$rows = mysqli_fetch_array($query_userid);
-$user_id = $rows['user_id'];
+// $select_userid = "SELECT * FROM `user` WHERE email = '$email'";
+// $query_userid = mysqli_query($conn, $select_userid);
+// $rows = mysqli_fetch_array($query_userid);
+// $user_id = $rows['user_id'];
 
-$sqldisplay = "SELECT user_orders.id,user_orders.user_id, user_orders.order_id,user_orders.product_id,
+$user_details = "SELECT *, user_orders.id,user_orders.user_id, user_orders.order_id,user_orders.product_id,
 user_orders.quantity,user_orders.size,user_orders.price,user_orders.status, products.product_id, 
 products.name, products.price, products.image 
 FROM user_orders 
+LEFT JOIN user on user_orders.user_id = user.user_id
 LEFT JOIN products ON user_orders.product_id = products.product_id 
-WHERE order_id = '$order' AND NOT status = 'Cart' AND NOT status ='Done'";
+WHERE order_id = '$order'";
+$user_details = mysqli_query($conn, $user_details);
+$rows = mysqli_fetch_array($user_details);
+
+$sqldisplay = "SELECT *, user_orders.id,user_orders.user_id, user_orders.order_id,user_orders.product_id,
+user_orders.quantity,user_orders.size,user_orders.price,user_orders.status, products.product_id, 
+products.name, products.price, products.image 
+FROM user_orders 
+LEFT JOIN user on user_orders.user_id = user.user_id
+LEFT JOIN products ON user_orders.product_id = products.product_id 
+WHERE order_id = '$order'";
 $rundisplay = mysqli_query($conn, $sqldisplay);
 ?>
 <section class="container-fluid d-flex align-items-center justify-content-center px-4 px-sm-0">
@@ -56,7 +67,7 @@ while($rowdisplay = mysqli_fetch_array($rundisplay)){
         products.name, products.price, products.image 
         FROM user_orders 
         LEFT JOIN products ON user_orders.product_id = products.product_id 
-        WHERE order_id = '$order' AND NOT status = 'Cart' AND NOT status ='Done'";
+        WHERE order_id = '$order' AND NOT status = 'Cart'";
         $query_details = mysqli_query($conn, $order_details);
         $rows = mysqli_fetch_array($query_details);
         ?>
@@ -71,7 +82,7 @@ while($rowdisplay = mysqli_fetch_array($rundisplay)){
             </div>
             <div class="col-lg-4 d-flex flex-column align-items-end justify-content-end">
                     <p class="h6" style="color:green;">FREE SHIPPING</p>
-                    <p class="h6">₱<?php echo $rows['total'];?>.00</p>
+                    <p class="h6">₱<?php echo number_format($rows['total'],2);?></p>
                     <p class="h6">CASH ON DELIVERY</p>
             </div>
         </div>

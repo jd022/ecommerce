@@ -43,8 +43,8 @@ include 'includes/nav.php';?>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-6">
-                                    <select  class="form-select border border-dark" name="size" id="">
-                                        <option selected="true" hidden value="">Sizes</option>
+                                    <select class="form-select border border-dark" name="size" id="">
+                                        <option selected="true" disabled="disabled" hidden value="">Sizes</option>
                                         <?php
                                         $check_medium_size = "SELECT * FROM product_stocks
                                         WHERE product_id = '$product_id' and quantity <= 0

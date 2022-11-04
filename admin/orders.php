@@ -116,7 +116,7 @@ if (empty($_SESSION['email'])){
                                             <?php 
                                                 $i = 1;
                                                 while($rows = mysqli_fetch_array($query_order_search)){
-                                                    // Store the cipher method
+                                        // Store the cipher method
                                         $ciphering = "AES-128-CTR";
 
                                         // Use OpenSSl Encryption method
@@ -140,11 +140,13 @@ if (empty($_SESSION['email'])){
                                                     $i++;
                                                 ?>
                                             </td>
-                                            <td><?php echo $rows['order_id'];?></td>
+                                            <td class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo $rows['order_id'];?></td>
                                             <td><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                             <td>
-                                                <a href="config.php?a&s=<?php echo $status;?>&oid=<?php echo $encryption_oid;?>" class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>
-                                                <a href="config.php?r&p&oid=<?php echo $encryption_oid;?>"
+                                                <a href="config.php?a&s=<?php echo $status;?>&oid=<?php echo $encryption_oid;?>" 
+                                                onclick="return  confirm('do you want to accept this ORDER ID: <?php echo $rows['order_id'];?>')"
+                                                class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>
+                                                <a href="config.php?r&oid=<?php echo $encryption_oid;?>"
                                                 onclick="return  confirm('do you want to delete this ORDER ID: <?php echo $rows['order_id'];?>')" class="btn btn-danger btn-sm" 
                                                 style="border-radius: 0;">REJECT</a>
                                             </td>
@@ -169,6 +171,22 @@ if (empty($_SESSION['email'])){
                                             <?php 
                                                 $i = 1;
                                                 while($rows = mysqli_fetch_array($query_order_history)){
+                                                    // Store the cipher method
+                                        $ciphering = "AES-128-CTR";
+
+                                        // Use OpenSSl Encryption method
+                                        $iv_length = openssl_cipher_iv_length($ciphering);
+                                        $options = 0;
+
+                                        // Non-NULL Initialization Vector for encryption
+                                        $encryption_iv = '1234567891011121';
+
+                                        // Store the encryption key
+                                        $encryption_key = "TeamAgnat";
+
+                                        // Use openssl_encrypt() function to encrypt the data
+                                        $encryption_oid = openssl_encrypt($rows['order_id'], $ciphering,
+                                                    $encryption_key, $options, $encryption_iv);
                                             ?>
                                         <tr>
                                             <td>
@@ -177,9 +195,8 @@ if (empty($_SESSION['email'])){
                                                     $i++;
                                                 ?>
                                             </td>
-                                            <td><a class="text-decoration-none color: text-black">
-                                                <?php echo $rows['order_id'];?></a></td>
-                                            <td>10/22/2022 10:30:31 AM</td>
+                                            <td class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo $rows['order_id'];?></td>
+                                            <td><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                         </tr>
                                             <?php
                                                 }
@@ -206,6 +223,22 @@ if (empty($_SESSION['email'])){
                                             <?php 
                                                 $i = 1;
                                                 while($rows = mysqli_fetch_array($query_order_deliver)){
+                                                    // Store the cipher method
+                                        $ciphering = "AES-128-CTR";
+
+                                        // Use OpenSSl Encryption method
+                                        $iv_length = openssl_cipher_iv_length($ciphering);
+                                        $options = 0;
+
+                                        // Non-NULL Initialization Vector for encryption
+                                        $encryption_iv = '1234567891011121';
+
+                                        // Store the encryption key
+                                        $encryption_key = "TeamAgnat";
+
+                                        // Use openssl_encrypt() function to encrypt the data
+                                        $encryption_oid = openssl_encrypt($rows['order_id'], $ciphering,
+                                                    $encryption_key, $options, $encryption_iv);
                                             ?>
                                         <tr>
                                             <td>
@@ -214,12 +247,15 @@ if (empty($_SESSION['email'])){
                                                     $i++;
                                                 ?>
                                             </td>
-                                            <td><a class="text-decoration-none color: text-black">
-                                                <?php echo $rows['order_id'];?></a></td>
-                                            <td>10/22/2022 10:30:31 AM</td>
+                                            <td class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo $rows['order_id'];?></td>
+                                            <td><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                             <td>
-                                                <a href="#" class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>
-                                                <button class="btn btn-danger btn-sm" style="border-radius: 0;">REJECT</button>
+                                            <a href="config.php?a&td&oid=<?php echo $encryption_oid;?>" 
+                                            onclick="return  confirm('do you want to accept this ORDER ID: <?php echo $rows['order_id'];?>')"
+                                            class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>
+                                            <a href="config.php?r&oid=<?php echo $encryption_oid;?>"
+                                                onclick="return  confirm('do you want to delete this ORDER ID: <?php echo $rows['order_id'];?>')" class="btn btn-danger btn-sm" 
+                                                style="border-radius: 0;">REJECT</a>
                                             </td>
                                         </tr>
                                             <?php
@@ -248,6 +284,22 @@ if (empty($_SESSION['email'])){
                                             <?php 
                                                 $i = 1;
                                                 while($rows = mysqli_fetch_array($query_order_confirm)){
+                                                    // Store the cipher method
+                                        $ciphering = "AES-128-CTR";
+
+                                        // Use OpenSSl Encryption method
+                                        $iv_length = openssl_cipher_iv_length($ciphering);
+                                        $options = 0;
+
+                                        // Non-NULL Initialization Vector for encryption
+                                        $encryption_iv = '1234567891011121';
+
+                                        // Store the encryption key
+                                        $encryption_key = "TeamAgnat";
+
+                                        // Use openssl_encrypt() function to encrypt the data
+                                        $encryption_oid = openssl_encrypt($rows['order_id'], $ciphering,
+                                                    $encryption_key, $options, $encryption_iv);
                                             ?>
                                         <tr>
                                             <td>
@@ -256,12 +308,15 @@ if (empty($_SESSION['email'])){
                                                     $i++;
                                                 ?>
                                             </td>
+                                            <td class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo $rows['order_id'];?></td>
+                                            <td><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                             <td>
-                                                <?php echo $rows['order_id'];?></a></td>
-                                            <td>10/22/2022 10:30:31 AM</td>
-                                            <td>
-                                                <a href="#" class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>
-                                                <button class="btn btn-danger btn-sm" style="border-radius: 0;">REJECT</button>
+                                            <a href="config.php?a&c&oid=<?php echo $encryption_oid;?>" 
+                                            onclick="return  confirm('do you want to accept this ORDER ID: <?php echo $rows['order_id'];?>')"
+                                            class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>
+                                            <a href="config.php?r&oid=<?php echo $encryption_oid;?>"
+                                                onclick="return  confirm('do you want to delete this ORDER ID: <?php echo $rows['order_id'];?>')" class="btn btn-danger btn-sm" 
+                                                style="border-radius: 0;">REJECT</a>
                                             </td>
                                         </tr>
                                             <?php
@@ -288,6 +343,22 @@ if (empty($_SESSION['email'])){
                                             <?php 
                                                 $i = 1;
                                                 while($rows = mysqli_fetch_array($query_order_pending)){
+                                                    // Store the cipher method
+                                        $ciphering = "AES-128-CTR";
+
+                                        // Use OpenSSl Encryption method
+                                        $iv_length = openssl_cipher_iv_length($ciphering);
+                                        $options = 0;
+
+                                        // Non-NULL Initialization Vector for encryption
+                                        $encryption_iv = '1234567891011121';
+
+                                        // Store the encryption key
+                                        $encryption_key = "TeamAgnat";
+
+                                        // Use openssl_encrypt() function to encrypt the data
+                                        $encryption_oid = openssl_encrypt($rows['order_id'], $ciphering,
+                                                    $encryption_key, $options, $encryption_iv);
                                             ?>
                                         <tr>
                                             <td>
@@ -297,10 +368,12 @@ if (empty($_SESSION['email'])){
                                                 ?>
                                             </td>
                                             <td class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo $rows['order_id'];?></td>
-                                            <td>10/22/2022 10:30:31 AM</td>
+                                            <td><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                             <td>
-                                                <a href="#" class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>
-                                                <button class="btn btn-danger btn-sm" style="border-radius: 0;">REJECT</button>
+                                            <a href="config.php?a&p&oid=<?php echo $encryption_oid;?>" class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>
+                                                <a href="config.php?r&oid=<?php echo $encryption_oid;?>"
+                                                onclick="return  confirm('do you want to delete this ORDER ID: <?php echo $rows['order_id'];?>')" class="btn btn-danger btn-sm" 
+                                                style="border-radius: 0;">REJECT</a>
                                             </td>
                                         </tr>
                                             <?php

@@ -17,7 +17,7 @@ user_orders.quantity,user_orders.size,user_orders.price,user_orders.status, prod
 products.name, products.price, products.image 
 FROM user_orders 
 LEFT JOIN products ON user_orders.product_id = products.product_id 
-WHERE order_id = '$order' AND NOT status = 'Cart' AND NOT status ='Done'";
+WHERE order_id = '$order' AND NOT status = 'Cart'";
 $rundisplay = mysqli_query($conn, $sqldisplay);
 ?>
 <section class="container-fluid d-flex align-items-center justify-content-center px-4 px-sm-0">
@@ -69,7 +69,7 @@ while($rowdisplay = mysqli_fetch_array($rundisplay)){
             </div>
             <div class="col-lg-4 d-flex flex-column align-items-end justify-content-end">
                     <p class="h6" style="color:green;">FREE SHIPPING</p>
-                    <p class="h6">₱ <?php echo number_format($rows['total'],2);?></p>
+                    <p class="h6">₱<?php echo $rows['total'];?>.00</p>
                     <p class="h6">CASH ON DELIVERY</p>
             </div>
         </div>

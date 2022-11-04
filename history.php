@@ -25,8 +25,8 @@ if (empty($_SESSION['email'])){
 </head>
 <style>
         .order-row:hover{
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
+            background: rgba(0, 0, 0, 0.3);
+            color: black;
             cursor: pointer;
         }
     </style>
@@ -41,7 +41,7 @@ if (empty($_SESSION['email'])){
             <div class="container p-5">
                 <div class="row">
                 <?php
-                $get_order_history = "SELECT * FROM `user_orders` WHERE user_id = '$user_id' AND status = 'Delivered'";
+                $get_order_history = "SELECT * FROM `user_orders` WHERE user_id = '$user_id' AND status = 'Done'";
                 $query_order_history = mysqli_query($conn, $get_order_history) or die (mysqli_error($conn));
                 if(mysqli_num_rows($query_order_history) > 0){
                     while($rows = mysqli_fetch_array($query_order_history)){
@@ -54,8 +54,8 @@ if (empty($_SESSION['email'])){
                             <div class="col-lg-5">
                                 <p class="h3"><?php echo $rows['order_id'];?></p>
                                 <p class="m-0 small">DATE DELIVERED:</p>
-                                <p class="m-0 small"><small><?php echo date("F d, Y", strtotime($rows['date_time_updated']));?></small></p>
-                                <p class="m-0 h6 mt-2">STATUS: <span> <?php echo strtoupper($rows['status']);?></span></p>
+                                <p class="m-0 small"><small><?php echo date("F d, Y h:i A", strtotime($rows['date_time_updated']));?></small></p>
+                                <p class="m-0 h6 mt-2">STATUS: <span style="color:green";> <?php echo strtoupper($rows['status']);?></span></p>
                             </div>
                         </div>
                     </div>

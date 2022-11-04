@@ -12,6 +12,8 @@ if (empty($_SESSION['email'])){
 
     // accept to deliver script
     if(isset($_GET['a']) && isset($_GET['td']) && isset($_GET['oid'])){
+        date_default_timezone_set('Asia/Manila');
+        $date_time_updated = date('Y-m-d H:i:s');
         // Store the cipher method
         $ciphering = "AES-128-CTR";
         $options = 0;
@@ -27,7 +29,7 @@ if (empty($_SESSION['email'])){
 
         $status = 'Done';
 
-        $sql_pending_stat = "UPDATE `user_orders` SET status = '$status'
+        $sql_pending_stat = "UPDATE `user_orders` SET status = '$status', date_time_updated = '$date_time_updated'
         WHERE order_id = '$decryption_oid'";
         $query_pending_stat = mysqli_query($conn, $sql_pending_stat);
         if($query_pending_stat == true){
@@ -104,7 +106,7 @@ if (empty($_SESSION['email'])){
     }
     
     // reject script
-    if(isset($_GET['r']) && isset($_GET['p']) && isset($_GET['oid'])){
+    if(isset($_GET['r']) && isset($_GET['oid'])){
         // Store the cipher method
         $ciphering = "AES-128-CTR";
         $options = 0;
