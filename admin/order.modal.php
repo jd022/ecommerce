@@ -1,16 +1,18 @@
 <?php
-include 'connection.php';
+include '../connection.php';
 session_start();
 if (empty($_SESSION['email'])){
     header("location:index.php");
     exit();
 }
 $email = $_SESSION['email'];
+
+
+$order = $_POST['order'];
 $select_userid = "SELECT * FROM `user` WHERE email = '$email'";
 $query_userid = mysqli_query($conn, $select_userid);
 $rows = mysqli_fetch_array($query_userid);
 $user_id = $rows['user_id'];
-$order = $_POST['order'];
 
 $sqldisplay = "SELECT user_orders.id,user_orders.user_id, user_orders.order_id,user_orders.product_id,
 user_orders.quantity,user_orders.size,user_orders.price,user_orders.status, products.product_id, 
@@ -32,7 +34,7 @@ while($rowdisplay = mysqli_fetch_array($rundisplay)){
     
         <div class="row mb-1">
             <div class="col-lg-10 d-flex align-items-center">
-                <img src="<?php echo "src/img/" . $rowdisplay['image']; ?>" alt="image" style="height:100px; width: 80px; padding: 0; margin: 0;">
+                <img src="<?php echo "../src/img/" . $rowdisplay['image']; ?>" alt="image" style="height:100px; width: 80px; padding: 0; margin: 0;">
                 <span class="px-3">
                     <p class="h5"><?= $rowdisplay['name']?></p>
                     <p class="h6">Size: <?= $rowdisplay['size']?></p>

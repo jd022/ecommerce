@@ -47,7 +47,7 @@ include 'includes/nav.php';?>
                                         <option selected="true" disabled="disabled" hidden value="">Sizes</option>
                                         <?php
                                         $check_medium_size = "SELECT * FROM product_stocks
-                                        WHERE product_id = '$product_id' and quantity = 0
+                                        WHERE product_id = '$product_id' and quantity <= 0
                                         and product_stocks.stock = 'in' and size = 'Medium'";
                                         $query_medium_size = mysqli_query($conn, $check_medium_size);
                                         if(mysqli_num_rows($query_medium_size) > 0){
@@ -63,7 +63,7 @@ include 'includes/nav.php';?>
 
                                         <?php
                                         $check_large_size = "SELECT * FROM product_stocks
-                                        WHERE product_id = '$product_id' and quantity = 0
+                                        WHERE product_id = '$product_id' and quantity <= 0
                                         and product_stocks.stock = 'in' and size = 'Large'";
                                         $query_large_size = mysqli_query($conn, $check_large_size);
                                         if(mysqli_num_rows($query_large_size) > 0){
@@ -79,7 +79,7 @@ include 'includes/nav.php';?>
 
                                         <?php
                                         $check_xlarge_size = "SELECT * FROM product_stocks
-                                        WHERE product_id = '$product_id' and quantity = 0
+                                        WHERE product_id = '$product_id' and quantity <= 0
                                         and product_stocks.stock = 'in' and size = 'X-Large'";
                                         $query_xlarge_size = mysqli_query($conn, $check_xlarge_size);
                                         if(mysqli_num_rows($query_xlarge_size) > 0){
@@ -96,7 +96,7 @@ include 'includes/nav.php';?>
                                         
                                         <?php
                                         $check_xxlarge_size = "SELECT * FROM product_stocks
-                                        WHERE product_id = '$product_id' and quantity = 0
+                                        WHERE product_id = '$product_id' and quantity <= 0
                                         and product_stocks.stock = 'in' and size = 'XX-Large'";
                                         $query_xxlarge_size = mysqli_query($conn, $check_xxlarge_size);
                                         if(mysqli_num_rows($query_xxlarge_size) > 0){
@@ -162,7 +162,8 @@ include 'includes/nav.php';?>
         $quantity = $_POST['quantity'];
 
         if($size == ""){
-            echo '<script>alert("Please pick a product size")</script>';
+            echo "<script>alert('Please pick a product size');
+            window.location.href='product.php?p=$product_id'</script>";
             exit();
         }
         if(empty($quantity)){
@@ -184,16 +185,8 @@ include 'includes/nav.php';?>
         VALUES ('$user_id','$product_id','$quantity','$size','$t_product_price','$status', '$date_time_created')";
         $query_add_to_cart = mysqli_query($conn, $add_to_cart);
         if($query_add_to_cart){
-            $update_stocks = "UPDATE `product_stocks` SET `quantity` = quantity - $quantity
-            WHERE product_id = '$product_id' and size = '$size'";
-            $query_update_stocks = mysqli_query($conn, $update_stocks);
-            if($query_update_stocks){
             echo '<script>alert("Product added to cart")</script>';
             exit();
-            }else{
-            echo '<script>alert("Something went wrong in stock update")</script>';
-            exit();
-            }
         }else{
             echo '<script>alert("Something went wrong")</script>';
             exit();
