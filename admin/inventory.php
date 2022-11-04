@@ -84,7 +84,7 @@ if (empty($_SESSION['email'])){
                                     </div>
                                     <div class="modal-body">
                                         <form action="">
-                                            <!-- content goes here -->
+                                            yes
                                         </form>
                                     </div>
                                 </div>
@@ -116,9 +116,9 @@ if (empty($_SESSION['email'])){
                                         while($rows = mysqli_fetch_array($query_get_product)){
                                     ?>
                                     <tr>
-                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#inventory"><?php echo $i++;?></td>
-                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#inventory"><?php echo $rows['product_id'];?></td>
-                                        <td style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#inventory"><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
+                                        <td style="cursor:pointer;" class="showItem" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#showItem"><?php echo $i++;?></td>
+                                        <td style="cursor:pointer;" class="showItem" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#showItem"><?php echo $rows['product_id'];?></td>
+                                        <td style="cursor:pointer;" class="showItem" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#showItem"><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                         <td style="z-index:1111;">
                                             <a class="btn btn-success btn-sm product" href="" style="border-radius: 0;" data-id="<?php echo $product_id?>" data-bs-toggle="modal" data-bs-target="#inventory">EDIT</a>
                                             <a class="btn btn-danger btn-sm" href="og.php" style="border-radius: 0;">REMOVE</a>
@@ -149,6 +149,24 @@ if (empty($_SESSION['email'])){
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <div class="inventory-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="showItem" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            
+            <div class="modal-content" style="border-radius:0;">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="inventory-show">
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -161,20 +179,34 @@ if (empty($_SESSION['email'])){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
-            $('.inventory').click(function(){
+            $('.product').click(function(){
                 var inventory = $(this).data('id');
                 // eto yung ipapasa sa inventory.modal.php 
                 $.ajax({
-                    url: 'inventory.modal.php',
+                    url: 'inventory.edit.php',
                     type: 'post',
                     data: {inventory: inventory},
                     success: function(response){
-                        $('.modal-body').html(response);
-                        $('#inventory').modal('show');
+                        $('.inventory-body').html(response);
+                        $('#inventory').modal('show');                        
                     }
-                })
+                });
+            });
+            $('.showItem').click(function(){
+                var show = $(this).data('id');
+                // eto yung ipapasa sa inventory.modal.php 
+                $.ajax({
+                    url: 'inventory.show.php',
+                    type: 'post',
+                    data: {show:show},
+                    success: function(response){
+                        $('.inventory-show').html(response);
+                        $('#showItem').modal('show');                        
+                    }
+                });
             });
         });
+
     </script>
 </body>
 </html>
