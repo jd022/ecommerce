@@ -59,18 +59,19 @@ while($rowdisplay = mysqli_fetch_array($rundisplay)){
         $rows = mysqli_fetch_array($query_details);
         ?>
         <div class="row mb-1">
-            <div class="col-lg-10 d-flex align-items-center">
+            <div class="col-lg-8 d-flex align-items-center">
                 <span class="px-3">
                     <p class="h5">ORDER SUMMARY</p>
+                    <p class="h6">SHIPPING FEE: </p>
                     <p class="h6">TOTAL:</p>
                     <p class="h6">MODE OF PAYMENT:</p>
                 </span>
             </div>
-            <div class="col-lg-2 text-center">
+            <div class="col-lg-4 d-flex flex-column align-items-end justify-content-end">
                     <p class="h6" style="color:green;">FREE SHIPPING</p>
-                    <p class="h6">₱ <?php echo $rows['total'];?></p>
+                    <p class="h6">₱<?php echo $rows['total'];?>.00</p>
                     <p class="h6">CASH ON DELIVERY</p>
             </div>
         </div>
     </div>
-</section>   
+</section>  
