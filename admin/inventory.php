@@ -116,11 +116,11 @@ if (empty($_SESSION['email'])){
                                         while($rows = mysqli_fetch_array($query_get_product)){
                                     ?>
                                     <tr>
-                                        <td style="cursor:pointer;" class="showItem" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#showItem"><?php echo $i++;?></td>
-                                        <td style="cursor:pointer;" class="showItem" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#showItem"><?php echo $rows['product_id'];?></td>
-                                        <td style="cursor:pointer;" class="showItem" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#showItem"><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
+                                        <td style="cursor:pointer;" class="showItem" data-id="<?php echo $rows['product_id'];?>" data-bs-toggle="modal" data-bs-target="#showItem"><?php echo $i++;?></td>
+                                        <td style="cursor:pointer;" class="showItem" data-id="<?php echo $rows['product_id'];?>" data-bs-toggle="modal" data-bs-target="#showItem"><?php echo $rows['product_id'];?></td>
+                                        <td style="cursor:pointer;" class="showItem" data-id="<?php echo $rows['product_id'];?>" data-bs-toggle="modal" data-bs-target="#showItem"><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                         <td style="z-index:1111;">
-                                            <a class="btn btn-success btn-sm product" href="" style="border-radius: 0;" data-id="<?php echo $product_id?>" data-bs-toggle="modal" data-bs-target="#inventory">EDIT</a>
+                                            <a class="btn btn-success btn-sm product" href="" style="border-radius: 0;" data-id="<?php echo $rows['product_id']?>" data-bs-toggle="modal" data-bs-target="#inventory">EDIT</a>
                                             <a class="btn btn-danger btn-sm" href="og.php" style="border-radius: 0;">REMOVE</a>
                                         </td>
                                     </tr>
@@ -210,5 +210,31 @@ if (empty($_SESSION['email'])){
     </script>
 </body>
 </html>
+<?php
+    if(isset($_POST['update_inv'])){
+
+        date_default_timezone_set('Asia/Manila');
+		$date_time_updated = date("Y-m-d H:i:s");
+        $product_id = $_POST['product_id'];
+        $count = $_POST['count'];
+        $quantity = $_POST['quantity'];
+
+
+        for($j=0;$j<count($count);$j++){
+            $update_stocks = "UPDATE `product_stocks` SET `quantity` = quantity - '".$quantity[$j]."',
+            `date_time_updated` = '$date_time_updated'
+            WHERE product_id = '$product_id' and size = '".$size[$j]."'";
+            $query_update_stocks = mysqli_query($conn, $update_stocks);
+            }
+            if($query_update_stocks){
+            echo "<script>alert('Product ID: $product_id stocks has been updated.');
+            window.location.href='inventory.php'</script>";
+            exit();
+            }else{
+            echo '<script>alert("Something went wrong in stock update")</script>';
+            exit();
+            }
+    }
+?>
 
 <!-- Note: gawa ka ng file na inventory.modal.php para sa query nung modal isama mo agad yung $_POST['inventory'] // see line 138 -->
