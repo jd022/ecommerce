@@ -142,7 +142,7 @@ if (empty($_SESSION['email'])){
                             <span>
                                 <p class="m-0 text-center">Quantity</p>
                                 <input type="number" name="quantity[]" class="form-control" id="qty" min="0" max="99" value="<?php echo $rows['quantity'];?>">
-                                <p class="m-0 text-center"><a href="" class="btn" style="color:red;">REMOVE</a></p>
+                                <p class="m-0 text-center"><a href="cart.php?r=<?php echo $product_id;?>&s=<?php echo $rows['size'];?>" class="btn" style="color:red;">REMOVE</a></p>
                             </span>
                         </td>
                         
@@ -257,6 +257,24 @@ function upAmount(){
             }
         }else{
             echo $conn->error;
+            exit();
+        }
+    }
+    
+    if(isset($_GET['r'])){
+        $product_id = $_GET['r'];
+        $size = $_GET['s'];
+
+        $sql_remove_item = "DELETE FROM `user_orders`
+        WHERE user_id = '$user_id' AND product_id = '$product_id' AND size = '$size'
+        AND status = 'Cart'";
+        $query_remove_item = mysqli_query($conn, $sql_remove_item);
+        if($query_remove_item == true){
+            echo "<script>window.location.href='cart.php'</script>";
+            exit();
+        }else{
+            echo "<script>alert('Something went wrong');
+            window.location.href='cart.php'</script>";
             exit();
         }
     }
