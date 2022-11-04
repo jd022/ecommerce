@@ -76,4 +76,5 @@ while($rowdisplay = mysqli_fetch_array($rundisplay)){
             </div>
         </div>
     </div>
+    
 </section>  
