@@ -39,9 +39,6 @@ if (empty($_SESSION['email'])){
                     <li class="nav-item active">
                         <a class="nav-link" href="orders.php">DASHBOARD</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">SALES</a>
-                    </li>
                     <li class="nav-item dropdown align-items-center d-flex">
                         <a class="nav-link py-0" href="#" id="navbarDropdown" data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>

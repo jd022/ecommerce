@@ -44,9 +44,6 @@ if (empty($_SESSION['email'])){
                     <li class="nav-item active">
                         <a class="nav-link" href="#">DASHBOARD</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">SALES</a>
-                    </li>
                     <li class="nav-item dropdown align-items-center d-flex">
                         <a class="nav-link py-0" href="#" id="navbarDropdown" data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -62,17 +59,16 @@ if (empty($_SESSION['email'])){
         </div>
     </nav>
     <main class="container justify-content-center">
-        <div class="card-wrapper mt-4 d-flex flex-column align-items-center" style="height: 600px; overflow: none;">
+    <div class="card-wrapper mt-4 d-flex flex-column align-items-center" style="height: 600px; overflow: none;">
             <div class="card mb-2 mt-5" style="width: 80%; border: none; border-radius: 0;">
-                    <div class="row">
-                        <div class="col-md-4 p-0 m-0 bg-secondary">
+                <div class="row" style="height: 67vh;">
+                    <div class="col-md-4 p-0 m-0 bg-secondary" style="height: 67vh;">
                             <div class="py-5 d-flex flex-column align-items-center">
                                 <p class="h3" style="color: rgba(0,0,0,0.4);">DASHBOARD</p>
                                     <span class="d-flex justify-content-center flex-column align-items-center">
-                                        <a class="text-dark mt-3 fs-4 text-center" href="orders.php" style="text-decoration: none;">ORDERS</a>
-                                        <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">PRODUCTS</a>
-                                        <a class="text-dark mt-3 fs-4" href="inventory.php" style="text-decoration: none;">INVENTORY</a>
-                                        <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">USERS</a>
+                                        <a class="text-dark mt-4 fs-4 text-center" href="orders.php" style="text-decoration: none;">ORDERS</a>
+                                        <a class="text-dark mt-4 fs-4" href="" style="text-decoration: none;">PRODUCTS</a>
+                                        <a class="text-dark mt-4 fs-4" href="inventory.php" style="text-decoration: none;">INVENTORY</a>
                                     </span>
                             </div>
                         </div>
@@ -84,12 +80,13 @@ if (empty($_SESSION['email'])){
                                 <a href = "products.php?o" class="text-dark" style="text-decoration: none;">OTHERS</a>
                             </span>
                             <hr>
-                                <table class="table text-center table-hover">
-                                    <span class="mb-4 d-flex align-items-center justify-content-end w-100">
+                                <span class="mb-4 d-flex align-items-center justify-content-end w-100">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="black" class="bi bi-search" viewBox="0 0 15 15">
                                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
                                     <input type="text" name="" class="py-1 mx-2"placeholder="Search...">
                                 </span>
+                            <div class="card col-md-12 overflow-auto" style="height: 40%; border: none;">
+                            <table class="table text-center table-hover">
                                 <?php
                                 if(isset($_GET['ts'])){
                                     $get_product_ts = "SELECT * FROM products WHERE product_type = 'T-Shirt'";
@@ -233,6 +230,7 @@ if (empty($_SESSION['email'])){
                                 }
                                 ?>
                             </table>
+                            </div>
                         </div>
                     </div>
                 </div>
