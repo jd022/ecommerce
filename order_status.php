@@ -15,8 +15,8 @@ if (empty($_SESSION['email'])){
     ?>
     <style>
         .order-row:hover{
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
+            background: rgba(0, 0, 0, 0.2);
+            color: black;
             cursor: pointer;
         }
     </style>
@@ -69,7 +69,7 @@ if (empty($_SESSION['email'])){
 			xhttp.send();
 		}
 		orderStatus();
-		setInterval(orderStatus, 5000);
+		// setInterval(orderStatus, 5000);
 	</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
