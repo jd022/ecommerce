@@ -62,10 +62,10 @@ if (empty($_SESSION['email'])){
         </div>
     </nav>
     <main class="container justify-content-center">
-        <div class="card-wrapper mt-3 d-flex flex-column align-items-center" style="height: 600px;">
-            <div class="card mb-3 mt-5" style="height: 450px; width: 80%; border: none; border-radius: 0;">
-                <div class="row g-0" style="height: 100%;">
-                    <div class="col-md-4 p-0 m-0 bg-secondary" style="width: 28%;">
+        <div class="card-wrapper mt-4 d-flex flex-column align-items-center" style="height: 600px; overflow: none;">
+            <div class="card mb-3 mt-5" style="width: 80%; border: none; border-radius: 0;">
+                <div class="row">
+                    <div class="col-md-4 p-0 m-0 bg-secondary">
                         <div class="py-5 d-flex flex-column align-items-center">
                             <p class="h3" style="color: rgba(0,0,0,0.4);">DASHBOARD</p>
                             <span class="d-flex justify-content-center flex-column align-items-center">
@@ -78,10 +78,10 @@ if (empty($_SESSION['email'])){
                     </div>
                     <div class="col-md-8 py-4 px-3">
                         <h3 class="text-muted px-3">INVENTORY</h3>
-                        <span class="fs-5 fw-normal d-flex justify-content-end mt-4">
-                            <button class="btn btn-success" style="text-decoration: none;">ADD NEW ITEM</button>
+                        <span class="fs-5 fw-normal d-flex justify-content-end mt-2  px-2">
+                            <button class="btn btn-success px" style="text-decoration: none;">ADD NEW ITEM</button>
                         </span>
-                        <hr style="width:110%">
+                        <hr>
                         <table class="table text-center">
                         <span class="mb-4 d-flex align-items-center justify-content-end w-100">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="black" class="bi bi-search" viewBox="0 0 15 15">
