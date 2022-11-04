@@ -26,7 +26,9 @@ if (empty($_SESSION['email'])){
                 WHERE user_id = '$user_id' AND status = '$status'";
                 $result = mysqli_query($conn, $sql) or die (mysqli_error($con));
                 if(mysqli_num_rows($result) > 0){
+                    $i = 1;
                 while ($rows = mysqli_fetch_array($result)){
+                    $product_id = $rows['product_id'];
 					?>
                     <tr id="cart">
                         <td class="col-lg-3 text-lg-center">
@@ -36,8 +38,100 @@ if (empty($_SESSION['email'])){
                         </td>
                         <td>
                             <span>
+                                <input type="hidden" name="count[]" value="<?php echo $i++;?>">
+                                <input type="hidden" name="sizes[]" value="<?php echo $rows['size'];?>"> 
                                 <p class="h2 p-0 m-0"><?php echo $rows['name'];?></p>
-                                <p class="h5 p-0 m-0"><?php echo $rows['size'];?></p>
+                                <select name="size[]" id="">
+                                        <option selected="true" disabled="disabled" hidden value="">Sizes</option>
+                                        <?php
+                                        $check_medium_size = "SELECT * FROM product_stocks
+                                        WHERE product_id = '$product_id' and quantity <= 0
+                                        and product_stocks.stock = 'in' and size = 'Medium'";
+                                        $query_medium_size = mysqli_query($conn, $check_medium_size);
+                                        if(mysqli_num_rows($query_medium_size) > 0){
+                                        ?>
+                                        <option disabled="disabled" value="Medium">Medium</option>
+                                        <?php
+                                        }else{
+                                        ?>
+                                        <option value="Medium"
+                                        <?php 
+                                            if ($rows['size'] == 'Medium'){
+                                                echo "selected";
+                                            }
+                                            ?>
+                                        >Medium</option>
+                                        <?php
+                                        }
+                                        ?>
+
+                                        <?php
+                                        $check_large_size = "SELECT * FROM product_stocks
+                                        WHERE product_id = '$product_id' and quantity <= 0
+                                        and product_stocks.stock = 'in' and size = 'Large'";
+                                        $query_large_size = mysqli_query($conn, $check_large_size);
+                                        if(mysqli_num_rows($query_large_size) > 0){
+                                        ?>
+                                        <option disabled="disabled" value="Large">Large</option>
+                                        <?php
+                                        }else{
+                                        ?>
+                                        <option value="Large"
+                                        <?php 
+                                            if ($rows['size'] == 'Large'){
+                                                echo "selected";
+                                            }
+                                            ?>
+                                        >Large</option>
+                                        <?php
+                                        }
+                                        ?>
+
+                                        <?php
+                                        $check_xlarge_size = "SELECT * FROM product_stocks
+                                        WHERE product_id = '$product_id' and quantity <= 0
+                                        and product_stocks.stock = 'in' and size = 'X-Large'";
+                                        $query_xlarge_size = mysqli_query($conn, $check_xlarge_size);
+                                        if(mysqli_num_rows($query_xlarge_size) > 0){
+                                        ?>
+                                        <option disabled="disabled" value="X-Large">XL</option>
+                                        <?php
+                                        }else{
+                                        ?>
+                                        <option value="X-Large"
+                                        <?php 
+                                            if ($rows['size'] == 'X-Large'){
+                                                echo "selected";
+                                            }
+                                            ?>
+                                        >XL</option>
+                                        <?php
+                                        }
+                                        ?>
+
+
+                                        <?php
+                                        $check_xxlarge_size = "SELECT * FROM product_stocks
+                                        WHERE product_id = '$product_id' and quantity <= 0
+                                        and product_stocks.stock = 'in' and size = 'XX-Large'";
+                                        $query_xxlarge_size = mysqli_query($conn, $check_xxlarge_size);
+                                        if(mysqli_num_rows($query_xxlarge_size) > 0){
+                                        ?>
+                                        <option disabled="disabled" value="XX-Large">XXL</option>
+                                        <?php
+                                        }else{
+                                        ?>
+                                        <option value="XX-Large"
+                                        <?php 
+                                            if ($rows['size'] == 'XX-Large'){
+                                                echo "selected";
+                                            }
+                                            ?>
+                                        >XXL</option>
+                                        <?php
+                                        }
+                                        ?>
+                                </select>
                                 <span class="d-flex">
                                     <p>₱ </p>
                                     <p id="price"><?php echo $rows['p_price'];?></p>
@@ -47,8 +141,8 @@ if (empty($_SESSION['email'])){
                         <td>
                             <span>
                                 <p class="m-0 text-center">Quantity</p>
-                                <input type="number" name="quantity" class="form-control" id="qty" min="0" max="99" value="<?php echo $rows['quantity'];?>">
-
+                                <input type="number" name="quantity[]" class="form-control" id="qty" min="0" max="99" value="<?php echo $rows['quantity'];?>">
+                                <p class="m-0 text-center"><a href="" class="btn" style="color:red;">REMOVE</a></p>
                             </span>
                         </td>
                         
@@ -110,12 +204,12 @@ function upAmount(){
 
 <?php
     if(isset($_POST['submit'])){
-        $quantity = $_POST['quantity'];
         $date = date('ym');
         $rand = rand('0000', '9999');
         $otp = "".$date."".$rand."";
-
-        $check_order_id = "SELECT *, products.price as p_price
+        
+        $check_order_id = "SELECT *,user_orders.size as sizes,
+        user_orders.id as uid, products.price as p_price
         FROM user_orders
         LEFT JOIN products on products.product_id = user_orders.product_id
         WHERE user_orders.id ORDER BY user_orders.order_id DESC";
@@ -128,20 +222,39 @@ function upAmount(){
         }
         else{
             $order_item = "00". $date . $rand;
+            $order_item = $order_item;
         }
+        // previous size
+        $sizes = $_POST['sizes'];
 
+        $quantity = $_POST['quantity'];
+        $size = $_POST['size'];
+        $count = $_POST['count'];
         date_default_timezone_set('Asia/Manila');
 		$date_time_created = date("Y-m-d H:i:s");
-		$total_price = $quantity * $p_price;
-
-		$update_user_order = "UPDATE `user_orders` SET `order_id` = '$order_item', `status` = 'Pending', 
-        `quantity` = '$quantity', `price` = '$total_price', `date_time_created` = '$date_time_created'
-        WHERE user_id = '$user_id' AND `status` = 'Cart'";
+        $total_price = (int)$p_price * (int)$quantity;
+        $status = "Cart";
+        for($i=0;$i<count($count);$i++){
+        $update_user_order = "UPDATE `user_orders` SET `order_id` = '$order_item', `status` = 'Pending', 
+        `quantity` = '".$quantity[$i]."', `size` = '".$size[$i]."', `price` = '$total_price', 
+        `date_time_created` = '$date_time_created'
+        WHERE user_id = '$user_id' AND `status` = '$status' AND `size` = '".$sizes[$i]."'";
         $query_update_user_order = mysqli_query($conn, $update_user_order);
+        }
         if($query_update_user_order == true){
+            for($j=0;$j<count($count);$j++){
+            $update_stocks = "UPDATE `product_stocks` SET `quantity` = quantity - '".$quantity[$j]."'
+            WHERE product_id = '$product_id' and size = '".$size[$j]."'";
+            $query_update_stocks = mysqli_query($conn, $update_stocks);
+            }
+            if($query_update_stocks){
             echo "<script>alert('Order submitted, check your order status to check your orders.');
-            window.location.href='cart.php'</script>";
+            window.location.href='order_status.php'</script>";
             exit();
+            }else{
+            echo '<script>alert("Something went wrong in stock update")</script>';
+            exit();
+            }
         }else{
             echo $conn->error;
             exit();
