@@ -81,7 +81,7 @@ include ("connection.php");
             <div class="container mt-2 pt-4 p-1 d-flex flex-column align-items-center justify-content-center">
             <div class="card" style="width: 60vw; height: 25rem; border-radius: 0; border: none; font-family: var(--nunito); overflow:hidden;">
             <h6 class="pt-5 p-2 d-flex justify-content-center align-content-center h4" style="font-weight: 200;">EMAIL NOT FOUND</h6>
-            <h4 class="pt-5 d-flex justify-content-center align-content-center h5" style="font-weight: 100; ">Sorry your email is not registered.</h4>
+            <h4 class="pt-5 d-flex justify-content-center align-content-center h5" style="font-weight: 100; ">Sorry, your email is not registered yet.</h4>
             <h3 class="pt-5 d-flex justify-content-center align-content-center h5"><a href="index.php" class="btn">Back</a></h3>
             <?php
         }
@@ -97,7 +97,7 @@ include ("connection.php");
             <span class="mb-2 mt-4 d-flex align-items-center justify-content-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="28" fill="black" class="bi bi-search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
-                <input type="email" name="email" class="py-1 mx-2" placeholder="Email">
+                <input type="email" name="email" class="py-1 mx-2" placeholder="Email" maxlength=30>
              </span>    
              <div class="container">
 		  <div class="text-center py-4">
