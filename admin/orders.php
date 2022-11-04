@@ -91,7 +91,7 @@ if (empty($_SESSION['email'])){
                                     <input type="text" name="" class="py-1 mx-2"placeholder="Search...">
                                 </span>
                         <div class="card col-md-12 overflow-auto" style="height: 40%; border: none;">
-                        <table class="table text-center overflow-y">
+                        <table class="table text-center overflow-y table-hover">
                         <?php
                                     if(isset($_POST['submit'])){
                                         $search = $_POST['search'];
@@ -134,7 +134,7 @@ if (empty($_SESSION['email'])){
                                         $encryption_oid = openssl_encrypt($rows['order_id'], $ciphering,
                                                     $encryption_key, $options, $encryption_iv);
                                             ?>
-                                        <tr>
+                                        <tr style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders">
                                             <td>
                                                 <?php 
                                                     echo $i;
@@ -189,14 +189,14 @@ if (empty($_SESSION['email'])){
                                         $encryption_oid = openssl_encrypt($rows['order_id'], $ciphering,
                                                     $encryption_key, $options, $encryption_iv);
                                             ?>
-                                        <tr>
+                                        <tr style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders">
                                             <td>
                                                 <?php 
                                                     echo $i;
                                                     $i++;
                                                 ?>
                                             </td>
-                                            <td class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo $rows['order_id'];?></td>
+                                            <td><?php echo $rows['order_id'];?></td>
                                             <td><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                         </tr>
                                             <?php
@@ -241,14 +241,14 @@ if (empty($_SESSION['email'])){
                                         $encryption_oid = openssl_encrypt($rows['order_id'], $ciphering,
                                                     $encryption_key, $options, $encryption_iv);
                                             ?>
-                                        <tr>
+                                        <tr style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders">
                                             <td>
                                                 <?php 
                                                     echo $i;
                                                     $i++;
                                                 ?>
                                             </td>
-                                            <td class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo $rows['order_id'];?></td>
+                                            <td><?php echo $rows['order_id'];?></td>
                                             <td><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                             <td>
                                             <a href="config.php?a&td&oid=<?php echo $encryption_oid;?>" 
@@ -302,14 +302,14 @@ if (empty($_SESSION['email'])){
                                         $encryption_oid = openssl_encrypt($rows['order_id'], $ciphering,
                                                     $encryption_key, $options, $encryption_iv);
                                             ?>
-                                        <tr>
+                                        <tr style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders">
                                             <td>
                                                 <?php 
                                                     echo $i;
                                                     $i++;
                                                 ?>
                                             </td>
-                                            <td class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo $rows['order_id'];?></td>
+                                            <td><?php echo $rows['order_id'];?></td>
                                             <td><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                             <td>
                                             <a href="config.php?a&c&oid=<?php echo $encryption_oid;?>" 
@@ -361,14 +361,14 @@ if (empty($_SESSION['email'])){
                                         $encryption_oid = openssl_encrypt($rows['order_id'], $ciphering,
                                                     $encryption_key, $options, $encryption_iv);
                                             ?>
-                                        <tr>
+                                        <tr style="cursor:pointer;" class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders">
                                             <td>
                                                 <?php 
                                                     echo $i;
                                                     $i++;
                                                 ?>
                                             </td>
-                                            <td class="orders" data-id="<?php echo $rows['order_id'];?>" data-bs-toggle="modal" data-bs-target="#orders"><?php echo $rows['order_id'];?></td>
+                                            <td><?php echo $rows['order_id'];?></td>
                                             <td><?php echo date("Y-m-d h:i:s A", strtotime($rows['date_time_created']));?></td>
                                             <td>
                                             <a href="config.php?a&p&oid=<?php echo $encryption_oid;?>" class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>

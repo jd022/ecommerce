@@ -84,7 +84,7 @@ if (empty($_SESSION['email'])){
                                 <a class="text-dark" style="text-decoration: none;">OTHERS</a>
                             </span>
                             <hr>
-                                <table class="table text-center">
+                                <table class="table text-center table-hover">
                                     <span class="mb-4 d-flex align-items-center justify-content-end w-100">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="black" class="bi bi-search" viewBox="0 0 15 15">
                                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
@@ -97,12 +97,12 @@ if (empty($_SESSION['email'])){
                                     <th style="font-weight: 500;">OPERATION</th>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr style="cursor:pointer;" class="product" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product">
                                         <td>1</td>
                                         <td>000907221</td>
                                         <td>10/22/2022 10:30:31 AM</td>
-                                        <td>
-                                            <button class="btn btn-success btn-sm" href="" style="border-radius: 0;">EDIT</button>
+                                        <td style="z-index:1111;">
+                                            <button class="btn btn-success btn-sm product" href="" style="border-radius: 0;" data-id="<?php ?>" data-bs-toggle="modal" data-bs-target="#product">EDIT</button>
                                             <button class="btn btn-danger btn-sm" href="" style="border-radius: 0;">REMOVE</button>
                                         </td>
                                     </tr>
@@ -114,10 +114,40 @@ if (empty($_SESSION['email'])){
             </div>
         </div>
     </main>
+    <div class="modal fade" id="product" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            
+            <div class="modal-content" style="border-radius:0;">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- <h1>Home</h1>
     welcome user
     <a href="logout.php">logout</a> -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.product').click(function(){
+                var products = $(this).data('id');
+                // eto yung ipapasa sa inventory.modal.php 
+                $.ajax({
+                    url: 'inventory.modal.php',
+                    type: 'post',
+                    data: {products: products},
+                    success: function(response){
+                        $('.modal-body').html(response);
+                        $('#product').modal('show');
+                    }
+                })
+            });
+        });
+    </script>
 </body>
 </html>
