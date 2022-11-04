@@ -57,21 +57,21 @@ if (empty($_SESSION['email'])){
                         </div>
                         <!-- Temporary nav item -->
                     </li>
-                </ul>
+                </ul>   
             </div>
         </div>
     </nav>
     <main class="container">
-        <div class="card-wrapper mt-4 d-flex flex-column align-items-center" style="height: 600px;">
-            <div class="card mb-3 w-75 mt-5" style="height: 400px; border: none; border-radius: 0;">
-                <div class="row g-0" style="height: 100%;">
+        <div class="card-wrapper mt-4 d-flex flex-column align-items-center" style="height: 600px; overflow: none;">
+            <div class="card mb-2 mt-5 w-75" style="border: none; border-radius: 0;">
+                <div class="row g-0">
                     <div class="col-md-4 p-0 m-0 bg-secondary">
                         <div class="py-5 d-flex flex-column align-items-center">
                             <p class="h3" style="color: rgba(0,0,0,0.4);">DASHBOARD</p>
                                 <span class="d-flex justify-content-center flex-column align-items-center">
-                                    <a class="text-dark fs-4 text-center" href="" style="text-decoration: none;">ORDERS</a>
-                                    <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">PRODUCTS</a>
-                                    <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">INVENTORY</a>
+                                    <a class="text-dark mt-3 fs-4 text-center" href="" style="text-decoration: none;">ORDERS</a>
+                                    <a class="text-dark mt-3 fs-4" href="products.php" style="text-decoration: none;">PRODUCTS</a>
+                                    <a class="text-dark mt-3 fs-4" href="inventory.php" style="text-decoration: none;">INVENTORY</a>
                                     <a class="text-dark mt-3 fs-4" href="" style="text-decoration: none;">USERS</a>
                                 </span>
                         </div>
@@ -79,40 +79,206 @@ if (empty($_SESSION['email'])){
                     <div class="col-md-8 py-4 px-3">
                         <h5 class="text-muted px-3">CUSTOMER ORDERS</h5>
                         <span class="fs-5 fw-normal d-flex justify-content-evenly mt-4">
-                            <a class="text-dark" style="text-decoration: none;">PENDING</a>
-                            <a class="text-dark" style="text-decoration: none;">TO DELIVER</a>
-                            <a class="text-dark" style="text-decoration: none;">HISTORY</a>
+                            <a href="orders.php?p" class="text-dark" style="text-decoration: none;">PENDING</a>
+                            <a href="orders.php?c" class="text-dark" style="text-decoration: none;">CONFIRMED</a>
+                            <a href="orders.php?td" class="text-dark" style="text-decoration: none;">TO DELIVER</a>
+                            <a href="orders.php?h"class="text-dark" style="text-decoration: none;">HISTORY</a>
                         </span>
-                        <hr style="width:90%">
-                        <table class="table text-center">
+                        <hr>
                         <span class="mb-4 d-flex align-items-center justify-content-end w-70">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="black" class="bi bi-search" viewBox="0 0 15 15">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
-                            <input type="text" name="" class="py-1 mx-2"placeholder="Search...">
-                        </span>
-                            <thead>
-                                <th style="font-weight: 500;">NO.</th>
-                                <th style="font-weight: 500;">ORDER ID</th> 
-                                <th style="font-weight: 500;">DATE OF ORDER</th>
-                                <th style="font-weight: 500;">OPERATION</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>000907221</td>
-                                    <td>10/22/2022 10:30:31 AM</td>
-                                    <td>
-                                        <button class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</button>
-                                        <button class="btn btn-danger btn-sm" style="border-radius: 0;">REJECT</button>
-                                    </td>
-                                </tr>
-                            </tbody>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="black" class="bi bi-search" viewBox="0 0 15 15">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
+                                    <input type="text" name="" class="py-1 mx-2"placeholder="Search...">
+                                </span>
+                        <table class="table text-center overflow-y">
+                                    <?php
+                                    if(isset($_GET['h'])){
+                                        $get_order_history = "SELECT * FROM user_orders WHERE status = 'Done' ORDER BY date_time_created DESC";
+                                        $query_order_history = mysqli_query($conn, $get_order_history);
+                                        if(mysqli_num_rows($query_order_history) > 0){
+                                    ?>
+                                    <thead>
+                                        <th style="font-weight: 500;">NO.</th>
+                                        <th style="font-weight: 500;">ORDER ID</th> 
+                                        <th style="font-weight: 500;">DATE OF ORDER</th>
+                                    </thead>
+                                        <tbody>
+                                            <?php 
+                                                $i = 1;
+                                                while($rows = mysqli_fetch_array($query_order_history)){
+                                            ?>
+                                        <tr>
+                                            <td>
+                                                <?php 
+                                                    echo $i;
+                                                    $i++;
+                                                ?>
+                                            </td>
+                                            <td><a class="text-decoration-none color: text-black" data-bs-toggle="modal" data-bs-target="#orderID">
+                                                <?php echo $rows['order_id'];?></a></td>
+                                            <td>10/22/2022 10:30:31 AM</td>
+                                        </tr>
+                                            <?php
+                                                }
+                                            ?>
+                                    </tbody>
+                                    <?php
+                                        }else{
+                                            echo "<td>There is no data in table </td>";
+                                        }
+                                    ?>
+                                    <?php 
+                                    }else if(isset($_GET['td'])){
+                                        $get_order_deliver = "SELECT * FROM user_orders WHERE status = 'To deliver' ORDER BY date_time_created DESC";
+                                        $query_order_deliver = mysqli_query($conn, $get_order_deliver);
+                                        if(mysqli_num_rows($query_order_deliver) > 0){
+                                        ?>
+                                    <thead>
+                                        <th style="font-weight: 500;">NO.</th>
+                                        <th style="font-weight: 500;">ORDER ID</th> 
+                                        <th style="font-weight: 500;">DATE OF ORDER</th>
+                                        <th style="font-weight: 500;">OPERATION</th>
+                                    </thead>
+                                        <tbody>
+                                            <?php 
+                                                $i = 1;
+                                                while($rows = mysqli_fetch_array($query_order_deliver)){
+                                            ?>
+                                        <tr>
+                                            <td>
+                                                <?php 
+                                                    echo $i;
+                                                    $i++;
+                                                ?>
+                                            </td>
+                                            <td><a class="text-decoration-none color: text-black" data-bs-toggle="modal" data-bs-target="#orderID">
+                                                <?php echo $rows['order_id'];?></a></td>
+                                            <td>10/22/2022 10:30:31 AM</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>
+                                                <button class="btn btn-danger btn-sm" style="border-radius: 0;">REJECT</button>
+                                            </td>
+                                        </tr>
+                                            <?php
+                                                }
+                                            ?>
+                                    </tbody>
+                                    <?php
+                                        }else{
+                                            echo "<td>There is no data in table </td>";
+                                        }
+                                    ?>
+
+                                    <?php 
+                                    }else if(isset($_GET['c'])){
+                                        $get_order_confirm = "SELECT * FROM user_orders WHERE status = 'Confirm' ORDER BY date_time_created DESC";
+                                        $query_order_confirm = mysqli_query($conn, $get_order_confirm);
+                                        if(mysqli_num_rows($query_order_confirm) > 0){
+                                        ?>
+                                    <thead>
+                                        <th style="font-weight: 500;">NO.</th>
+                                        <th style="font-weight: 500;">ORDER ID</th> 
+                                        <th style="font-weight: 500;">DATE OF ORDER</th>
+                                        <th style="font-weight: 500;">OPERATION</th>
+                                    </thead>
+                                        <tbody>
+                                            <?php 
+                                                $i = 1;
+                                                while($rows = mysqli_fetch_array($query_order_confirm)){
+                                            ?>
+                                        <tr>
+                                            <td>
+                                                <?php 
+                                                    echo $i;
+                                                    $i++;
+                                                ?>
+                                            </td>
+                                            <td><a class="text-decoration-none color: text-black" data-bs-toggle="modal" data-bs-target="#orderID">
+                                                <?php echo $rows['order_id'];?></a></td>
+                                            <td>10/22/2022 10:30:31 AM</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>
+                                                <button class="btn btn-danger btn-sm" style="border-radius: 0;">REJECT</button>
+                                            </td>
+                                        </tr>
+                                            <?php
+                                                }
+                                            ?>
+                                    </tbody>
+                                    <?php
+                                        }else{
+                                            echo "<td>There is no data in table </td>";
+                                        }
+                                    ?>
+
+                                    <?php }else{
+                                        $get_order_pending = "SELECT * FROM user_orders WHERE status = 'Pending' ORDER BY date_time_created DESC";
+                                        $query_order_pending = mysqli_query($conn, $get_order_pending);
+                                        if(mysqli_num_rows($query_order_pending) > 0){?>
+                                        <thead>
+                                        <th style="font-weight: 500;">NO.</th>
+                                        <th style="font-weight: 500;">ORDER ID</th> 
+                                        <th style="font-weight: 500;">DATE OF ORDER</th>
+                                        <th style="font-weight: 500;">OPERATION</th>
+                                    </thead>
+                                        <tbody>
+                                            <?php 
+                                                $i = 1;
+                                                while($rows = mysqli_fetch_array($query_order_pending)){
+                                            ?>
+                                        <tr>
+                                            <td>
+                                                <?php 
+                                                    echo $i;
+                                                    $i++;
+                                                ?>
+                                            </td>
+                                            <td><a class="text-decoration-none color: text-black" data-bs-toggle="modal" data-bs-target="#orderID">
+                                                <?php echo $rows['order_id'];?></a></td>
+                                            <td>10/22/2022 10:30:31 AM</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-sm" style="border-radius: 0;">ACCEPT</a>
+                                                <button class="btn btn-danger btn-sm" style="border-radius: 0;">REJECT</button>
+                                            </td>
+                                        </tr>
+                                            <?php
+                                                }
+                                            ?>
+                                    </tbody>
+                                    <?php
+                                        }else{
+                                            echo "<td>There is no data in table </td>";
+                                        }
+                                    ?>
+                                    <?php }?>
+                            
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+    <!-- Modal for ORDER ID -->
+    <div class="modal fade" id="orderID" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <p class="mt-0">ORDER ID: 928139</p>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p class="mt-0">Email</p>
+                                                        <input type="email" name="email" maxlength="30" class="form-control" value="<?= $rows['email']?>">
+                                                        <p class="mt-3 mb-0">Confirm Password</p>
+                                                        <input type="password" name="e_password" class="form-control" maxlength="30">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" name="u_email" class="btn btn-primary">Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
     <!-- <h1>Home</h1>
     welcome user
     <a href="logout.php">logout</a> -->
