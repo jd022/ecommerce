@@ -63,9 +63,9 @@ if (empty($_SESSION['email'])){
     </nav>
     <main class="container">
         <div class="card-wrapper mt-4 d-flex flex-column align-items-center" style="height: 600px; overflow: none;">
-            <div class="card mb-2 mt-5 w-75" style="border: none; border-radius: 0;">
-                <div class="row g-0">
-                    <div class="col-md-4 p-0 m-0 bg-secondary">
+            <div class="card mb-2 mt-5" style="width: 80%; border: none; border-radius: 0;">
+                <div class="row" style="height: 67vh;">
+                    <div class="col-md-4 p-0 m-0 bg-secondary" style="height: 67vh;">
                         <div class="py-5 d-flex flex-column align-items-center">
                             <p class="h3" style="color: rgba(0,0,0,0.4);">DASHBOARD</p>
                                 <span class="d-flex justify-content-center flex-column align-items-center">
@@ -90,6 +90,7 @@ if (empty($_SESSION['email'])){
                                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
                                     <input type="text" name="" class="py-1 mx-2"placeholder="Search...">
                                 </span>
+                        <div class="card col-md-12 overflow-auto" style="height: 40%; border: none;">
                         <table class="table text-center overflow-y">
                         <?php
                                     if(isset($_POST['submit'])){
@@ -388,6 +389,7 @@ if (empty($_SESSION['email'])){
                                     <?php }?>
                             
                         </table>
+                        </div>
                     </div>
                 </div>
             </div>
