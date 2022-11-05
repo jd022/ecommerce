@@ -52,7 +52,7 @@ while($rowdisplay = mysqli_fetch_array($rundisplay)){
                 <label for="">Stocks</label>
                 <input type="hidden" name="count[]" value="<?php echo $i++;?>">
                 <input type="hidden" name="count[]" value="<?php echo $product_id?>">
-                <input type="text" name="quantity[]" class="form-control text-center">
+                <input type="text" name="quantity[]" class="form-control text-center" value="<?= $rowdisplay['quantity']?>">
             </div>
         </div>
         <hr class="featurette-divider">
